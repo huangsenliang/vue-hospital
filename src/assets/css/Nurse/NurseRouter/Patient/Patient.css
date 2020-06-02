@@ -1,0 +1,136 @@
+.patient {
+  height: 100%;
+  /*顶部标签*/
+  /*内容*/
+}
+.patient .patient-header-wrapper {
+  height: 49px;
+  justify-content: space-between;
+  border-bottom: 1px solid #ced0da;
+  padding: 0 24px;
+  background-color: #f2f2f2;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.patient .patient-header-wrapper .el-button {
+  color: #005ed9;
+  padding: 8px 18px;
+}
+.patient .patient-header-wrapper h3 {
+  font-size: 16px;
+  color: #000;
+  line-height: 47px;
+  font-weight: 700;
+  padding: 0 24px;
+  background-color: #f2f2f2;
+}
+.patient .patient-main-wrapper {
+  height: calc(100% - 49px);
+  background-color: #fff;
+  padding: 15px 24px 24px;
+  overflow-y: auto;
+  /*个人信息*/
+  /*主要内容部分*/
+}
+.patient .patient-main-wrapper .info-row li:nth-child(1) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 3px;
+  border: 1px solid #ced0da;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #000;
+  display: inline-block;
+  font-size: 14px;
+  height: 32px;
+  line-height: 1;
+  outline: none;
+  padding: 3px 8px;
+  width: 100%;
+}
+.patient .patient-main-wrapper .patient-content-wrapper {
+  /*共有样式*/
+  /*中医处方*/
+}
+.patient .patient-main-wrapper .patient-content-wrapper ul:not(:last-child) {
+  border-bottom: solid 1px #eee;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .table-wrapper {
+  margin-top: 24px;
+  font-size: 14px;
+  border: 1px #eee solid;
+  border-radius: 4px;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .table-wrapper .table-header {
+  background: #f5f7fb;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .table-wrapper .table-header .first-td {
+  font-weight: 700;
+  color: #000;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .table-wrapper .table-body {
+  cursor: pointer;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .table-wrapper .table-body:hover {
+  background: #f0f0fb;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .table-wrapper .table {
+  height: 32px;
+  align-items: center;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .table-wrapper .table li {
+  padding: 0 15px;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .table-wrapper .table .first-td {
+  flex: 5;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .table-wrapper .table .second-td {
+  flex: 2;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .table-wrapper .table .thrid-td {
+  flex: 2;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .table-wrapper .table .four-td {
+  flex: 2;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .table-wrapper .table .five-td {
+  flex: 2;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .table-wrapper .table .fixed-td {
+  flex: 2;
+  text-align: right;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .chinese-medicine {
+  /*表头*/
+  /*表内容*/
+}
+.patient .patient-main-wrapper .patient-content-wrapper .chinese-medicine .table-header li:nth-child(1) {
+  flex: 8;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .chinese-medicine .table-header li:nth-child(2) {
+  flex: 1;
+  text-align: right;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .chinese-medicine .content-table {
+  align-items: center;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .chinese-medicine .content-table .table-left {
+  flex: 3;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .chinese-medicine .content-table .table-left .table-item {
+  flex: 1;
+  cursor: pointer;
+  line-height: 32px;
+  height: 32px;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .chinese-medicine .content-table .table-left .table-item:hover {
+  background: #f0f0fb;
+}
+.patient .patient-main-wrapper .patient-content-wrapper .chinese-medicine .content-table .table-right {
+  flex: 1;
+  text-align: center;
+}

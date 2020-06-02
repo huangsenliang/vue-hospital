@@ -1,0 +1,104 @@
+@import "../../css/Common/Reset/Common.less";
+.warnset {
+  height: 100%;
+  .main-wrapper {
+    /*头部*/
+    .warnset-header-title {
+      align-items: center;
+      -ms-align-items: center;
+      -webkit-align-items: center;
+      width: 100%;
+      height: 48px;
+      border-bottom: 1px solid #ced0da;
+      padding: 0 24px;
+      border-bottom: 1px solid #dadbe0;
+      border-top: 1px solid #dadbe0;
+      background-color: #f5f7fb;
+      .el-page-header__left {
+        &:hover {
+          color: @color_007aff;
+        }
+    }
+    }
+    /*内容*/
+    .warnset-content-wrapper {
+      padding: 24px;
+      .warnset-set-item:last-child {
+        border-bottom: 1px solid #e6eaee;
+      }
+      .warnset-set-item {
+        padding-bottom: 24px;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        .set-name {
+          font-size: 14px;
+          color: #7a8794;
+          width: 96px;
+          min-width: 96px;
+          max-width: 96px;
+          padding-top: 8px;
+        }
+        .set-content {
+          -webkit-flex: 1;
+          -ms-flex: 1;
+          flex: 1;
+          .top {
+            input {
+              width: 60px;
+              text-align: center;
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              appearance: none;
+              background-color: rgba(0, 0, 0, 0);
+              border-radius: 3px;
+              border: 1px solid #ced0da;
+              -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+              color: #000;
+              display: inline-block;
+              font-size: 14px;
+              height: 32px;
+              line-height: 1;
+              outline: none;
+              padding: 3px 8px;
+            }
+          }
+          .bottom {
+            color: @color_96a4b3;
+            font-size: 12px;
+            margin-top: 6px;
+          }
+        }
+      }
+    }
+    /*按钮*/
+    .btn-wrapper {
+      padding: 0 24px;
+      .button-small {
+        margin-right: 15px;
+        color: @color_007aff;
+        border: 1px solid #c1c9d0;
+        min-width: 90px;
+        height: 32px;
+        padding: 0 10px;
+        
+      }
+      .btn-qx:hover {
+        border: 1px solid @color_007aff;
+        background: @color_d2e5f6;
+      }
+      /*内容改动时样式*/
+      .is-active {
+        background: @color_007aff;
+        color: #fff;
+        border: 0;
+      }
+      .is-disabled {
+        background: #e6eaee;
+        color: #7a8794;
+        border: 1px solid #c1c9d0;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

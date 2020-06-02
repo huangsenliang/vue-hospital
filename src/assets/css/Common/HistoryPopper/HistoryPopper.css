@@ -1,0 +1,120 @@
+/* 引入定义变量 */
+.history-popper {
+  width: 100%;
+  background-color: #fffdec;
+  border: 1px solid #cbb816;
+}
+.history-popper .mr-history-content {
+  /*头部*/
+  /*内容*/
+  /*底部按钮*/
+}
+.history-popper .mr-history-content .title {
+  padding: 16px;
+  border-bottom: 1px solid #e6eaee;
+}
+.history-popper .mr-history-content .title .tr-history {
+  margin-bottom: 6px;
+  -webkit-display: flex;
+  -ms-display: flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+.history-popper .mr-history-content .title .tr-history span.name {
+  width: 60px;
+  color: #000;
+  line-height: 20px;
+  margin-right: 8px;
+}
+.history-popper .mr-history-content .title .tr-history span:nth-child(2) {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.history-popper .mr-history-content .title .tr-history span:nth-child(n + 2) {
+  color: #7a8794;
+}
+.history-popper .mr-history-content .prescription {
+  padding: 0 16px 12px;
+  border-bottom: 1px solid #e6eaee;
+  /*西药*/
+  /*中药*/
+}
+.history-popper .mr-history-content .prescription h5 {
+  color: #000;
+  font-weight: 700;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 12px;
+}
+.history-popper .mr-history-content .prescription li.tr {
+  margin-right: 4px;
+  font-size: 14px;
+  margin-top: 6px;
+}
+.history-popper .mr-history-content .prescription .west-wrapper ul.west li {
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+.history-popper .mr-history-content .prescription .box {
+  border-bottom: 1px solid #e6eaee;
+  padding-bottom: 10px;
+}
+.history-popper .mr-history-content .prescription .chinese-wrapper ul.chinese {
+  flex-wrap: wrap;
+}
+.history-popper .mr-history-content .prescription .chinese-wrapper ul.chinese li {
+  color: #7a8794;
+  min-width: 100px;
+}
+.history-popper .mr-history-content .history-btn {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-content: space-around;
+  padding: 16px 10px;
+}
+.history-popper .mr-history-content .history-btn button {
+  color: #007aff;
+}
+.history-popper .mr-history-content .history-btn button:hover {
+  background-color: #d2e5f6;
+}
+.history-popper .mr-history-content .dy-wrapper {
+  position: relative;
+  z-index: 5;
+}
+.history-popper .mr-history-content .dy-wrapper .popper-dy {
+  width: 100px;
+  top: -135px;
+  position: absolute;
+  background: #fff;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #ced0da;
+}
+.history-popper .mr-history-content .dy-wrapper .popper-dy ul {
+  padding: 8px 0px;
+}
+.history-popper .mr-history-content .dy-wrapper .popper-dy ul li {
+  height: 28px;
+  line-height: 28px;
+  color: #000;
+  font-size: 14px;
+  padding: 0 5px;
+}
+.history-popper .mr-history-content .dy-wrapper .popper-dy ul li:hover {
+  background: #f5f7fb;
+}
+.history-popper .mr-history-content .dy-wrapper .popper-dy ul > li.is-disabled {
+  color: #ced0da;
+  cursor: not-allowed;
+}
+/*打印页面的页头页尾*/
+@page {
+  margin: 0;
+}

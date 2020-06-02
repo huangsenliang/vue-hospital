@@ -1,0 +1,152 @@
+/* 定义变量 */
+/************边框线颜色************/
+/*大盒子边框线*/
+/*表头边框线*/
+/*表格内容边框线*/
+/*输入框边框线*/
+/*投诉边框线*/
+/*主诉记录item边框线*/
+/**************字体颜色************/
+/*图标颜色*/
+/*常用字体颜色*/
+/*按钮字体颜色*/
+/*主诉记录字体颜色*/
+/***********背景色************/
+/*表格头部背景颜色*/
+/*投诉盒子背景*/
+/*按钮背景绿色*/
+/*按钮背景蓝色*/
+/*鼠标悬停按钮背景颜色*/
+/*输入框禁用状态颜色*/
+.record-info {
+  background: #fffdec;
+  border: 1px solid #ced0da;
+  border-bottom: 0;
+  border-radius: 3px;
+}
+.record-info .record-info-item {
+  position: relative;
+  border-bottom: 1px solid #e6eaee;
+  height: 37px;
+  -ms-align-items: center;
+  -webkit-align-items: center;
+  align-items: center;
+  /*选中样式*/
+  /* 主诉弹窗盒子内容 */
+  /*上传图片*/
+}
+.record-info .record-info-item:hover > span.shang-chuan {
+  display: inline;
+}
+.record-info .record-info-item label {
+  width: 98px;
+  height: 37px;
+  line-height: 37px;
+  color: #626d77;
+  text-indent: 12px;
+  border-right: 1px solid #e6eaee;
+}
+.record-info .record-info-item > input {
+  flex: 1;
+  height: 100%;
+  background: #fffdec;
+  padding-left: 10px;
+}
+.record-info .record-info-item label.label-bold {
+  font-weight: 700;
+}
+.record-info .record-info-item .record-suggestions-wrapper {
+  position: absolute;
+  top: 42px;
+  left: 125px;
+  width: calc(100% - 146px);
+  background: #fff;
+  border-radius: 3px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+  z-index: 1009;
+  border: 1px solid #b7b9c2;
+  font-size: 14px;
+  /*关闭*/
+}
+.record-info .record-info-item .record-suggestions-wrapper .tabs-wrapper {
+  padding: 0 15px;
+  /*智能提示*/
+  /*望问切*/
+}
+.record-info .record-info-item .record-suggestions-wrapper .tabs-wrapper .el-tabs__header {
+  margin-bottom: 10px;
+}
+.record-info .record-info-item .record-suggestions-wrapper .tabs-wrapper .tip h4 {
+  padding: 16px 8px 8px;
+  color: #005ed9;
+  font-weight: 700;
+}
+.record-info .record-info-item .record-suggestions-wrapper .tabs-wrapper .wangWenQie ul {
+  padding: 10px 0;
+}
+.record-info .record-info-item .record-suggestions-wrapper .tabs-wrapper .wangWenQie ul:nth-child(1) {
+  padding: 0;
+}
+.record-info .record-info-item .record-suggestions-wrapper .tabs-wrapper .wangWenQie ul + ul {
+  border-top: 1px solid #b7b9c2;
+}
+.record-info .record-info-item .record-suggestions-wrapper .tabs-wrapper .xieya li > .left span {
+  display: inline-block;
+  width: 55px;
+}
+.record-info .record-info-item .record-suggestions-wrapper .tabs-wrapper .xieya .right {
+  flex: 1;
+}
+.record-info .record-info-item .record-suggestions-wrapper ul.record-table + ul.record-table {
+  border-top: 1px solid #b7b9c2;
+}
+.record-info .record-info-item .record-suggestions-wrapper ul.record-table {
+  padding: 5px 0;
+  margin: 0 8px;
+}
+.record-info .record-info-item .record-suggestions-wrapper ul .symptomsItem {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  line-height: 1;
+  color: #7a8794;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.record-info .record-info-item .record-suggestions-wrapper ul .symptomsItem:hover {
+  background: #d2e5f6;
+  color: #007aff;
+}
+.record-info .record-info-item .record-suggestions-wrapper .close {
+  height: 40px;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  color: #005ed9;
+  background: #f7f7f7;
+  cursor: pointer;
+}
+.record-info .record-info-item .record-suggestions-wrapper .close .icon-guanbi {
+  font-size: 28px;
+}
+.record-info .record-info-item .shang-chuan {
+  display: none;
+  position: absolute;
+  right: 10px;
+  color: #007aff;
+  cursor: pointer;
+}
+.record-info .record-info-item .shang-chuan input {
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+}

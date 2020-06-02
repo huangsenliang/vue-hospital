@@ -1,0 +1,544 @@
+/* 引入定义变量 */
+@import "../../css/Common/Reset/Common.less";
+
+.outpatient {
+  height: 100%;
+  /*左侧内容*/
+  .aside-left-wrapper {
+    height: 100%;
+    /*搜索框 */
+    .search-wrapper {
+      -webkit-align-items: center;
+      -ms-align-items: center;
+      align-items: center;
+      height: 48px;
+      line-height: 48px;
+      width: 100%;
+      padding: 0 5px;
+      background-color: #f2f2f2;
+      border-bottom: 1px solid #dadbe0;
+      border-radius: 3px 3px 0 0;
+      .button-small {
+        padding: 3px 6px;
+      }
+      .quick-btn {
+        margin-left: 5px;
+        color: #fff;
+        border: 0;
+        &:hover {
+          background-color: @color_14f16c;
+        }
+      }
+    }
+    /*标签内容*/
+    .tabs-wrapper {
+      font-size: 12px;
+      padding: 0 8px 0 12px;
+      -webkit-align-items: center;
+      -ms-align-items: center;
+      align-items: center;
+      -webkit-justify-content: space-between;
+      -ms-justify-content: space-between;
+      justify-content: space-between;
+      line-height: 36px;
+      background: @color_f5f7fb;
+      border-bottom: 1px solid @color_dadbe0;
+      /*标签*/
+      .tabs {
+        .tab {
+          cursor: pointer;
+          color: @color_7a8794;
+          padding: 0 2px;
+          margin-right: 10px;
+        }
+        .active {
+          color: #000;
+          font-weight: 700;
+          border-bottom: 2px solid @color_007aff;
+        }
+      }
+      /*时间选择日历*/
+      .date-picker {
+        .icon-xia {
+          color: @color_96a4b3;
+          margin-left: 5px;
+        }
+      }
+    }
+    /*左侧切换内容*/
+    .content-mz-wrapper {
+      height: calc(100% - 86px);
+      /*表格内容*/
+      .table-wrapper-top {
+        height: 67%;
+        overflow-y: auto;
+        .table {
+          .row {
+            cursor: pointer;
+            height: 48px;
+            padding: 0 5px 0 12px;
+            -webkit-align-items: center;
+            -ms-align-items: center;
+            align-items: center;
+            border-bottom: 1px solid @color_eff3f6;
+            span {
+              padding: 0 5px;
+            }
+            span:nth-child(1) {
+              -webkit-flex: 1;
+              -ms-flex: 1;
+              flex: 1;
+            }
+            span:nth-child(n + 2) {
+              font-size: 12px;
+            }
+            span:last-child {
+              color: @color_96a4b3;
+            }
+          }
+          /*激活样式*/
+          .active {
+            background: @color_blue;
+            color: #fff;
+            span:last-child {
+              color: #fff;
+            }
+          }
+        }
+        /*没有更多内容*/
+        .not-content {
+          height: 40px;
+          line-height: 40px;
+          font-size: 12px;
+          text-align: center;
+          color: @color_96a4b3;
+        }
+      }
+      /*就诊历史*/
+      .history-wrapper {
+        height: 33%;
+        /*头部标题*/
+        .history-title {
+          -ms-align-items: center;
+          -webkit-align-items: center;
+          align-items: center;
+          font-size: 12px;
+          height: 36px;
+          line-height: 36px;
+          color: #000;
+          background-color: @color_f2f2f2;
+          padding: 0 11px;
+          overflow: hidden;
+          font-weight: 700;
+          border-top: 1px solid @color_ced0da;
+          font-size: 12px;
+          border-bottom: 1px solid @color_ced0da;
+          h4 {
+            font-weight: 700;
+          }
+        }
+        /*表格内容*/
+        .history-table-wrapper {
+          height: calc(100% - 36px);
+          overflow-y: auto;
+          .row {
+            position: relative;
+            color: @color_7a8794;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            height: 40px;
+            padding: 0 11px;
+            border-bottom: 1px solid #e6eaee;
+            cursor: pointer;
+            span.designation {
+              -webkit-flex: 1;
+              -ms-flex: 1;
+              flex: 1;
+            }
+            span.date {
+              width: 60px;
+              text-align: right;
+            }
+            /*历史弹窗*/
+            .history-popper-wrapper {
+              position: fixed;
+              bottom: 37px;
+              left: 30%;
+              width: 348px;
+              // height: 300px;
+            }
+          }
+        }
+      }
+    }
+    .content-wz-wrapper {
+      position: relative;
+      height: calc(100% - 86px);
+      width: 100%;
+      .tip {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50px;
+        color: @color_7a8794;
+        display: inline-block;
+        width: 140px;
+        font-size: 14px;
+        margin: 0 auto;
+      }
+    }
+  }
+  /*中间主要内容*/
+  .main-content {
+    height: 100%;
+    /*头部*/
+    .header-wrapper {
+      height: 49px;
+      -webkit-align-items: center;
+      -ms-align-items: center;
+      align-items: center;
+      -webkit-justify-content: space-between;
+      -ms-justify-content: space-between;
+      justify-content: space-between;
+      padding: 0 24px;
+      border-bottom: 1px solid #ced0da;
+      background-color: @color_f2f2f2;
+      border-top-right-radius: 3px;
+      border-top-left-radius: 3px;
+      /*左侧*/
+      .header-left {
+        -webkit-align-items: center;
+        -ms-align-items: center;
+        align-items: center;
+        font-size: 12px;
+        h3 {
+          font-size: 16px;
+          font-weight: 700;
+          color: #000;
+        }
+        span.count {
+          color: #0eba52;
+          font-weight: 400;
+          margin-left: 16px;
+        }
+      }
+      /*右侧*/
+      .header-right {
+        .btn + .btn {
+          margin-left: 8px;
+        }
+        button:first-child {
+          color: #fff;
+          &:hover {
+            // background:@color_blue;
+            opacity: 0.8;
+          }
+        }
+        button:nth-child(n + 2) {
+          color: @color_007aff;
+          &:hover {
+            background: @color_d2e5f6;
+            border: 1px solid @color_007aff;
+          }
+        }
+      }
+      /*快速诊断按钮样式*/
+      .header-right-quick {
+        .btn2{
+          color: @color_007aff;
+          &:hover {
+            background: @color_d2e5f6;
+            border: 1px solid @color_007aff;
+          }
+        }
+        .btn1 {
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+        -webkit-align-items: center;
+        -ms-align-items: center;
+        align-items: center;
+        .mz-setting-wrapper {
+          position: relative;
+          cursor: pointer;
+          color: @color_7a8794;
+          height: 30px;
+          width: 30px;
+          font-weight: 700;
+          line-height: 25px;
+          text-align: center;
+          i.icon-ellipsis2 {
+            width: 30px;
+            overflow: hidden;
+            display: inline-block;
+            height: 30px;
+            line-height: 29px;
+            text-align: center;
+            border: 1px solid #c1c9d0;
+            color: @color_96a4b3;
+            border-radius: 4px;
+            &:hover {
+              background: @color_d2e5f6;
+              border: 1px solid @color_007aff;
+            }
+          }
+          /*设置弹窗盒子*/
+          .setting-popper {
+            position: absolute;
+            top: 32px;
+            right: 5px;
+            z-index: 8888;
+            color: @color_606266;
+            font-weight: normal;
+            width: 410px;
+            padding: 12px 24px 24px;
+            background-color: #fff;
+            border-radius: 4px;
+            border: 1px solid #e6eaee;
+            -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+            margin-top: 2px;
+            /*头部*/
+            .setting-title {
+              color: #7a8794;
+              padding-bottom: 12px;
+              border-bottom: 1px solid #dadbe0;
+              margin-bottom: 16px;
+              justify-content: space-between;
+              .btn {
+                color: @color_2680f7;
+              }
+            }
+            .setting-content {
+              h5 {
+                font-weight: 700;
+                font-size: 14px;
+                color: #000;
+                margin-top: 20px;
+              }
+              .el-checkbox {
+                width: 60px;
+              }
+            }
+            .cut-line {
+              border-bottom: 1px dashed #dadbe0;
+              margin: 14px 0 4px;
+            }
+          }
+        }
+      }
+    }
+    /*表格内容*/
+    .table-content {
+      padding: 0 24px;
+      height: calc(100% - 49px);
+      overflow-y: auto;
+      /*患者信息*/
+      .info-wrapper-top {
+        margin-top: 15px;
+        justify-content: space-between;
+        .info-right {
+          .input-search {
+            margin-left: 5px;
+          }
+        }
+      }
+      /*记录*/
+      .record-wrapper {
+        margin-top: 16px;
+        margin-bottom: 8px;
+      }
+      /*搜索框盒子*/
+      .add-wrapper {
+        padding-bottom: 8px;
+        border-bottom: 1px dashed @color_e6eaee;
+      }
+      /*搜索框*/
+      .add {
+        justify-content: space-between;
+        .prepend-input {
+          width: 32%;
+        }
+      }
+      /* 图片*/
+      .img-wrapper {
+        margin-top: 10px;
+        .img-item {
+          position: relative;
+          cursor: pointer;
+          &:hover > i.icon-del {
+            display: inline-block;
+          }
+        }
+        img {
+          width: 100px;
+          height: 100%;
+          border-radius: 4px;
+          margin-left: 15px;
+          // box-shadow: 0 0 2px 1px rgba(0, 0,0, 0.3);
+        }
+        i.icon-del {
+          display: none;
+          position: absolute;
+          right: -4px;
+          top: -8px;
+          border-radius: 50%;
+          background: @color_96a4b3;
+          color: #fff;
+        }
+      }
+      /*添加处方*/
+      .add-prescription-wrapper {
+        margin: 10px 0;
+        justify-content: space-between;
+        button {
+          margin-right: 10px;
+        }
+      }
+      /*医嘱事项*/
+      .doctor-advice {
+        margin-bottom: 10px;
+        position: relative;
+        border: 4px;
+        min-height: 33px;
+        // -ms-align-items: center;
+        // -webkit-align-items: center;
+        // align-items: center;
+        border: 1px solid @color_e6eaee;
+        border-radius: 4px;
+        background: @color_fffdec;
+        label {
+          width: 98px;
+          border-right: 1px solid @color_e6eaee;
+          min-height: 33px;
+          color: #626d77;
+          text-indent: 12px;
+          line-height: 33px;
+        }
+        .textarea-wrapper {
+          flex: 1;
+          height: 100%;
+          background: @color_fffdec;
+          line-height: 25px;
+          .el-textarea__inner {
+            border: 0;
+            color: #000;
+            background: @color_fffdec;
+            &:hover {
+              border: 1px solid #005ed9;
+              border-radius: 0;
+              transition: border-color 0s cubic-bezier(0.645, 0.045, 0.355, 1);
+            }
+          }
+        }
+        /*医嘱弹窗盒子*/
+        .advice-popper-wrapper {
+          position: absolute;
+          top: 42px;
+          left: 230px;
+          width: calc(100% - 240px);
+          max-height: 150px;
+          overflow-y: auto;
+          background: #fff;
+          border-radius: 3px;
+          -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+          z-index: 1009;
+          border: 1px solid #b7b9c2;
+          font-size: 14px;
+          ul {
+            padding: 10px 8px;
+            li {
+              height: 24px;
+              line-height: 24px;
+            }
+          }
+          ul .symptomsItem {
+            display: inline-block;
+            padding: 0px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            color: @color_7a8794;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            &:hover {
+              background: @color_d2e5f6;
+              color: @color_007aff;
+            }
+          }
+          /*关闭*/
+          .close {
+            height: 40px;
+            -webkit-align-items: center;
+            -ms-align-items: center;
+            -webkit-justify-content: center;
+            -ms-justify-content: center;
+            justify-content: center;
+            color: #005ed9;
+            background: #f7f7f7;
+            cursor: pointer;
+            .icon-guanbi {
+              font-size: 28px;
+            }
+          }
+        }
+      }
+    }
+  }
+  /*右侧内容*/
+  .aside-right-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    /*头部*/
+    .header-top h4 {
+      font-weight: 700;
+      height: 48px;
+      line-height: 48px;
+      text-align: center;
+      background-color: #f2f2f2;
+      font-size: 16px;
+      border-bottom: 1px solid #ced0da;
+    }
+    /*内容*/
+    .content-wrapper {
+      padding: 0 16px;
+      .el-collapse-item__header {
+        font-weight: 700;
+      }
+      .el-collapse-item__content {
+        padding-bottom: 16px;
+        padding-left: 16px;
+      }
+      .diagnosis-suggestion {
+        color: #7a8794;
+        margin-bottom: 12px;
+
+        /*激活样式*/
+        span.selected {
+          color: #fff;
+          background-color: #ced0da;
+        }
+        .left {
+          min-width: 32px;
+        }
+        .right {
+          flex-wrap: wrap;
+          font-size: 13px;
+          .item {
+            padding: 4px 6px;
+            margin-bottom: 2px;
+            margin-right: 4px;
+            border-radius: 12px;
+            line-height: 13px;
+            font-size: 13px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

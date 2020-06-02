@@ -1,0 +1,335 @@
+.add {
+  height: 100%;
+  /*左侧内容*/
+  .add-left-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    flex: 3;
+    background: #fff;
+    border:#ced0da 1px solid;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &::-ms-scrollbar {
+      display: none;
+    }
+    /*头部标题*/
+    .add-header-wrapper {
+      height: 49px;
+      line-height: 48px;
+      border-bottom: 1px solid #ced0da;
+      padding: 0 24px;
+      background-color: #f2f2f2;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 9;
+      border-top-right-radius: 3px;
+      border-top-left-radius: 3px;
+      .header-right {
+        button {
+          text-align: center;
+          border-radius: 3px;
+        }
+        .btn1 {
+          margin-right: 4px;
+          background: #e6eaee;
+          color: #7a8794;
+          border: 1px solid #c1c9d0;
+          cursor: not-allowed;
+        }
+        .btn2 {
+          border: 1px solid #c1c9d0;
+          background-color: #fff;
+          color: #005ed9;
+          cursor: pointer;
+          &:hover {
+            border: 1px solid #009ed9;
+          }
+        }
+      }
+    }
+    /*内容*/
+    .add-content-wrapper {
+      padding: 15px 24px 24px;
+      /*诊断*/
+      .treatment-diagnosis-wrapper {
+        border: 1px solid #ced0da;
+        border-radius: 3px;
+        margin-top: 16px;
+        /*共有样式*/
+        .diagnosis-info {
+          width: 340px;
+          margin-right: 16px;
+        }
+        .doctor {
+          -webkit-flex: 1;
+          -ms-flex: 1;
+          flex: 1;
+          color: #8d9aa8;
+        }
+        /*头部*/
+        .form-title {
+          height: 32px;
+          background-color: #f5f7fb;
+          padding: 0 12px;
+          -webkit-align-items: center;
+          -ms-flex-align: center;
+          align-items: center;
+        }
+        /*输入框*/
+        .treatment-diagnosis-form {
+          min-height: 40px;
+          padding: 0 12px;
+          -webkit-align-items: center;
+          -ms-flex-align: center;
+          align-items: center;
+          /*诊断输入框*/
+          .diagnosis-info {
+            .input-inner {
+              width: 100%;
+              height: 30px;
+              padding: 8px;
+              border-radius: 0;
+              border: 1px #ddd solid;
+            }
+          }
+          /*开单人选中框*/
+          .doctor {
+            /*输入框*/
+            .el-select .el-input .el-input__inner {
+              -webkit-appearance: none;
+              background-color: #fff;
+              background-image: none;
+              border-radius: 0;
+              border: 1px solid #dcdfe6;
+              box-sizing: border-box;
+              color: #606266;
+              display: inline-block;
+              font-size: inherit;
+              height: 30px;
+              padding: 6px 8px;
+              outline: 0;
+              transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+              width: 100%;
+            }
+            /*字体图标*/
+            .el-input__icon {
+              line-height: 35px;
+            }
+          }
+        }
+      }
+      /*添加项目*/
+      .goods-autocumplete-wrapper {
+        position: relative;
+        margin-top: 16px;
+        i.icon-jia {
+          position: absolute;
+          height: 40px;
+          line-height: 40px;
+          width: 35px;
+          text-align: center;
+          color: #96a4b3;
+        }
+        input.add-input {
+          width: 100%;
+          padding: 0 24px 0 34px;
+          border: 1px solid #ced0da;
+          height: 40px;
+          border-radius: 4px;
+        }
+      }
+      /*添加项目表格*/
+      .charge-table {
+        width: 100%;
+        margin-top: 16px;
+        border: 1px solid #ced0da;
+        border-radius: 3px;
+        ul.table-header {
+          color: #96a4b3;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+          -ms-flex-align: center;
+          align-items: center;
+          height: 40px;
+          background-color: #f5f7fb;
+          padding-left: 12px;
+          padding-right: 16px;
+          border-radius: 3px 3px 0 0;
+        }
+
+        ul {
+          .name {
+            flex: 4;
+          }
+          .price {
+            flex: 1;
+            text-align: center;
+            padding-left: 12px;
+          }
+          .count {
+            padding-left: 16px;
+            flex: 1;
+            text-align: center;
+          }
+          .total {
+            padding-left: 16px;
+            flex: 1;
+            text-align: center;
+          }
+          .end-item {
+            flex: 0.4;
+            text-align: center;
+          }
+        }
+
+        .tr {
+          position: relative;
+          height: 40px;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+          -ms-flex-align: center;
+          align-items: center;
+          border-top: 1px dashed #e6eaee;
+          padding-left: 12px;
+          padding-right: 16px;
+          font-size: 14px;
+        }
+      }
+      /*内容*/
+      .table-body {
+        .tr {
+          &:hover {
+            background: #eeeff0;
+            cursor: pointer;
+          }
+          &:hover > .end-item {
+            opacity: 1;
+          }
+          input {
+            height: 28px;
+            border-radius: 3px;
+          }
+          .title-name {
+            flex: 4;
+          }
+          .input-price {
+            input {
+              padding: 3px 8px;
+              width: 80px;
+              border: 1px solid #ced0da;
+            }
+          }
+          .input-count {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            input {
+              padding: 3px 8px;
+              width: 50px;
+              border: 1px solid #ced0da;
+              border-radius: 3px 0 0 3px;
+            }
+            span {
+              display: inline-block;
+              width: 40px;
+              height: 28px;
+              line-height: 28px;
+              text-align: center;
+              border: 1px solid #ced0da;
+              border-left: 0;
+              background: #f5f7fb;
+              border-radius: 0 3px 3px 0;
+            }
+          }
+          .input-total {
+            input {
+              padding: 3px 8px;
+              width: 80px;
+              border: 1px solid #ced0da;
+            }
+          }
+          .end-item {
+            opacity: 0;
+            i.icon-del {
+              font-size: 16px;
+              border: 1px solid #ddd;
+              border-radius: 50%;
+              margin-left: 15px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      /*合计*/
+      .heji-wrapper {
+        height: 40px;
+        border-top: 1px dashed #e6eaee;
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        align-items: center;
+        padding-left: 12px;
+        padding-right: 25px;
+        font-size: 14px;
+      }
+    }
+  }
+  /*右侧内容*/
+  .add-right-wrapper {
+    flex: 1;
+    margin-left: 4px;
+    border:1px solid #ced0da;
+    /*顶部*/
+    .top-wrapper {
+      text-align: center;
+      font-size: 16px;
+      height: 49px;
+      line-height: 48px;
+      border-bottom: 1px solid #ced0da;
+      background-color: #f2f2f2;
+      span {
+        color: #7a8794;
+        cursor: pointer;
+      }
+    }
+    /*树状节点*/
+    .content-wrapper {
+      height: calc(100% - 49px);
+      overflow-y: auto;
+      background: #fff;
+      padding: 15px 5px;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      &::-ms-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
+
+/*响应式*/ 
+@media screen and (max-width: 1279px){
+  .add .add-right-wrapper{
+    display: none;
+}
+}
+

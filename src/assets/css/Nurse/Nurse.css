@@ -1,0 +1,123 @@
+.nurse {
+  height: 100%;
+  /*左边内容*/
+  /*中间内容*/
+}
+.nurse aside {
+  flex: 1;
+  border: 1px #dadbe0 solid;
+  /*输入框内容*/
+  /*表格名单*/
+  /*历史记录*/
+}
+.nurse aside .search-wrapper {
+  background: #f2f2f2;
+  padding: 8px;
+  align-items: center;
+}
+.nurse aside .search-wrapper .el-input {
+  margin-right: 10px;
+}
+.nurse aside .search-wrapper a {
+  min-width: 80px;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 8px;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 3px;
+  background: #0eba52;
+}
+.nurse aside .search-wrapper a:hover {
+  background: #66f59f;
+}
+.nurse aside .quick-content-wrapper {
+  height: calc(70% - 56px);
+  overflow-y: auto;
+}
+.nurse aside .quick-content-wrapper .quick-list .active {
+  background: #00ace9 !important;
+  color: #fff !important;
+}
+.nurse aside .quick-content-wrapper .quick-list .active .span-color {
+  color: #fff !important;
+}
+.nurse aside .quick-content-wrapper .quick-list li a {
+  cursor: pointer;
+  height: 48px;
+  padding: 0 15px;
+  align-items: center;
+  background: #fff;
+  justify-content: space-between;
+  border-bottom: 1px #eee solid;
+  color: #000;
+}
+.nurse aside .quick-content-wrapper .quick-list li .left-name img {
+  width: 24px;
+  margin-right: 12px;
+}
+.nurse aside .quick-content-wrapper .quick-list li .right-time {
+  font-size: 12px;
+}
+.nurse aside .quick-content-wrapper .quick-list li .right-time span:nth-child(2) {
+  margin-left: 10px;
+}
+.nurse aside .quick-content-wrapper .quick-list li .right-time .span-color {
+  color: #96a4b3;
+  font-weight: 400;
+}
+.nurse aside .quick-content-wrapper .quick-list .quick-list-header i.icon-huanzhe- {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #00ace9;
+  background: #fff;
+  border: 1px #fff solid;
+  padding: 3px;
+  border-radius: 5px;
+}
+.nurse aside .quick-content-wrapper .quick-list .quick-list-header .span-color {
+  color: #08a446;
+}
+.nurse aside .history-wrapper {
+  height: 30%;
+}
+.nurse aside .history-wrapper .history-title {
+  height: 36px;
+  line-height: 36px;
+  color: #000;
+  background-color: #f2f2f2;
+  padding: 0 11px;
+  overflow: hidden;
+  font-weight: 700;
+  border-top: 1px solid #ced0da;
+  font-size: 12px;
+  border-bottom: 1px solid #dadbe0;
+}
+.nurse aside .history-wrapper .history-list {
+  height: calc(100% - 36px);
+  overflow-y: auto;
+}
+.nurse aside .history-wrapper .history-list .history-list-item {
+  padding: 0 11px;
+  background: #fff;
+}
+.nurse aside .history-wrapper .history-list .history-list-item .list-item-content {
+  height: 40px;
+  align-items: center;
+  border-bottom: #eee solid 1px;
+}
+.nurse aside .history-wrapper .history-list .history-list-item .list-item-content span:nth-child(1) {
+  flex: 2;
+}
+.nurse aside .history-wrapper .history-list .history-list-item .list-item-content span:nth-child(2) {
+  flex: 1;
+}
+.nurse aside .history-wrapper .history-list .history-list-item .list-item-content span:nth-child(3) {
+  flex: 1;
+}
+.nurse main {
+  flex: 4;
+  margin-left: 10px;
+  overflow-y: auto;
+}

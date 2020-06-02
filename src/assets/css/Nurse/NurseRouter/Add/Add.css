@@ -1,0 +1,317 @@
+.add {
+  height: 100%;
+  /*左侧内容*/
+  /*右侧内容*/
+}
+.add .add-left-wrapper {
+  height: 100%;
+  overflow-y: auto;
+  flex: 3;
+  background: #fff;
+  border: #ced0da 1px solid;
+  /*头部标题*/
+  /*内容*/
+}
+.add .add-left-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.add .add-left-wrapper::-ms-scrollbar {
+  display: none;
+}
+.add .add-left-wrapper .add-header-wrapper {
+  height: 49px;
+  line-height: 48px;
+  border-bottom: 1px solid #ced0da;
+  padding: 0 24px;
+  background-color: #f2f2f2;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 9;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.add .add-left-wrapper .add-header-wrapper .header-right button {
+  text-align: center;
+  border-radius: 3px;
+}
+.add .add-left-wrapper .add-header-wrapper .header-right .btn1 {
+  margin-right: 4px;
+  background: #e6eaee;
+  color: #7a8794;
+  border: 1px solid #c1c9d0;
+  cursor: not-allowed;
+}
+.add .add-left-wrapper .add-header-wrapper .header-right .btn2 {
+  border: 1px solid #c1c9d0;
+  background-color: #fff;
+  color: #005ed9;
+  cursor: pointer;
+}
+.add .add-left-wrapper .add-header-wrapper .header-right .btn2:hover {
+  border: 1px solid #009ed9;
+}
+.add .add-left-wrapper .add-content-wrapper {
+  padding: 15px 24px 24px;
+  /*诊断*/
+  /*添加项目*/
+  /*添加项目表格*/
+  /*内容*/
+  /*合计*/
+}
+.add .add-left-wrapper .add-content-wrapper .treatment-diagnosis-wrapper {
+  border: 1px solid #ced0da;
+  border-radius: 3px;
+  margin-top: 16px;
+  /*共有样式*/
+  /*头部*/
+  /*输入框*/
+}
+.add .add-left-wrapper .add-content-wrapper .treatment-diagnosis-wrapper .diagnosis-info {
+  width: 340px;
+  margin-right: 16px;
+}
+.add .add-left-wrapper .add-content-wrapper .treatment-diagnosis-wrapper .doctor {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  color: #8d9aa8;
+}
+.add .add-left-wrapper .add-content-wrapper .treatment-diagnosis-wrapper .form-title {
+  height: 32px;
+  background-color: #f5f7fb;
+  padding: 0 12px;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.add .add-left-wrapper .add-content-wrapper .treatment-diagnosis-wrapper .treatment-diagnosis-form {
+  min-height: 40px;
+  padding: 0 12px;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /*诊断输入框*/
+  /*开单人选中框*/
+}
+.add .add-left-wrapper .add-content-wrapper .treatment-diagnosis-wrapper .treatment-diagnosis-form .diagnosis-info .input-inner {
+  width: 100%;
+  height: 30px;
+  padding: 8px;
+  border-radius: 0;
+  border: 1px #ddd solid;
+}
+.add .add-left-wrapper .add-content-wrapper .treatment-diagnosis-wrapper .treatment-diagnosis-form .doctor {
+  /*输入框*/
+  /*字体图标*/
+}
+.add .add-left-wrapper .add-content-wrapper .treatment-diagnosis-wrapper .treatment-diagnosis-form .doctor .el-select .el-input .el-input__inner {
+  -webkit-appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 0;
+  border: 1px solid #dcdfe6;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 30px;
+  padding: 6px 8px;
+  outline: 0;
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 100%;
+}
+.add .add-left-wrapper .add-content-wrapper .treatment-diagnosis-wrapper .treatment-diagnosis-form .doctor .el-input__icon {
+  line-height: 35px;
+}
+.add .add-left-wrapper .add-content-wrapper .goods-autocumplete-wrapper {
+  position: relative;
+  margin-top: 16px;
+}
+.add .add-left-wrapper .add-content-wrapper .goods-autocumplete-wrapper i.icon-jia {
+  position: absolute;
+  height: 40px;
+  line-height: 40px;
+  width: 35px;
+  text-align: center;
+  color: #96a4b3;
+}
+.add .add-left-wrapper .add-content-wrapper .goods-autocumplete-wrapper input.add-input {
+  width: 100%;
+  padding: 0 24px 0 34px;
+  border: 1px solid #ced0da;
+  height: 40px;
+  border-radius: 4px;
+}
+.add .add-left-wrapper .add-content-wrapper .charge-table {
+  width: 100%;
+  margin-top: 16px;
+  border: 1px solid #ced0da;
+  border-radius: 3px;
+}
+.add .add-left-wrapper .add-content-wrapper .charge-table ul.table-header {
+  color: #96a4b3;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 40px;
+  background-color: #f5f7fb;
+  padding-left: 12px;
+  padding-right: 16px;
+  border-radius: 3px 3px 0 0;
+}
+.add .add-left-wrapper .add-content-wrapper .charge-table ul .name {
+  flex: 4;
+}
+.add .add-left-wrapper .add-content-wrapper .charge-table ul .price {
+  flex: 1;
+  text-align: center;
+  padding-left: 12px;
+}
+.add .add-left-wrapper .add-content-wrapper .charge-table ul .count {
+  padding-left: 16px;
+  flex: 1;
+  text-align: center;
+}
+.add .add-left-wrapper .add-content-wrapper .charge-table ul .total {
+  padding-left: 16px;
+  flex: 1;
+  text-align: center;
+}
+.add .add-left-wrapper .add-content-wrapper .charge-table ul .end-item {
+  flex: 0.4;
+  text-align: center;
+}
+.add .add-left-wrapper .add-content-wrapper .charge-table .tr {
+  position: relative;
+  height: 40px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-top: 1px dashed #e6eaee;
+  padding-left: 12px;
+  padding-right: 16px;
+  font-size: 14px;
+}
+.add .add-left-wrapper .add-content-wrapper .table-body .tr:hover {
+  background: #eeeff0;
+  cursor: pointer;
+}
+.add .add-left-wrapper .add-content-wrapper .table-body .tr:hover > .end-item {
+  opacity: 1;
+}
+.add .add-left-wrapper .add-content-wrapper .table-body .tr input {
+  height: 28px;
+  border-radius: 3px;
+}
+.add .add-left-wrapper .add-content-wrapper .table-body .tr .title-name {
+  flex: 4;
+}
+.add .add-left-wrapper .add-content-wrapper .table-body .tr .input-price input {
+  padding: 3px 8px;
+  width: 80px;
+  border: 1px solid #ced0da;
+}
+.add .add-left-wrapper .add-content-wrapper .table-body .tr .input-count {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.add .add-left-wrapper .add-content-wrapper .table-body .tr .input-count input {
+  padding: 3px 8px;
+  width: 50px;
+  border: 1px solid #ced0da;
+  border-radius: 3px 0 0 3px;
+}
+.add .add-left-wrapper .add-content-wrapper .table-body .tr .input-count span {
+  display: inline-block;
+  width: 40px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  border: 1px solid #ced0da;
+  border-left: 0;
+  background: #f5f7fb;
+  border-radius: 0 3px 3px 0;
+}
+.add .add-left-wrapper .add-content-wrapper .table-body .tr .input-total input {
+  padding: 3px 8px;
+  width: 80px;
+  border: 1px solid #ced0da;
+}
+.add .add-left-wrapper .add-content-wrapper .table-body .tr .end-item {
+  opacity: 0;
+}
+.add .add-left-wrapper .add-content-wrapper .table-body .tr .end-item i.icon-del {
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  margin-left: 15px;
+  cursor: pointer;
+}
+.add .add-left-wrapper .add-content-wrapper .heji-wrapper {
+  height: 40px;
+  border-top: 1px dashed #e6eaee;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 25px;
+  font-size: 14px;
+}
+.add .add-right-wrapper {
+  flex: 1;
+  margin-left: 4px;
+  border: 1px solid #ced0da;
+  /*顶部*/
+  /*树状节点*/
+}
+.add .add-right-wrapper .top-wrapper {
+  text-align: center;
+  font-size: 16px;
+  height: 49px;
+  line-height: 48px;
+  border-bottom: 1px solid #ced0da;
+  background-color: #f2f2f2;
+}
+.add .add-right-wrapper .top-wrapper span {
+  color: #7a8794;
+  cursor: pointer;
+}
+.add .add-right-wrapper .content-wrapper {
+  height: calc(100% - 49px);
+  overflow-y: auto;
+  background: #fff;
+  padding: 15px 5px;
+}
+.add .add-right-wrapper .content-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.add .add-right-wrapper .content-wrapper::-ms-scrollbar {
+  display: none;
+}
+/*响应式*/
+@media screen and (max-width: 1279px) {
+  .add .add-right-wrapper {
+    display: none;
+  }
+}

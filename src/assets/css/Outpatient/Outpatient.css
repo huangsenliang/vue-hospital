@@ -1,0 +1,543 @@
+/* 引入定义变量 */
+/* 定义变量 */
+/************边框线颜色************/
+/*大盒子边框线*/
+/*表头边框线*/
+/*表格内容边框线*/
+/*输入框边框线*/
+/*投诉边框线*/
+/*主诉记录item边框线*/
+/**************字体颜色************/
+/*图标颜色*/
+/*常用字体颜色*/
+/*按钮字体颜色*/
+/*主诉记录字体颜色*/
+/***********背景色************/
+/*表格头部背景颜色*/
+/*投诉盒子背景*/
+/*按钮背景绿色*/
+/*激活按钮颜色*/
+/*按钮背景蓝色*/
+/*鼠标悬停按钮背景颜色*/
+/*输入框禁用状态颜色*/
+.outpatient {
+  height: 100%;
+  /*左侧内容*/
+  /*中间主要内容*/
+  /*右侧内容*/
+}
+.outpatient .aside-left-wrapper {
+  height: 100%;
+  /*搜索框 */
+  /*标签内容*/
+  /*左侧切换内容*/
+}
+.outpatient .aside-left-wrapper .search-wrapper {
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  height: 48px;
+  line-height: 48px;
+  width: 100%;
+  padding: 0 5px;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #dadbe0;
+  border-radius: 3px 3px 0 0;
+}
+.outpatient .aside-left-wrapper .search-wrapper .button-small {
+  padding: 3px 6px;
+}
+.outpatient .aside-left-wrapper .search-wrapper .quick-btn {
+  margin-left: 5px;
+  color: #fff;
+  border: 0;
+}
+.outpatient .aside-left-wrapper .search-wrapper .quick-btn:hover {
+  background-color: #0eba52;
+}
+.outpatient .aside-left-wrapper .tabs-wrapper {
+  font-size: 12px;
+  padding: 0 8px 0 12px;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+  line-height: 36px;
+  background: #f5f7fb;
+  border-bottom: 1px solid #dadbe0;
+  /*标签*/
+  /*时间选择日历*/
+}
+.outpatient .aside-left-wrapper .tabs-wrapper .tabs .tab {
+  cursor: pointer;
+  color: #7a8794;
+  padding: 0 2px;
+  margin-right: 10px;
+}
+.outpatient .aside-left-wrapper .tabs-wrapper .tabs .active {
+  color: #000;
+  font-weight: 700;
+  border-bottom: 2px solid #007aff;
+}
+.outpatient .aside-left-wrapper .tabs-wrapper .date-picker .icon-xia {
+  color: #96a4b3;
+  margin-left: 5px;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper {
+  height: calc(100% - 86px);
+  /*表格内容*/
+  /*就诊历史*/
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .table-wrapper-top {
+  height: 67%;
+  overflow-y: auto;
+  /*没有更多内容*/
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .table-wrapper-top .table {
+  /*激活样式*/
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .table-wrapper-top .table .row {
+  cursor: pointer;
+  height: 48px;
+  padding: 0 5px 0 12px;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  border-bottom: 1px solid #eff3f6;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .table-wrapper-top .table .row span {
+  padding: 0 5px;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .table-wrapper-top .table .row span:nth-child(1) {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .table-wrapper-top .table .row span:nth-child(n + 2) {
+  font-size: 12px;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .table-wrapper-top .table .row span:last-child {
+  color: #96a4b3;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .table-wrapper-top .table .active {
+  background: #0a8cea;
+  color: #fff;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .table-wrapper-top .table .active span:last-child {
+  color: #fff;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .table-wrapper-top .not-content {
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+  text-align: center;
+  color: #96a4b3;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .history-wrapper {
+  height: 33%;
+  /*头部标题*/
+  /*表格内容*/
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .history-wrapper .history-title {
+  -ms-align-items: center;
+  -webkit-align-items: center;
+  align-items: center;
+  height: 36px;
+  line-height: 36px;
+  color: #000;
+  background-color: #f2f2f2;
+  padding: 0 11px;
+  overflow: hidden;
+  font-weight: 700;
+  border-top: 1px solid #ced0da;
+  font-size: 12px;
+  border-bottom: 1px solid #ced0da;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .history-wrapper .history-title h4 {
+  font-weight: 700;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .history-wrapper .history-table-wrapper {
+  height: calc(100% - 36px);
+  overflow-y: auto;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .history-wrapper .history-table-wrapper .row {
+  position: relative;
+  color: #7a8794;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 40px;
+  padding: 0 11px;
+  border-bottom: 1px solid #e6eaee;
+  cursor: pointer;
+  /*历史弹窗*/
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .history-wrapper .history-table-wrapper .row span.designation {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .history-wrapper .history-table-wrapper .row span.date {
+  width: 60px;
+  text-align: right;
+}
+.outpatient .aside-left-wrapper .content-mz-wrapper .history-wrapper .history-table-wrapper .row .history-popper-wrapper {
+  position: fixed;
+  bottom: 37px;
+  left: 30%;
+  width: 348px;
+}
+.outpatient .aside-left-wrapper .content-wz-wrapper {
+  position: relative;
+  height: calc(100% - 86px);
+  width: 100%;
+}
+.outpatient .aside-left-wrapper .content-wz-wrapper .tip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50px;
+  color: #7a8794;
+  display: inline-block;
+  width: 140px;
+  font-size: 14px;
+  margin: 0 auto;
+}
+.outpatient .main-content {
+  height: 100%;
+  /*头部*/
+  /*表格内容*/
+}
+.outpatient .main-content .header-wrapper {
+  height: 49px;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid #ced0da;
+  background-color: #f2f2f2;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  /*左侧*/
+  /*右侧*/
+  /*快速诊断按钮样式*/
+}
+.outpatient .main-content .header-wrapper .header-left {
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  font-size: 12px;
+}
+.outpatient .main-content .header-wrapper .header-left h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+}
+.outpatient .main-content .header-wrapper .header-left span.count {
+  color: #0eba52;
+  font-weight: 400;
+  margin-left: 16px;
+}
+.outpatient .main-content .header-wrapper .header-right .btn + .btn {
+  margin-left: 8px;
+}
+.outpatient .main-content .header-wrapper .header-right button:first-child {
+  color: #fff;
+}
+.outpatient .main-content .header-wrapper .header-right button:first-child:hover {
+  opacity: 0.8;
+}
+.outpatient .main-content .header-wrapper .header-right button:nth-child(n + 2) {
+  color: #007aff;
+}
+.outpatient .main-content .header-wrapper .header-right button:nth-child(n + 2):hover {
+  background: #d2e5f6;
+  border: 1px solid #007aff;
+}
+.outpatient .main-content .header-wrapper .header-right-quick {
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+.outpatient .main-content .header-wrapper .header-right-quick .btn2 {
+  color: #007aff;
+}
+.outpatient .main-content .header-wrapper .header-right-quick .btn2:hover {
+  background: #d2e5f6;
+  border: 1px solid #007aff;
+}
+.outpatient .main-content .header-wrapper .header-right-quick .btn1:hover {
+  opacity: 0.8;
+}
+.outpatient .main-content .header-wrapper .header-right-quick .mz-setting-wrapper {
+  position: relative;
+  cursor: pointer;
+  color: #7a8794;
+  height: 30px;
+  width: 30px;
+  font-weight: 700;
+  line-height: 25px;
+  text-align: center;
+  /*设置弹窗盒子*/
+}
+.outpatient .main-content .header-wrapper .header-right-quick .mz-setting-wrapper i.icon-ellipsis2 {
+  width: 30px;
+  overflow: hidden;
+  display: inline-block;
+  height: 30px;
+  line-height: 29px;
+  text-align: center;
+  border: 1px solid #c1c9d0;
+  color: #96a4b3;
+  border-radius: 4px;
+}
+.outpatient .main-content .header-wrapper .header-right-quick .mz-setting-wrapper i.icon-ellipsis2:hover {
+  background: #d2e5f6;
+  border: 1px solid #007aff;
+}
+.outpatient .main-content .header-wrapper .header-right-quick .mz-setting-wrapper .setting-popper {
+  position: absolute;
+  top: 32px;
+  right: 5px;
+  z-index: 8888;
+  color: #606266;
+  font-weight: normal;
+  width: 410px;
+  padding: 12px 24px 24px;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #e6eaee;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+  margin-top: 2px;
+  /*头部*/
+}
+.outpatient .main-content .header-wrapper .header-right-quick .mz-setting-wrapper .setting-popper .setting-title {
+  color: #7a8794;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dadbe0;
+  margin-bottom: 16px;
+  justify-content: space-between;
+}
+.outpatient .main-content .header-wrapper .header-right-quick .mz-setting-wrapper .setting-popper .setting-title .btn {
+  color: #2680f7;
+}
+.outpatient .main-content .header-wrapper .header-right-quick .mz-setting-wrapper .setting-popper .setting-content h5 {
+  font-weight: 700;
+  font-size: 14px;
+  color: #000;
+  margin-top: 20px;
+}
+.outpatient .main-content .header-wrapper .header-right-quick .mz-setting-wrapper .setting-popper .setting-content .el-checkbox {
+  width: 60px;
+}
+.outpatient .main-content .header-wrapper .header-right-quick .mz-setting-wrapper .setting-popper .cut-line {
+  border-bottom: 1px dashed #dadbe0;
+  margin: 14px 0 4px;
+}
+.outpatient .main-content .table-content {
+  padding: 0 24px;
+  height: calc(100% - 49px);
+  overflow-y: auto;
+  /*患者信息*/
+  /*记录*/
+  /*搜索框盒子*/
+  /*搜索框*/
+  /* 图片*/
+  /*添加处方*/
+  /*医嘱事项*/
+}
+.outpatient .main-content .table-content .info-wrapper-top {
+  margin-top: 15px;
+  justify-content: space-between;
+}
+.outpatient .main-content .table-content .info-wrapper-top .info-right .input-search {
+  margin-left: 5px;
+}
+.outpatient .main-content .table-content .record-wrapper {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+.outpatient .main-content .table-content .add-wrapper {
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #e6eaee;
+}
+.outpatient .main-content .table-content .add {
+  justify-content: space-between;
+}
+.outpatient .main-content .table-content .add .prepend-input {
+  width: 32%;
+}
+.outpatient .main-content .table-content .img-wrapper {
+  margin-top: 10px;
+}
+.outpatient .main-content .table-content .img-wrapper .img-item {
+  position: relative;
+  cursor: pointer;
+}
+.outpatient .main-content .table-content .img-wrapper .img-item:hover > i.icon-del {
+  display: inline-block;
+}
+.outpatient .main-content .table-content .img-wrapper img {
+  width: 100px;
+  height: 100%;
+  border-radius: 4px;
+  margin-left: 15px;
+}
+.outpatient .main-content .table-content .img-wrapper i.icon-del {
+  display: none;
+  position: absolute;
+  right: -4px;
+  top: -8px;
+  border-radius: 50%;
+  background: #96a4b3;
+  color: #fff;
+}
+.outpatient .main-content .table-content .add-prescription-wrapper {
+  margin: 10px 0;
+  justify-content: space-between;
+}
+.outpatient .main-content .table-content .add-prescription-wrapper button {
+  margin-right: 10px;
+}
+.outpatient .main-content .table-content .doctor-advice {
+  margin-bottom: 10px;
+  position: relative;
+  border: 4px;
+  min-height: 33px;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  background: #fffdec;
+  /*医嘱弹窗盒子*/
+}
+.outpatient .main-content .table-content .doctor-advice label {
+  width: 98px;
+  border-right: 1px solid #e6eaee;
+  min-height: 33px;
+  color: #626d77;
+  text-indent: 12px;
+  line-height: 33px;
+}
+.outpatient .main-content .table-content .doctor-advice .textarea-wrapper {
+  flex: 1;
+  height: 100%;
+  background: #fffdec;
+  line-height: 25px;
+}
+.outpatient .main-content .table-content .doctor-advice .textarea-wrapper .el-textarea__inner {
+  border: 0;
+  color: #000;
+  background: #fffdec;
+}
+.outpatient .main-content .table-content .doctor-advice .textarea-wrapper .el-textarea__inner:hover {
+  border: 1px solid #005ed9;
+  border-radius: 0;
+  transition: border-color 0s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.outpatient .main-content .table-content .doctor-advice .advice-popper-wrapper {
+  position: absolute;
+  top: 42px;
+  left: 230px;
+  width: calc(100% - 240px);
+  max-height: 150px;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+  z-index: 1009;
+  border: 1px solid #b7b9c2;
+  font-size: 14px;
+  /*关闭*/
+}
+.outpatient .main-content .table-content .doctor-advice .advice-popper-wrapper ul {
+  padding: 10px 8px;
+}
+.outpatient .main-content .table-content .doctor-advice .advice-popper-wrapper ul li {
+  height: 24px;
+  line-height: 24px;
+}
+.outpatient .main-content .table-content .doctor-advice .advice-popper-wrapper ul .symptomsItem {
+  display: inline-block;
+  padding: 0px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #7a8794;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.outpatient .main-content .table-content .doctor-advice .advice-popper-wrapper ul .symptomsItem:hover {
+  background: #d2e5f6;
+  color: #007aff;
+}
+.outpatient .main-content .table-content .doctor-advice .advice-popper-wrapper .close {
+  height: 40px;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  -webkit-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  color: #005ed9;
+  background: #f7f7f7;
+  cursor: pointer;
+}
+.outpatient .main-content .table-content .doctor-advice .advice-popper-wrapper .close .icon-guanbi {
+  font-size: 28px;
+}
+.outpatient .aside-right-wrapper {
+  height: 100%;
+  overflow-y: auto;
+  /*头部*/
+  /*内容*/
+}
+.outpatient .aside-right-wrapper .header-top h4 {
+  font-weight: 700;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  background-color: #f2f2f2;
+  font-size: 16px;
+  border-bottom: 1px solid #ced0da;
+}
+.outpatient .aside-right-wrapper .content-wrapper {
+  padding: 0 16px;
+}
+.outpatient .aside-right-wrapper .content-wrapper .el-collapse-item__header {
+  font-weight: 700;
+}
+.outpatient .aside-right-wrapper .content-wrapper .el-collapse-item__content {
+  padding-bottom: 16px;
+  padding-left: 16px;
+}
+.outpatient .aside-right-wrapper .content-wrapper .diagnosis-suggestion {
+  color: #7a8794;
+  margin-bottom: 12px;
+  /*激活样式*/
+}
+.outpatient .aside-right-wrapper .content-wrapper .diagnosis-suggestion span.selected {
+  color: #fff;
+  background-color: #ced0da;
+}
+.outpatient .aside-right-wrapper .content-wrapper .diagnosis-suggestion .left {
+  min-width: 32px;
+}
+.outpatient .aside-right-wrapper .content-wrapper .diagnosis-suggestion .right {
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+.outpatient .aside-right-wrapper .content-wrapper .diagnosis-suggestion .right .item {
+  padding: 4px 6px;
+  margin-bottom: 2px;
+  margin-right: 4px;
+  border-radius: 12px;
+  line-height: 13px;
+  font-size: 13px;
+  cursor: pointer;
+}

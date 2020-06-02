@@ -1,0 +1,133 @@
+/* 引入定义变量 */
+// @import "../Common/Reset/Common.less";
+
+.history-popper {
+  width: 100%;
+  background-color: #fffdec;
+  border: 1px solid #cbb816;
+  .mr-history-content {
+    /*头部*/
+    .title {
+      padding: 16px;
+      border-bottom: 1px solid #e6eaee;
+      .tr-history {
+        margin-bottom: 6px;
+        -webkit-display: flex;
+        -ms-display: flex;
+        display: flex;
+        -webkit-align-items: center;
+        -ms-align-items: center;
+        align-items: center;
+        span.name {
+          width: 60px;
+          color: #000;
+          line-height: 20px;
+          margin-right: 8px;
+        }
+        span:nth-child(2) {
+          -webkit-flex: 1;
+          -ms-flex: 1;
+          flex: 1;
+        }
+        span:nth-child(n + 2) {
+          color: #7a8794;
+        }
+      }
+    }
+    /*内容*/
+    .prescription {
+      padding: 0 16px 12px;
+      border-bottom: 1px solid #e6eaee;
+      h5 {
+        color: #000;
+        font-weight: 700;
+        height: 20px;
+        line-height: 20px;
+        margin-top: 12px;
+      }
+
+      li.tr {
+        margin-right: 4px;
+        font-size: 14px;
+        margin-top: 6px;
+      }
+      /*西药*/
+      .west-wrapper {
+        ul.west {
+          li {
+            -webkit-justify-content: space-between;
+            -ms-justify-content: space-between;
+            justify-content: space-between;
+          }
+        }
+      }
+
+      .box {
+        border-bottom: 1px solid #e6eaee;
+        padding-bottom: 10px;
+      }
+      /*中药*/
+      .chinese-wrapper {
+        ul.chinese {
+          flex-wrap: wrap;
+          li {
+            color: #7a8794;
+            min-width: 100px;
+          }
+        }
+      }
+    }
+    /*底部按钮*/
+    .history-btn {
+      button {
+        color: #007aff;
+        &:hover {
+          background-color: #d2e5f6;
+        }
+      }
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      justify-content: space-around;
+      padding: 16px 10px;
+    }
+    .dy-wrapper {
+      position: relative;
+      z-index: 5;
+      .popper-dy {
+        width: 100px;
+        // height: 144px;
+        top: -135px;
+        position: absolute;
+        background: #fff;
+        border-radius: 3px;
+        overflow: hidden;
+        border: 1px solid #ced0da;
+        ul {
+          padding: 8px 0px;
+          li {
+            height: 28px;
+            line-height: 28px;
+            color: #000;
+            font-size: 14px;
+            padding: 0 5px;
+            &:hover {
+              background: #f5f7fb;
+            }
+          }
+        }
+        ul > li.is-disabled {
+          color: #ced0da;
+          cursor: not-allowed;
+        }
+      }
+     
+    }
+  }
+}
+
+/*打印页面的页头页尾*/
+@page {
+  margin: 0;
+}

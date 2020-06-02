@@ -1,0 +1,83 @@
+/*共有样式*/
+/* 定义变量 */
+/************边框线颜色************/
+/*大盒子边框线*/
+/*表头边框线*/
+/*表格内容边框线*/
+/*输入框边框线*/
+/*投诉边框线*/
+/*主诉记录item边框线*/
+/**************字体颜色************/
+/*图标颜色*/
+/*常用字体颜色*/
+/*按钮字体颜色*/
+/*主诉记录字体颜色*/
+/***********背景色************/
+/*表格头部背景颜色*/
+/*投诉盒子背景*/
+/*按钮背景绿色*/
+/*激活按钮颜色*/
+/*按钮背景蓝色*/
+/*鼠标悬停按钮背景颜色*/
+/*输入框禁用状态颜色*/
+/*收费页面样式*/
+.charge {
+  height: 100%;
+  /*搜索框*/
+  /*标签页*/
+  /*门诊表格内容*/
+  /*历史记录表格内容*/
+}
+.charge .search-wrapper {
+  align-items: center;
+  height: 48px;
+  width: 100%;
+  padding: 0 8px;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #dadbe0;
+  border-radius: 3px 3px 0 0;
+}
+.charge .search-wrapper button {
+  margin-left: 8px;
+  background: #0eba52;
+  height: 32px;
+  color: #fff;
+  border: 0;
+}
+.charge .search-wrapper button:hover {
+  background: #2dd670;
+}
+.charge .tabs-wrapper {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  background-color: #f5f7fb;
+  padding: 0 8px 0 12px;
+  border-bottom: 1px solid #dadbe0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 36px;
+  line-height: 36px;
+}
+.charge .table-wrapper {
+  height: calc(67% - 84px);
+  overflow-y: auto;
+}
+.charge .table-wrapper .tip {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+  text-align: center;
+  color: #96a4b3;
+}
+.charge .history {
+  height: 33%;
+}
