@@ -48,6 +48,7 @@ h6 {
   font-size: 100%;
 }
 
+/**********滚动条*********/
 ::-webkit-scrollbar {
   /*滚动条整体样式*/
   width: 8px; /* 高宽分别对应横竖滚动条的尺寸 */
@@ -80,12 +81,45 @@ h6 {
   color: #96a4b3;
 }
 
+/*隐藏滚动条*/
+.hidden-scorll {
+  -ms-scroll-chaining: chained;
+  -ms-overflow-style: none;
+  -ms-content-zooming: zoom;
+  -ms-scroll-rails: none;
+  -ms-scroll-snap-type: proximity;
+  -ms-content-zoom-limit-min: 100%;
+  -ms-content-zoom-limit-max: 500%;
+  -ms-scroll-snap-points-x: snapList(100%, 200%, 300%, 400%, 500%);
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+  &::-o-scrollbar {
+    -moz-appearance: none !important;
+    background: rgba(0, 255, 0, 0) !important;
+  }
+}
+/**************element-ui样式重置************/
+.el-tree {
+  padding: 0 10px;
+  .el-tree-node {
+    .el-tree-node__content {
+      height: 35px;
+    }
+  }
+}
+
+.el-tree-node__content 
+
+/*********输入框********/
 input:hover {
   cursor: pointer;
   border: 1px #005ed9 solid !important;
 }
 
-/* 颜色样式 */
+/* *************颜色样式*********** */
 .color-96a4b3-12 {
   font-size: 12px;
   color: #96a4b3;
@@ -110,8 +144,21 @@ input:hover {
   font-size: 14px;
   color: #f93;
 }
+/***********胶囊按钮***********/
+.capsule-btn-danger {
+  display: inline-block;
+  min-width: 54px;
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid @color_f33;
+  display: inline-block;
+  color: @color_f33;
+  font-size: 12px;
+}
 
-/* 按钮样式 */
+/************ 按钮样式*********** */
 .button-small {
   cursor: pointer;
   /* min-width: 60px; */
@@ -211,8 +258,8 @@ input:hover {
 }
 
 .btn-blank:hover {
- background-color: #d2e5f6;
- border: 1px solid #007aff;
+  background-color: #d2e5f6;
+  border: 1px solid #007aff;
 }
 
 .btn-blank-small {
@@ -229,8 +276,8 @@ input:hover {
 }
 
 .btn-blank-small:hover {
- background-color: #d2e5f6;
- border: 1px solid #007aff;
+  background-color: #d2e5f6;
+  border: 1px solid #007aff;
 }
 
 .btn-danger {
@@ -246,13 +293,13 @@ input:hover {
   background-color: #fff;
 }
 
-.btn-danger:hover{
-  border:1px solid #f36;
-  background: #FFEDF1;
+.btn-danger:hover {
+  border: 1px solid #f36;
+  background: #ffedf1;
 }
 
 /* 分页按钮 */
-.btn-page{
+.btn-page {
   cursor: pointer;
   height: 32px;
   line-height: 32px;
@@ -261,7 +308,7 @@ input:hover {
   border-radius: 4px;
   background: #fff;
   font-size: 14px;
-  color:#007aff;
+  color: #007aff;
   border: 1px solid #dadbe0;
 }
 
@@ -284,7 +331,6 @@ input:hover {
 .el-input__icon {
   line-height: 28px;
 }
-
 
 /* *********浮动样式 ***********/
 .float-left {
@@ -404,5 +450,3 @@ input:hover {
   -ms-flex-align: end;
   align-items: flex-end;
 }
-
-

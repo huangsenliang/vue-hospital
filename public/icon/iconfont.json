@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "82437",
+      "name": "叹号提示",
+      "font_class": "tanhaotishi",
+      "unicode": "e699",
+      "unicode_decimal": 59033
+    },
+    {
+      "icon_id": "1069760",
+      "name": "会员",
+      "font_class": "huiyuan",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "5809223",
+      "name": "选中",
+      "font_class": "xuanzhong",
+      "unicode": "e69f",
+      "unicode_decimal": 59039
+    },
+    {
+      "icon_id": "696102",
+      "name": "费用",
+      "font_class": "price",
+      "unicode": "e642",
+      "unicode_decimal": 58946
+    },
+    {
+      "icon_id": "13700295",
+      "name": "我的",
+      "font_class": "wodexianxing",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
       "icon_id": "1494660",
       "name": "右箭头",
       "font_class": "youjiantou",

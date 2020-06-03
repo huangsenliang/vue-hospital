@@ -4,15 +4,12 @@ import router from '@/router/router'
 import store from '@/store/store'
 import api from '@/request/api'
 
-// 入口样式文件
-import "./styles/Main.less";
-
 
 // 引入element-ui 组件
 // import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 // import "./utils/elementComponents"
-import {Tabs,Collapse,Cascader,PageHeader,CollapseItem,TabPane,Radio,Upload,Dialog,Message,Popover,Tree,Container,Pagination,Select,Option,Checkbox,Aside,Main,Calendar,Drawer,Table, TableColumn, Button, Input} from "element-ui";
+import { Tabs, Collapse, Cascader, PageHeader, CollapseItem, TabPane, Radio, Upload, Dialog, Message, Popover, Tree, Container, Pagination, Select, Option, Checkbox, Aside, Main, Calendar, Drawer, Table, TableColumn, Button, Input } from "element-ui";
 Vue.use(TabPane);
 Vue.use(PageHeader);
 Vue.use(Cascader);
@@ -43,7 +40,7 @@ Vue.prototype.$message = Message;
 
 // 引入打印机调用插件 
 import Print from 'vue-print-nb'
-Vue.use(Print); 
+Vue.use(Print);
 
 // import Print from './plugs/print.js'
 // Vue.use(Print) 
@@ -55,7 +52,10 @@ import "../public/icon/iconfont.css"
 
 // 注册全局自定义指令：处理点击处理改元素外的其他元素实现隐藏
 import clickoutside from "./utils/clickoutside";
-Vue.directive("clickoutside",clickoutside);
+Vue.directive("clickoutside", clickoutside);
+
+// 入口样式文件
+import "./styles/Main.less";
 
 // 引入echarts组件
 // 引入基础模板

@@ -97,6 +97,15 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () =>
           import(/* webpackChunkName: "about" */ "../views/Charge"),
+        children: [
+          // 添加患者
+          {
+            path: "add",
+            name: "Add",
+            component: () =>
+              import(/* webpackChunkName: "about" */ "@c/Charge/ChargeRouter/Add"),
+          },
+        ],
       },
       // 药房页面
       {
@@ -145,30 +154,30 @@ const routes = [
             children: [
               {
                 path: "",
-                name: "redirectDetailsInfo", 
-                redirect:"detailsInfo",
+                name: "redirectDetailsInfo",
+                redirect: "detailsInfo",
               },
               {
                 path: "detailsInfo",
-                name: "DetailsInfo", 
+                name: "DetailsInfo",
                 component: () =>
                   import(/* webpackChunkName: "DetailsInfo" */ "../components/Inventory/InventoryRouter/GoodsRouter/DetailsInfo"),
               },
               {
                 path: "batchInfo",
-                name: "BatchInfo", 
+                name: "BatchInfo",
                 component: () =>
                   import(/* webpackChunkName: "BathInfo" */ "../components/Inventory/InventoryRouter/GoodsRouter/BatchInfo"),
               },
               {
                 path: "list",
-                name: "List", 
+                name: "List",
                 component: () =>
                   import(/* webpackChunkName: "List" */ "../components/Inventory/InventoryRouter/GoodsRouter/List"),
               },
               {
                 path: "warning",
-                name: "Warning", 
+                name: "Warning",
                 component: () =>
                   import(/* webpackChunkName: "Warning" */ "../components/Inventory/InventoryRouter/GoodsRouter/Warning"),
               }

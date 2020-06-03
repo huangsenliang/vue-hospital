@@ -53,6 +53,10 @@
         <History-Record></History-Record>
       </div>
     </Aside-Left-Wrapper>
+    <!-- 左侧切换内容 -->
+    <section>
+      <router-view></router-view>
+    </section>
     <Main-wrapper>
       <div class="top-header-wrapper flex justify-between align-items">
         <h2>门诊收费</h2>
@@ -66,7 +70,7 @@
           <button class="btn-blank-small">打印</button>
         </div>
       </div>
-      <div class="main-content">
+      <div class="main-content hidden-scorll">
         <!-- 个人信息 -->
         <div class="info-wrapper flex justify-between">
           <Patient-Info name="毛波" sex="男" age="20" isDisabled="true" month="3" iphone="18244909680"></Patient-Info>
@@ -85,36 +89,115 @@
         <div class="table-wrapper">
           <!-- 表头 -->
           <ul class="th flex align-items">
-            <li class="item1">
+            <li class="item1-th">
               <h5>收费单</h5>
             </li>
-            <li class="item2">
+            <li class="item2-th">
               <span>单价</span>
             </li>
-            <li class="item3">
+            <li class="item3-th">
               <span>数量</span>
             </li>
-            <li class="item4">
+            <li class="item4-th">
               <span>金额</span>
             </li>
           </ul>
+          <!-- 内容 -->
           <div class="table-body">
-            <ul class="td flex align-items">
-              <li class="item1">
+            <ul class="td-first flex align-items">
+              <li>
                 <el-checkbox v-model="checked"></el-checkbox>
-                <i class="iconfont "></i>
+              </li>
+              <li>
+                <i class="iconfont icon-price"></i>
                 <span>挂号费</span>
+              </li>
+              <li class="name flex-item">
                 <span>李思思</span>
               </li>
-              <li class="item2"><span></span></li>
-              <li class="item3"><span></span></li>
-              <li class="item4"><span></span></li>
+              <li class="input">
+                <input type="text" />
+              </li>
+              <li class="input">
+                <input type="text" />
+              </li>
+              <li class="input">
+                <input type="text" />
+              </li>
             </ul>
+            <div v-for="(item,index) of 3" :key="index" class="table-content">
+              <div class="table-cutline"></div>
+              <ul v-for="(item,index) of 5" :key="index" class="flex align-items td">
+                <li class="item1-td">
+                  <span>
+                    <el-checkbox v-model="checked"></el-checkbox>
+                  </span>
+                </li>
+                <li class="item2-td">
+                  <span>1</span>
+                </li>
+                <li class="item3-td">
+                  <span>血常规</span>
+                </li>
+                <li class="input">
+                  <input type="text" />
+                </li>
+                <li class="input">
+                  <input type="text" />
+                </li>
+                <li class="input">
+                  <input type="text" />
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- 表尾 -->
+          <div class="table-footer align-items flex justify-end">
+            <div>
+              共
+              <input type="text" />
+              剂，每剂 99g / 6味
+            </div>
+          </div>
+        </div>
+        <!-- 优惠券 -->
+        <div class="coupons-wrapper">
+          <div class="table-header align-items justify-between flex">
+            <h5 class="flex-item">优惠/议价</h5>
+            <div class="money">
+              <span>金额</span>
+            </div>
+          </div>
+          <div class="table-body">
+            <div class="td">
+              <span class="capsule-btn-danger">会员</span>
+              <span class="btn">使用会员卡</span>
+            </div>
+            <div class="td flex justify-between align-items">
+              <div class="left">
+                <span class="capsule-btn-danger">会员</span>
+                <span class="btn">修改</span>
+                <span>
+                  <i class="iconfont icon-xuanzhong"></i>
+                  6.1
+                </span>
+              </div>
+              <div class="right">
+                <i class="iconfont icon-tanhaotishi"></i>
+                <span>-¥24.20</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </Main-wrapper>
-    <Aside-Right-Wrapper>aaaa</Aside-Right-Wrapper>
+    <Aside-Right-Wrapper>
+      <!-- 标题 -->
+      <div class="top-wrapper">
+        <span>收费项目</span>
+      </div>
+      <el-tree class="my-tree" :data="listData" :props="defaultProps" accordion @node-click="handleNodeClick"></el-tree>
+    </Aside-Right-Wrapper>
   </div>
 </template>
 
@@ -146,7 +229,119 @@ export default {
   },
   data() {
     return {
-      nameValue: "李思思"
+      nameValue: "李思思",
+      checked: false,
+      defaultProps: {
+        children: "children",
+        label: "label"
+      },
+      listData: [
+        {
+          label: "治疗项目",
+          children: [
+            {
+              label: "静脉输液(￥30.00)"
+            },
+            {
+              label: "针灸"
+            },
+            {
+              label: "换药费"
+            },
+            {
+              label: "肌肉注射"
+            },
+            {
+              label: "局部推拿"
+            },
+            {
+              label: "煎药费"
+            },
+            {
+              label: "皮下注射"
+            },
+            {
+              label: "床位费"
+            },
+            {
+              label: "观察费"
+            },
+            {
+              label: "制丸费"
+            },
+            {
+              label: "三伏贴"
+            },
+            {
+              label: "配药"
+            },
+            {
+              label: "藏药"
+            },
+            {
+              label: "穿刺费"
+            },
+            {
+              label: "输液费"
+            },
+            {
+              label: "中频治疗"
+            },
+            {
+              label: "皮试"
+            },
+            {
+              label: "治疗费"
+            },
+            {
+              label: "医药处理费"
+            }
+          ]
+        },
+        {
+          label: "理疗项目",
+          children: [
+            {
+              label: "针灸套餐价(￥30.00)"
+            },
+            {
+              label: "雾化"
+            },
+            {
+              label: "头部推拿"
+            },
+            {
+              label: "肩颈年卡"
+            },
+            {
+              label: "中药敷贴"
+            },
+            {
+              label: "局部针灸"
+            },
+            {
+              label: "小儿推拿"
+            },
+            {
+              label: "旭正灸贴"
+            },
+            {
+              label: "头部针灸"
+            }
+          ]
+        },
+        {
+          label: "其他费用",
+          children: [
+            {
+              label: "代煎(￥30.00)"
+            },
+            {
+              label: "快递费"
+            }
+          ]
+        }
+      ]
     };
   },
   methods: {
