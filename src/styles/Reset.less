@@ -101,17 +101,8 @@ h6 {
     background: rgba(0, 255, 0, 0) !important;
   }
 }
-/**************element-ui样式重置************/
-.el-tree {
-  padding: 0 10px;
-  .el-tree-node {
-    .el-tree-node__content {
-      height: 35px;
-    }
-  }
-}
 
-.el-tree-node__content 
+
 
 /*********输入框********/
 input:hover {
@@ -159,17 +150,6 @@ input:hover {
 }
 
 /************ 按钮样式*********** */
-.button-small {
-  cursor: pointer;
-  /* min-width: 60px; */
-  height: 30px;
-  padding: 3px 8px;
-  font-size: 14px;
-  background-color: #fff;
-  text-align: center;
-  border: 1px solid #c1c9d0;
-  border-radius: 4px;
-}
 
 .button-success {
   background: #0eba52;
@@ -180,11 +160,11 @@ input:hover {
 /* 按钮 */
 .btn-success {
   cursor: pointer;
-  min-width: 90px;
+  width: 90px;
   background: #0eba52;
   color: #fff;
   font-size: 14px;
-  padding: 3px 10px;
+  line-height: 32px;;
   border-radius: 4px;
   height: 32px;
   text-align: center;
@@ -194,10 +174,25 @@ input:hover {
   background-color: #2dd670;
 }
 
-.btn-ghost {
-  min-width: 90px;
+.btn-success-samll {
+  cursor: pointer;
+  width: 64px;
+  background: #0eba52;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 3px;
   height: 32px;
-  padding: 0 10px;
+  line-height: 32px;
+  text-align: center;
+}
+
+.btn-success-samll:hover {
+  background-color: #2dd670;
+}
+
+.btn-ghost {
+  width: 90px;
+  height: 32px;
   border-radius: 3px;
   outline: none;
   text-align: center;
@@ -212,9 +207,26 @@ input:hover {
   background: #eff1f5;
 }
 
+.btn-ghost-samll {
+ width: 64px;
+  height: 32px;
+  border-radius: 3px;
+  outline: none;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid #c1c9d0;
+  background-color: #fff;
+  color: #000;
+}
+
+.btn-ghost-samll:hover {
+  background: #eff1f5;
+}
+
 .btn-primary {
   cursor: pointer;
-  min-width: 90px;
+  width: 90px;
   background: #007aff;
   color: #fff;
   height: 32px;
@@ -312,12 +324,6 @@ input:hover {
   border: 1px solid #dadbe0;
 }
 
-/* ********************* */
-.button-primary {
-  background: #007aff;
-  color: #fff;
-  border: 0;
-}
 
 /* 清除浮动 */
 .clear-float::after {
@@ -449,4 +455,26 @@ input:hover {
   -webkit-box-align: end;
   -ms-flex-align: end;
   align-items: flex-end;
+}
+
+/**********弹窗样式**********/ 
+.dialog{
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  overflow: auto;
+  margin: 0;
+  z-index: 1992;
+  .cover-wrapper {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    background: #000;
+    z-index: 1992;
+  }
 }

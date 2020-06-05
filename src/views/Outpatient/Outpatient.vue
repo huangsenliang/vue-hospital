@@ -822,10 +822,6 @@ export default {
     };
   },
   methods: {
-    // 处理：
-    handleCollapseChange(val) {
-      console.log(val);
-    },
     // 处理：点击除了设置弹窗盒子外触发
     handleClickOutSideShowMzSettin() {
       this.showMzSetting = false;

@@ -1,0 +1,99 @@
+<template>
+  <div class="prepend-input">
+    <input @click="showPrependInput=true" type="text" :placeholder="placeholder" />
+    <i class="icon-jia iconfont"></i>
+    <div
+      v-if="showPrependInput"
+      v-clickoutside="handleClickOutSideShowPrependInput"
+      class="prepend-table-wrapper flex"
+    >
+      <ul class="prepend-table">
+        <li v-for="(item,index) of prependList" :key="index" class="flex prepend-item">
+          <span>{{item.name}}</span>
+          <span>{{item.price}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ["placeholder", "prependList"],
+  data() {
+    return {
+      showPrependInput: false
+    };
+  },
+  methods: {
+    // 处理：点击除了本元素外触发
+    handleClickOutSideShowPrependInput() {
+      this.showPrependInput = false;
+    }
+  }
+};
+</script>
+
+<style lang="less" scoped>
+.prepend-input {
+  width: 100%;
+  position: relative;
+  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 3px;
+    border: 1px solid #ced0da;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #000;
+    display: inline-block;
+    font-size: 14px;
+    height: 32px;
+    line-height: 1;
+    padding-left: 28px;
+    outline: none;
+    width: 100%;
+    background: @color_fffdec;
+  }
+  i.icon-jia {
+    font-weight: 700;
+    font-size: 13px;
+    color: @color_96a4b3;
+    position: absolute;
+    height: 32px;
+    line-height: 32px;
+    left: 8px;
+  }
+  .prepend-table-wrapper {
+    position: absolute;
+    top: 40px;
+    left: 3px;
+    background: #ffffff;
+    z-index: 88;
+    height: 150px;
+    overflow-y: auto;
+    border-radius: 4px;
+    border: 1px solid @color_ced0da;
+    ul.prepend-table {
+      width: 230px;
+      padding: 10px 0;
+    }
+    ul.prepend-table > li.prepend-item {
+      padding: 0 10px;
+      height: 32px;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: solid 1px @color_eff3f6;
+      &:hover {
+        background: @color_f5f7fb;
+        cursor: pointer;
+      }
+    }
+    .prepend-item:first-child {
+      border-bottom: 0;
+    }
+  }
+}
+</style>

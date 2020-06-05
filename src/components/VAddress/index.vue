@@ -1,4 +1,5 @@
 <template>
+<!-- 地址选择组件 -->
   <div class="address">
     <v-distpicker @province="onChangeProvince1" @city="onChangeCity" @area="onChangeArea"></v-distpicker>
   </div>

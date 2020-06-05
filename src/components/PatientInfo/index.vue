@@ -1,23 +1,21 @@
 <template>
   <div class="patient-info">
-    <div class="info-wrapper flex">
-      <div class="input-name" style="width:100px;margin-right:5px">
-        <el-input placeholder="姓名" :disabled="disabled" v-model="nameValue"></el-input>
-      </div>
-      <el-select :disabled="disabled" v-model="sexValue" placeholder="性别">
-        <el-option
-          v-for="item in sexOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        ></el-option>
-      </el-select>
-      <el-input v-model="ageValue" :disabled="disabled" style="width:40px;marginLeft:5px"></el-input>
-      <span style="marginLeft:5px">岁</span>
-      <el-input v-model="monthValue" :disabled="disabled" style="width:40px;marginLeft:5px"></el-input>
-      <span style="marginLeft:5px">月</span>
-      <div class="input-iphone" style="width:130px;margin:0 5px">
-        <el-input placeholder="手机号" :disabled="disabled" v-model="iphoneValue"></el-input>
+    <div class="info-wrapper flex align-items">
+      <div class="input flex align-items">
+        <input type="text" placeholder="姓名" :disabled="disabled" v-model="nameValue" />
+        <el-select :disabled="disabled" v-model="sexValue" placeholder="性别">
+          <el-option
+            v-for="item in sexOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          ></el-option>
+        </el-select>
+        <input v-model="ageValue" :disabled="disabled" type="text" style="marginLeft:8px;width:40px">
+        <span style="margin:8px">岁</span>
+        <input v-model="monthValue" :disabled="disabled" type="text" style="marginLeft:8px;width:40px">
+        <span style="margin:8px">月</span>
+        <input type="text" placeholder="手机号" :disabled="disabled" v-model="iphoneValue" />
       </div>
       <!-- 编辑患者信息  -->
       <div
@@ -219,7 +217,7 @@
 </template>
 
 <script>
-import VAddress from "./VAddress";
+import VAddress from "../VAddress";
 export default {
   components: { VAddress },
   props: ["name", "sex", "age", "isDisabled", "month", "iphone"],
@@ -324,7 +322,7 @@ export default {
   },
   methods: {
     // 处理：点击取消按钮返回信息列表
-    handleShowInfoFalse(){
+    handleShowInfoFalse() {
       this.showInfo = true;
     },
     // 处理：编辑信息元素的显示隐藏
@@ -370,6 +368,310 @@ export default {
   }
 };
 </script>
-<style scoped>
-@import "../../assets/css/Common/PatientInfo/PatientInfo.css";
+<style lang="less" scoped>
+.patient-info {
+  .info-wrapper {
+    height: 60px;
+    .input {
+      margin-right: 8px;
+      input {
+        border: 1px solid @color_ced0da;
+        background: #fff;
+        height: 32px;
+        border-radius: 3px;
+        padding: 10px;
+        width: 120px;
+        &:disabled{
+          cursor: no-drop;
+          background-color: #F5F7FA;
+        }
+      }
+      .el-select{
+        margin-left: 8px;
+      }
+    }
+    /*编辑患者信息*/
+    .edit-info-wrapper {
+      position: relative;
+      i.icon-lianxiren1 {
+        cursor: pointer;
+        display: inline-block;
+        height: 32px;
+        padding: 5px;
+        font-size: 22px;
+        line-height: 19px;
+        text-align: center;
+        border: 1px #eee solid;
+        border-radius: 4px;
+      }
+      /*弹窗盒子*/
+      .edit-info {
+        position: absolute;
+        top: 40px;
+        // height: 400px;
+        width: 334px;
+        background-color: #fff;
+        border: 1px solid #ced0da;
+        padding: 12px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        border-radius: 3px;
+        -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.24);
+        color: #7a8794;
+        z-index: 9;
+        /*头部*/
+        .info-top {
+          align-items: center;
+          justify-content: space-between;
+          height: 28px;
+          .info-name {
+            font-size: 16px;
+            color: #000;
+          }
+        }
+        /*门诊*/
+        .info-tow {
+          .info-tow-item {
+            font-size: 12px;
+            align-items: center;
+            height: 25px;
+            margin-right: 20px;
+            span:nth-child(1) {
+              margin-right: 10px;
+            }
+            span:nth-child(2) {
+              color: #000;
+            }
+          }
+        }
+        /*标签按钮*/
+        .tag-btn-wrapper {
+          margin-top: 5px;
+          .btn {
+            cursor: pointer;
+            float: left;
+            position: relative;
+            height: 22px;
+            line-height: 20px;
+            display: inline-block;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-bottom: 8px;
+          }
+          .tag-btn {
+            position: relative;
+            padding: 0 8px;
+            border-radius: 12px;
+            color: #08a446;
+            border: 1px solid #e3fced;
+            background-color: #e3fced;
+            i.icon-shanchu {
+              display: none;
+              position: absolute;
+              top: -8px;
+              right: -8px;
+              font-size: 20px;
+            }
+            &:hover {
+              i.icon-shanchu {
+                display: inline-block;
+              }
+            }
+          }
+          .add-btn-wrapper {
+            .add-btn {
+              position: relative;
+              span.add {
+                padding: 0 18px;
+                border: 1px #eee solid;
+                border-radius: 12px;
+                &:hover {
+                  border: 1px #608cf3 solid;
+                  color: #608cf3;
+                }
+              }
+
+              .tooltipt-wrapper {
+                border: 1px red solid;
+                padding: 0 12px 15px;
+                width: 320px;
+                height: 300px;
+                overflow-y: auto;
+                position: fixed;
+                top: 200px;
+                right: 150px;
+                z-index: 2011;
+                border-radius: 4px;
+                background-color: #fff;
+                border: 1px solid #b7b9c2;
+                -webkit-box-shadow: 0 0 2px 3px rgba(0, 0, 0, 0.06);
+                box-shadow: 0 0 2px 3px rgba(0, 0, 0, 0.06);
+                .tooltipt-content {
+                  margin-top: 15px;
+                  /*标题*/
+                  .title {
+                    h4 {
+                      margin-right: 10px;
+                      color: #000;
+                    }
+                    .icon-wenhao {
+                      color: #ddd;
+                    }
+                  }
+                  /*标签*/
+                  .tag-wrapper {
+                    overflow: hidden;
+                    .tag-item {
+                      color: #96a4b3;
+                      float: left;
+                      padding: 1px 10px;
+                      margin-top: 8px;
+                      margin-right: 5px;
+                      // background: #0eba52;
+                      border: 1px solid #e6eaee;
+                      background-color: #f5f7fb;
+                      color: #7a8794;
+                      border-radius: 12px;
+                      &:hover {
+                        border: 1px #0eba52 solid;
+                      }
+                    }
+                    /*标签选中激活样式*/
+                    .tag-item-active {
+                      background: #0eba52 !important;
+                      color: #fff !important;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        /*个人信息*/
+        .personal-info-wrapper {
+          /*共有样式*/
+          .row {
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            border-bottom: 1px solid #e6eaee;
+            font-size: 14px;
+            line-height: 28px;
+            color: #000;
+            padding: 4px 0;
+            span:nth-child(1) {
+              color: #7a8794;
+            }
+          }
+          .personal-info-true-wrapper {
+            /*编辑资料按钮*/
+            .btn-bj {
+              cursor: pointer;
+              width: 100%;
+              text-align: center;
+              margin-top: 15px;
+              padding: 12px 0;
+              background: #007aff;
+              border-radius: 4px;
+              font-size: 14px;
+              color: #fff;
+              &:hover {
+                background: #3e97f6;
+              }
+            }
+          }
+          .personal-info-false-wrapper {
+            .personal-info-false {
+              .row {
+                /*共有样式*/
+                .input_inner {
+                  border: 1px #ddd solid;
+                  height: 28px;
+                  width: 109px;
+                  text-align: center;
+                }
+                /*年龄输入框*/
+                .age-input-wrapper {
+                  span {
+                    display: inline-block;
+                    width: 30px;
+                    text-align: center;
+                  }
+                  input {
+                    width: 45px;
+                    padding: 3px 6px;
+                    text-align: center;
+                    border: 1px #ddd solid;
+                  }
+                }
+                /*生日输入框*/
+                .birthday-input-wrapper {
+                  position: relative;
+                  width: 238px;
+                  i.icon-rili {
+                    cursor: pointer;
+                    position: absolute;
+                    left: 10px;
+                    color: #7a8794;
+                  }
+                  .birthday-input {
+                    width: 100%;
+                    border: 1px #ddd solid;
+                    height: 28px;
+                    padding: 3px 0px 3px 35px;
+                  }
+                  /*日历*/
+                  .calendar-wrapper {
+                    position: absolute;
+                    top: 33px;
+                    left: -44px;
+                    z-index: 99;
+                    .calendar {
+                      min-width: 345px;
+                      box-shadow: 0 0 1px 1px #ddd;
+                    }
+                    .el-calendar {
+                      .el-calendar-table thead th {
+                        padding: 5px 0;
+                        color: #606266;
+                        font-weight: 400;
+                        text-align: center;
+                      }
+                      .el-calendar-table .el-calendar-day {
+                        box-sizing: border-box;
+                        text-align: center;
+                        height: 40px;
+                        line-height: 40px;
+                      }
+                    }
+                  }
+                }
+                /*身份证输入框*/
+                .ID-input,
+                .address-input {
+                  width: 238px;
+                  border: 1px #ddd solid;
+                  height: 28px;
+                  padding: 3px 0px 3px 10px;
+                  border-radius: 0;
+                }
+              }
+            }
+            .btn-wrapper {
+              margin-top: 10px;
+              .el-button {
+                flex: 0.8;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </style>
