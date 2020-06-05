@@ -22,16 +22,16 @@
     </ul>
     <!-- 弹窗 -->
     <div class="dialog-wrapper" @closeDialog="handleCloseDialogHistory" v-show="showDialogHistory">
-      <Dialog-Nurse-History></Dialog-Nurse-History>
+      <Dialog-History></Dialog-History>
     </div>
   </div>
 </template>
 
 <script>
-import DialogNurseHistory from "../dialog/dialogNurseHistory";
+import DialogHistory from "./dialog/dialogHistory";
 export default {
   components: {
-    DialogNurseHistory
+    DialogHistory
   },
   data() {
     return {
@@ -50,7 +50,6 @@ export default {
 <style lang="less" scoped>
 .history-list {
   position: relative;
-  height: 30%;
   color: @color_7a8794;
   /*头*/
   .history-title {
@@ -88,7 +87,6 @@ export default {
       }
     }
   }
-  // 弹窗
   // 弹窗
   .dialog-wrapper {
     position: absolute;

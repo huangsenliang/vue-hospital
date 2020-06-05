@@ -1,6 +1,6 @@
 <template>
-<!-- 门诊患者列表组件 -->
-  <ul class="outpatiend-list">
+<!-- 患者列表组件 -->
+  <ul class="patiend-list">
     <li
       :class="{active:itemNum==index}"
       @click="itemNum=index"
@@ -26,7 +26,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.outpatiend-list {
+.patiend-list {
+  overflow-y: auto;
   .row {
     cursor: pointer;
     height: 48px;

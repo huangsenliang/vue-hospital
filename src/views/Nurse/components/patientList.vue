@@ -68,7 +68,6 @@ export default {
 
 <style lang="less" scoped>
 .patient-list {
-  height: 70%;
   /*输入框内容*/
   .search-wrapper {
     height: 49px;

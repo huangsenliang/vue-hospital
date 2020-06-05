@@ -127,7 +127,7 @@ export default {
         { name: "Nurse", value: "护士站" },
         { name: "Registered", value: "挂号" },
         { name: "Outpatient", value: "门诊" },
-        { name: "/home/charge", value: "收费" },
+        { name: "Charge", value: "收费" },
         { name: "/home/pharmacy", value: "药房" },
         { name: "/home/check", value: "检验" },
         { name: "/home/inventory", value: "库存" },

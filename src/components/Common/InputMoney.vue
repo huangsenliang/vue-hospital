@@ -53,5 +53,5 @@ export default {
 </script>
 
 <style scoped>
-@import "../../assets/css/Common/InputMoney/InputMoney.css";
+/* @import "../../assets/css/Common/InputMoney/InputMoney.css"; */
 </style>

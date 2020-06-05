@@ -1,6 +1,6 @@
 <template>
   <!-- 门诊页面 -->
-  <div id="outpatient" class="flex">
+  <div id="outpatient" class="flex" style="height:100%">
     <My-Aside style="marginRight:10px">
       <!-- 搜索框 -->
       <div class="search-wrapper flex justify-between">
@@ -11,28 +11,13 @@
       <!-- 切换标签 -->
       <div class="tabs-wrapper">
         <!-- 头部 -->
-        <div class="tabs-top flex justify-between">
-          <ul class="tabs flex">
-            <li class="tab" :class="{active:tabNum==0}" @click="tabNum=0">
-              <span>门诊</span>
-              <span>4</span>
-            </li>
-            <li class="tab" @click="tabNum=1" :class="{active:tabNum==1}">
-              <span>网诊</span>
-            </li>
-          </ul>
-          <!-- 日历 -->
-          <div class="date-picker">
-            <span>05-06</span>
-            <i class="iconfont icon-xia"></i>
-          </div>
-        </div>
+        <List-Tabs></List-Tabs>
         <!-- 列表 -->
-        <div class="table-wrapper" v-show="tabNum==0">
-          <Outpatient-List></Outpatient-List>
+        <div class="table-wrapper" v-show="true">
+          <Patient-List></Patient-List>
         </div>
         <!-- 网络未开通 -->
-        <div v-show="tabNum==1" class="content-wz-wrapper">
+        <div v-show="false" class="content-wz-wrapper">
           <span class="tip">网诊功能暂未开通</span>
         </div>
       </div>
@@ -182,7 +167,7 @@
 </template>
 
 <script>
-/******全局组件********************/ 
+/**************8***全局组件********************/ 
 // 引入布局组件
 import MyMain from "@/components/MyMain";
 import MyAside from "@/components/MyAside";
@@ -191,11 +176,13 @@ import SelectInput from "@/components/SelectInput";
 import InputMoney from "@/components/InputMoney";
 import RecordInfo from "@/components/RecordInfo";
 import SearchInput from "@/components/SearchInput";
-/*******局部组件********************/ 
+// 引入列表组件
+import PatientList from "@/components/PatientList";
+// 切换标签组件
+import ListTabs from "@/components/ListTabs";
+/******************局部组件********************/ 
 // 智能诊断组件
 import IntelligentDiagnosis from "./components/intelligentDiagnosis";
-// 引入列表组件
-import OutpatientList from "./components/outpatientList";
 // 引入历史记录组件
 import OutpatientHistory from "./components/outpatientHistory";
 // 患者信息组件
@@ -207,7 +194,7 @@ export default {
     SearchInput,
     MyMain,
     MyAside,
-    OutpatientList,
+    PatientList,
     OutpatientHistory,
     PatientInfo,
     SelectInput,
@@ -215,7 +202,8 @@ export default {
     RecordInfo,
     PrependInput,
     IntelligentDiagnosis,
-    DialogOutpatientSetting
+    DialogOutpatientSetting,
+    ListTabs
   },
   data() {
     return {
@@ -354,7 +342,6 @@ export default {
       showMzSetting: false, // 门诊设置弹窗控制变量
       showtCost: false, // 预览费用弹出窗控制变量
       quickAccepts: false, // 快速接诊控制变量
-      tabNum: 0 // 标签样式激活变量
     };
   },
   methods: {
@@ -386,7 +373,6 @@ export default {
 
 <style lang="less" scoped>
 #outpatient {
-  height: 100%;
   /***********************左侧内容**********/
   /*搜索框 */
   .search-wrapper {
@@ -416,34 +402,6 @@ export default {
   /*标签内容*/
   .tabs-wrapper {
     height: calc(67% - 48px);
-    /*标签头部*/
-    .tabs-top {
-      font-size: 12px;
-      padding: 0 8px 0 12px;
-      line-height: 36px;
-      background: @color_f5f7fb;
-      border-bottom: 1px solid @color_dadbe0;
-      .tabs {
-        .tab {
-          cursor: pointer;
-          color: @color_7a8794;
-          padding: 0 2px;
-          margin-right: 10px;
-        }
-        .active {
-          color: #000;
-          font-weight: 700;
-          border-bottom: 2px solid @color_007aff;
-        }
-      }
-      /*时间选择日历*/
-      .date-picker {
-        .icon-xia {
-          color: @color_96a4b3;
-          margin-left: 5px;
-        }
-      }
-    }
     /*表格内容*/
     .table-wrapper {
       // border: 1px solid red;

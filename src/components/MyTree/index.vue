@@ -1,13 +1,13 @@
 <template>
   <!-- 树组件 -->
-  <div class="tree">
+  <div class="my-tree">
     <el-tree :data="listData"  accordion ></el-tree>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Tree",
+  name: "my-Tree",
   props: ["listData"],
   data() {
     return {};
