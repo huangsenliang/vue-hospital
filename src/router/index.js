@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import store from "../store/store";
+import store from "../store";
 
 // 引入布局组件
 import Layout from "@/views/Layout";
@@ -41,12 +41,6 @@ const routes = [
         name: "NurseIndex",
         component: () => import("../views/Nurse/index.vue"),
       },
-      // {
-      //   // 添加患者页面
-      //   path: "nurseAdd",
-      //   name: "NurseAdd",
-      //   component: () => import("../views/Nurse/addPatient.vue")
-      // }
     ],
   },
   // 挂号页面
@@ -91,6 +85,35 @@ const routes = [
       },
     ],
   },
+  // 库存页面
+  {
+    path: "/inventory",
+    name: "Inventory",
+    redirect: "/inventory/inventoryIndex",
+    component: Layout,
+    children: [
+      {
+        path: "inventoryIndex",
+        name: "InventoryIndex",
+        redirect: "/inventory/inventoryIndex/goods",
+        component: () => import("../views/Inventory/index.vue"),
+        children:[
+          // 物资页面
+          {
+            path:"goods",
+            name:"InventoryGoods",
+            component: () => import("../views/Inventory/components/InventoryGoods/index.vue"),
+          },
+          // 采购页面
+          {
+            path:"purchase",
+            name:"InventoryPurchase",
+            component: () => import("../views/Inventory/components/InventoryPurchase/index.vue"),
+          }
+        ],
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({
@@ -101,15 +124,20 @@ const router = new VueRouter({
 // 全局路由守卫：处理每此路由切换时变动tabNum索引
 router.beforeEach((to, from, next) => {
   if (to.name == "WorkbenchIndex") {
-    store.commit("setTabName", "Workbench");
+    store.commit("layout/setTabName", "Workbench");
   } else if (to.name == "NurseIndex") {
-    store.commit("setTabName", "Nurse");
+    store.commit("layout/setTabName", "Nurse");
   } else if (to.name == "RegisteredIndex") {
-    store.commit("setTabName", "Registered");
+    store.commit("layout/setTabName", "Registered");
   } else if (to.name == "OutpatientIndex") {
-    store.commit("setTabName", "Outpatient");
+    store.commit("layout/setTabName", "Outpatient");
   }else if (to.name == "ChargeIndex") {
-    store.commit("setTabName", "Charge");
+    store.commit("layout/setTabName", "Charge");
+  }else if (to.name == "InventoryGoods") {
+    store.commit("layout/setTabName", "Inventory");
+    store.commit("inventory/setTabName", "InventoryGoods");
+  }else if (to.name == "InventoryPurchase") {
+    store.commit("inventory/setTabName", "InventoryPurchase");
   }
   next();
 });

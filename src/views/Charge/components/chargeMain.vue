@@ -15,7 +15,7 @@
     </div>
     <div class="main-content hidden-scorll">
       <!-- 个人信息 -->
-      <div class="info-wrapper flex justify-between">
+      <div class="info-wrapper flex justify-between align-items">
         <Patient-Info name="毛波" sex="男" age="20" isDisabled="true" month="3" iphone="18244909680"></Patient-Info>
         <div class="info-right flex">
           <Select-Input disabled="true" placeholder="请选择" value="李思思"></Select-Input>

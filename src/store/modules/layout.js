@@ -1,12 +1,7 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex)
-
 const actions = {}
 // 数据
 const state = {
-  tabName: sessionStorage.getItem('tabName'),  // 导航栏切换标签索引
+  layoutTabName: sessionStorage.getItem('layoutTabName'),  // 导航栏切换标签索引
   user_name: localStorage.getItem('user_name'),   // 从本地存储中获取用户名字
   isLogin: localStorage.getItem('isLogin'),  // 从本地存储中获取登录状态
   token: localStorage.getItem('token')  // 从本地存储中获取token
@@ -16,7 +11,7 @@ const getters = {
   userName: (state) => state.user_name,
   isLogin: (state) => state.isLogin,
   token: (state) => state.token,
-  tabName:(state)=>state.tabName,
+  layoutTabName:(state)=>state.layoutTabName,
 }
 
 const mutations = {
@@ -43,17 +38,17 @@ const mutations = {
   },
 
   // const mutations = {  // 必须的  同步 没有回调处理事情
-  setTabName(staten,name) {
-    staten.tabName = name;
-    sessionStorage.setItem('tabName', name);
+  setTabName(state,name) {
+    state.layoutTabName = name;
+    sessionStorage.setItem('layoutTabName', name);
   },
 
 }
 
-const store = new Vuex.Store({
-  actions,
-  mutations,
-  state,
-  getters
-})
-export default store;
+export default {
+    namespaced: true,
+    state,
+    getters,
+    mutations,
+    actions
+};

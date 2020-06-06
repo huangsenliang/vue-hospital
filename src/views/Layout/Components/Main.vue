@@ -1,5 +1,5 @@
 <template>
-  <div id="main-wrap" >
+  <div id="main-wrap">
     <router-view />
   </div>
 </template>
@@ -20,7 +20,8 @@ export default {
 }
 
 #main-wrap {
-  height:calc(100% - 59px);
+  height: calc(100% - 59px);
   margin-top: 10px;
+  overflow-y: auto;
 }
 </style>

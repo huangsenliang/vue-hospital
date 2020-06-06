@@ -1,6 +1,6 @@
 import axios from "axios";
 import qs from "qs";
-import store from "../store/store";
+import store from "@/store";
 import { Message } from "element-ui";
 
 axios.defaults.timeout = 1000 * 10;   // 请求超时时间

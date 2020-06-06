@@ -29,7 +29,7 @@
         <ul class="menu-nav">
           <li
             class="menu-item"
-            :class="{'router-link-exact-active':item.name == $store.getters.tabName}"
+            :class="{'router-link-exact-active':item.name == $store.state.layout.layoutTabName}"
             v-for="(item,index) of navLis"
             :key="index"
           >
@@ -130,7 +130,7 @@ export default {
         { name: "Charge", value: "收费" },
         { name: "/home/pharmacy", value: "药房" },
         { name: "/home/check", value: "检验" },
-        { name: "/home/inventory", value: "库存" },
+        { name: "Inventory", value: "库存" },
         { name: "/home/patient", value: "患者" },
         { name: "/home/statistical", value: "统计" },
         { name: "/home/marketing", value: "营销" },

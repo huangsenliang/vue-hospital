@@ -1,22 +1,39 @@
 /**************element-ui样式重置************/
+// 树样式
 .el-tree {
-    padding: 0 10px;
-    .el-tree-node {
-      .el-tree-node__content {
-        height: 35px;
-      }
+  padding: 0 10px;
+  .el-tree-node {
+    .el-tree-node__content {
+      height: 35px;
     }
   }
+}
 
-  .el-input__inner {
-      height: 32px;
-      width: 200px;
-  }
+.el-input__inner {
+  height: 32px;
+  width: 200px;
+}
 
-  .el-select .el-input.is-disabled .el-input__inner {
-    width: 90px;
-  }
+.el-select .el-input.is-disabled .el-input__inner {
+  width: 90px;
+}
 
-  .el-select-dropdown__item {
-    padding: 0 20px;
-  }
+.el-select-dropdown__item {
+  padding: 0 20px;
+}
+
+// 级联选择样式
+.el-cascader .el-input .el-input__inner {
+  width: 210px;
+}
+
+// 分页按钮
+.el-pagination .btn-next .el-icon, .el-pagination .btn-prev .el-icon {
+  text-align: center;
+}
+
+// 标签按钮
+#inventory .el-tabs__item{
+  font-size: 16px;
+  color: @color_7a8794;
+}
