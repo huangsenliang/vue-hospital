@@ -43,7 +43,7 @@
       </div>
     </div>
     <!-- 药品表格 -->
-    <Goods-List style="height:calc(100% - 112px)"></Goods-List>
+    <Goods-List style="height:61%"></Goods-List>
     <!-- 分页 -->
     <div class="pag-wrapper flex align-items justify-between">
       <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
@@ -87,12 +87,9 @@ export default {
         { title: "进销存清单", name: "List" },
         { title: "预警设置", name: "Warning" }
       ], // 商品详情标签数据
-
       showGoods: false, // 新增商品弹窗盒子显示隐藏控制变量
-
       showDrug: false, // 新建药品弹窗盒子显示隐藏控制变量
       showSupplies: false, // 新建物资弹窗盒子显示隐藏控制变量
-
       activeName: "first",
       goodsOptionsList: [
         {
@@ -207,6 +204,7 @@ export default {
   // 分页
   .pag-wrapper {
     height: 55px;
+    padding: 0 16px;
   }
 }
 </style>

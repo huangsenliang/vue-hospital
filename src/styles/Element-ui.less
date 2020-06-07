@@ -9,9 +9,15 @@
   }
 }
 
+// 输入框图标行高
+.el-input__icon {
+  line-height: 28px;
+}
+
 .el-input__inner {
   height: 32px;
   width: 200px;
+  width: 100%;
 }
 
 .el-select .el-input.is-disabled .el-input__inner {
@@ -28,12 +34,23 @@
 }
 
 // 分页按钮
-.el-pagination .btn-next .el-icon, .el-pagination .btn-prev .el-icon {
+.el-pagination .btn-next .el-icon,
+.el-pagination .btn-prev .el-icon {
   text-align: center;
 }
 
 // 标签按钮
-#inventory .el-tabs__item{
+#inventory .el-tabs__item {
   font-size: 16px;
   color: @color_7a8794;
+  height: 50px;
+  line-height: 50px;
+}
+.el-tabs__header {
+  padding: 0 24px;
+  margin: 0;
+  border-bottom: 1px solid #e6eaee;
+  background-color: #eff1f5;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
 }

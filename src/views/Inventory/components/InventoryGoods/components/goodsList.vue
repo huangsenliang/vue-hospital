@@ -173,7 +173,7 @@ export default {
   },
   data() {
     return {
-      showDetailsPopper: true // 商品详情页面显示隐藏控制变量
+      showDetailsPopper: false // 商品详情页面显示隐藏控制变量
     };
   },
   methods: {}

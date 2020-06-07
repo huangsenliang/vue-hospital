@@ -2,7 +2,7 @@
   <div class="goods-tabs">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="药品信息" name="drugInformation">
-        <div class="drug-information">
+        <div class="drug-information-wrapper">
           <!-- 药品信息 -->
           <div class="drug-information-body flex">
             <!-- 右侧 -->
@@ -228,15 +228,15 @@
           <!-- 底部按钮 -->
           <div class="details-footer flex">
             <div class="footer-left">
-              <button style="marginRight:8px" class="btn-blank">保存</button>
+              <button style="marginRight:8px" class="btn-primary">保存</button>
               <button @click="$emit('showDetailsPopper')" class="btn-blank">取消</button>
             </div>
             <button class="btn-danger">删除药品</button>
           </div>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="批次信息" name="second">
-        <div class="batch-info">
+      <el-tab-pane label="批次信息" name="batchInfo">
+        <div class="batch-info-wrapper">
           <!-- 搜索框 -->
           <div class="search-wrapper flex">
             <Search-Input placeholder="搜索批次"></Search-Input>
@@ -244,7 +244,7 @@
           <!-- 表格 -->
           <div class="batch-table">
             <ul class="table-header flex">
-              <li class="item1" >
+              <li class="item1">
                 <span>门诊</span>
               </li>
               <li class="item2">
@@ -272,7 +272,12 @@
                 <span>入库人</span>
               </li>
             </ul>
-            <ul v-for="(item,index) of 2" :key="index" class="row flex" @click="showBatchPopper=true">
+            <ul
+              v-for="(item,index) of 2"
+              :key="index"
+              class="row flex"
+              @click="showBatchPopper=true"
+            >
               <li class="item1">
                 <span>ABC体验诊所</span>
               </li>
@@ -303,15 +308,15 @@
             </ul>
           </div>
           <!-- 批次明显弹窗 -->
-          <div v-show="showBatchPopper" >
+          <div v-show="showBatchPopper">
             <Dialog-Batch @showBatchPopper="showBatchPopper=false"></Dialog-Batch>
           </div>
           <!-- 底部分页 -->
           <div class="batch-footer flex">
             <div class="footer-left">
-              <button class="btn-page">上一页</button>
+              <button class="btn-blank-small">上一页</button>
               <span style="padding:0 15px;fontSize:16px">1</span>
-              <button class="btn-page">下一页</button>
+              <button class="btn-blank-small">下一页</button>
             </div>
             <div class="footer-right">
               <p>
@@ -322,8 +327,175 @@
           </div>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="进销存清单" name="third">角色管理</el-tab-pane>
-      <el-tab-pane label="预警设置" name="fourth">定时任务补偿</el-tab-pane>
+      <el-tab-pane label="进销存清单" name="listing">
+        <div class="listing-wrapper">
+          <!-- 搜索框 -->
+          <div class="search-wrapper flex align-items">
+            <Calendar-Input style="marginRight:10px"></Calendar-Input>
+            <Select-Input placeholder="搜索批次"></Select-Input>
+          </div>
+          <!-- 表单 -->
+          <div class="table-wrapper">
+            <ul class="th flex align-items">
+              <li class="item1">
+                <span>时间</span>
+              </li>
+              <li class="item2">
+                <span>类型</span>
+              </li>
+              <li class="item3">
+                <span>生产批号</span>
+              </li>
+              <li class="item4">
+                <span>效期</span>
+              </li>
+              <li class="item5">
+                <span>进价</span>
+              </li>
+              <li class="item6">
+                <span>售价</span>
+              </li>
+              <li class="item7">
+                <span>原始数量</span>
+              </li>
+              <li class="item8">
+                <span>变更数量</span>
+              </li>
+              <li class="item9">
+                <span>变更总进价</span>
+              </li>
+              <li class="item10">
+                <span>变更总售价</span>
+              </li>
+              <li class="item11">
+                <span>结余数量</span>
+              </li>
+              <li class="item12">
+                <span>操作人</span>
+              </li>
+            </ul>
+            <ul v-for="(item,index) of 8" :key="index" class="td flex align-items">
+              <li class="item1">
+                <span>2020-05-29 18:07:50</span>
+              </li>
+              <li class="item2">
+                <span>发药</span>
+              </li>
+              <li class="item3">
+                <span>生产批号</span>
+              </li>
+              <li class="item4">
+                <span>效期</span>
+              </li>
+              <li class="item5">
+                <span>0.00</span>
+              </li>
+              <li class="item6">
+                <span>12.00</span>
+              </li>
+              <li class="item7">
+                <span>9粒</span>
+              </li>
+              <li class="item8">
+                <span>9粒</span>
+              </li>
+              <li class="item9">
+                <span>0.00</span>
+              </li>
+              <li class="item10">
+                <span>18.00</span>
+              </li>
+              <li class="item11">
+                <span>0盒</span>
+              </li>
+              <li class="item12">
+                <span>李思思</span>
+              </li>
+            </ul>
+          </div>
+          <!-- 分页 -->
+          <div class="pag-wrapper flex align-items justify-between">
+            <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
+            <p>
+              共
+              <span style="font-weight: 700;">55</span> 条数据
+            </p>
+          </div>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="预警设置" name="warnSet">
+        <div class="warn-set">
+          <!-- -----------标题---------- -->
+          <div class="goods-title">
+            <span style="marginRight:8px">阿莫西林</span>
+            <span>5g*24粒</span>
+          </div>
+          <!---------------------------- 内容------------------- -->
+          <div class="warn-set-content">
+            <!--------------- 行：库存预警----------->
+            <div class="warn-set-item flex flex-direction">
+              <div class="set-name">库存预警</div>
+              <!-- 右侧 -->
+              <div class="set-content flex-item">
+                <!-- 单选按钮 -->
+                <div class="radio-wrapper">
+                  <el-radio v-model="inventoryRadio" label="1" style="marginRight:10px">系统设置</el-radio>
+                  <el-radio v-model="inventoryRadio" label="2">自定义设置</el-radio>
+                </div>
+                <!-- 内容:1 -->
+                <div class="item-content">
+                  <div>
+                    药品周转天数小于
+                    <!-- 输入框 -->
+                    <div class="gl-input-wrapper">
+                      <input type="text" />
+                    </div>天，系统预警提示
+                  </div>
+                  <p class="item-tip">周转天数=当前库存/日均销量</p>
+                </div>
+                <!-- 内容:2 -->
+                <div class="item-content">
+                  <el-checkbox v-model="inventoryChecked">开启库存最小值预警</el-checkbox>
+                  <div v-show="inventoryChecked">
+                    药品周转天数小于
+                    <!-- 输入框 -->
+                    <div class="gl-input-wrapper">
+                      <input type="text" />
+                    </div>天，系统预警提示
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- --------行：效期预警---------- -->
+            <div class="warn-set-item flex flex-direction">
+              <div class="set-name">效期预警</div>
+              <!-- 右侧 -->
+              <div class="set-content flex-item">
+                <!-- 单选按钮 -->
+                <div class="radio-wrapper">
+                  <el-radio v-model="effectiveRadio" label="1" style="marginRight:10px">系统设置</el-radio>
+                  <el-radio v-model="effectiveRadio" label="2">自定义设置</el-radio>
+                </div>
+                <!-- 内容:1 -->
+                <div class="item-content">
+                  <div>
+                   药品有效期不足 
+                    <!-- 输入框 -->
+                    <div class="gl-input-wrapper">
+                      <input type="text" />
+                    </div>天，系统预警提示
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!------------------------按钮------------  -->
+          <div class="btn-wrapper flex align-items">
+            <button class="btn-primary" style="marginRight:10px">保存</button>
+            <button @click="$emit('showDetailsPopper')" class="btn-blank">取消</button>
+          </div>
+        </div>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -332,20 +504,27 @@
 /*****************引入全局组件********/
 import SelectInput from "@/components/SelectInput";
 import SearchInput from "@/components/SearchInput";
-/****************局部组件*************/ 
+import CalendarInput from "@/components/CalendarInput";
+/****************局部组件*************/
+
 import DialogBatch from "../dialog/dialogBatch";
 export default {
   components: {
     SelectInput,
     SearchInput,
-    DialogBatch
+    DialogBatch,
+    CalendarInput
   },
   data() {
     return {
+      /*************************预警设置*************8****/
+      inventoryRadio:'1', // 预警自定义、系统设置单选按钮变量
+      effectiveRadio:'1',  // 效期自定义、系统设置单选按钮
+      inventoryChecked: true, // 开启库存最小值多选按钮双向绑定
+      /************************批次信息*****************/
+      showBatchPopper: false, // 批次明显弹窗控制变量
+      /***********************药品信息*********************/
       activeName: "drugInformation",
-      /***********批次信息******/ 
-       showBatchPopper:true,  // 批次明显弹窗控制变量
-      /********药品信息*******/
       showHistoryList: false, // 历史记录显示隐藏控制变量
       showUnit: false, // 药品单位盒子显示隐藏控制变量
       unit: null, // 药品选中的单位
@@ -645,10 +824,13 @@ export default {
 <style lang="less" scoped>
 .goods-tabs {
   width: 1100px;
-  padding: 0 16px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background: #fff;
   // 药品信息
-  .drug-information {
+  .drug-information-wrapper {
+    padding: 0 24px;
     .drug-information-body {
       /*左侧*/
       .body-left {
@@ -955,14 +1137,14 @@ export default {
       box-sizing: border-box;
       line-height: 1;
       height: auto;
-      padding: 14px 24px;
+      padding: 14px 0;
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
     }
   }
   // 批次信息
-  .batch-info {
-    padding: 0 24px 24px;
+  .batch-info-wrapper {
+    padding: 0 24px;
     /*搜索框*/
     .search-wrapper {
       height: 64px;
@@ -1032,7 +1214,7 @@ export default {
         border-bottom: 1px solid #e6eaee;
       }
     }
-    
+
     /*底部分页*/
     .batch-footer {
       height: 50px;
@@ -1043,6 +1225,138 @@ export default {
       -ms-align-items: center;
       -webkit-align-items: center;
       align-items: center;
+    }
+  }
+  // 进销清单
+  .listing-wrapper {
+    padding: 0 24px;
+    // 输入框
+    .search-wrapper {
+      height: 64px;
+    }
+    // 表格
+    .table-wrapper {
+      li {
+        padding: 0 4px;
+      }
+      .item1 {
+        width: 13.3047%;
+      }
+      .item2 {
+        width: 9.22747%;
+      }
+      .item3 {
+        width: 9.01288%;
+        text-align: left;
+      }
+      .item4 {
+        text-align: left;
+        width: 8.58369%;
+      }
+      .item5 {
+        width: 6.22318%;
+        text-align: right;
+      }
+      .item6 {
+        text-align: right;
+        width: 6.22318%;
+      }
+      .item7 {
+        text-align: right;
+        width: 7.29614%;
+      }
+      .item8 {
+        text-align: right;
+        width: 7.29614%;
+      }
+      .item9 {
+        width: 9.01288%;
+        text-align: right;
+      }
+      .item10 {
+        width: 9.01288%;
+        text-align: right;
+      }
+      .item11 {
+        width: 7.29614%;
+        text-align: right;
+      }
+      .item12 {
+        width: 7.51073%;
+        text-align: right;
+      }
+      .td {
+        height: 48px;
+        border-color: #e6eaee;
+        border-bottom: 1px solid @color_dadbe0;
+      }
+      .th {
+        background-color: @color_f5f7fb;
+        border-bottom: 1px solid @color_e6eaee;
+        height: 36px;
+        border-top: 1px solid @color_e6eaee;
+      }
+    }
+    // 分页
+    .pag-wrapper {
+      height: 55px;
+    }
+  }
+  // 预警设置
+  .warn-set {
+    padding: 0 24px;
+    // 投标题
+    .goods-title {
+      margin-top: 15px;
+      border-bottom: 1px solid #e6eaee;
+      padding-bottom: 8px;
+      span:nth-child(1) {
+        font-size: 16px;
+      }
+      span:nth-child(2) {
+        color: @color_96a4b3;
+        font-size: 14px;
+      }
+    }
+    // 内容
+    .warn-set-content {
+      padding-bottom: 24px;
+      // 行
+      .warn-set-item {
+        // 左侧名字
+        padding-top: 24px;
+        .set-name {
+          color: @color_96a4b3;
+          width: 96px;
+          min-width: 96px;
+          max-width: 96px;
+        }
+        // 右侧设置内容
+        .set-content {
+          // 行样式
+          .item-content {
+            padding-bottom: 24px;
+            margin-top: 16px;
+
+            .item-tip {
+              color: #8493a4;
+              font-size: 12px;
+              margin-top: 5px;
+            }
+            &:not(:last-child) {
+              border-bottom: 1px solid @color_e6eaee;
+            }
+          }
+        }
+        &:not(:last-child) {
+          border-bottom: 1px solid @color_e6eaee;
+        }
+      }
+    }
+    // 按钮
+    .btn-wrapper{
+      height: 61px;
+      border-top: solid 1px @color_e6eaee;
     }
   }
 }

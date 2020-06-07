@@ -133,7 +133,10 @@ input:hover {
   font-size: 14px;
   color: #f93;
 }
-/***********胶囊按钮***********/
+
+
+/************ 按钮样式*********** */
+/*****胶囊按钮****/
 .capsule-btn-danger {
   display: inline-block;
   min-width: 54px;
@@ -147,15 +150,7 @@ input:hover {
   font-size: 12px;
 }
 
-/************ 按钮样式*********** */
-
-.button-success {
-  background: #0eba52;
-  color: #fff;
-  border: 0;
-}
-
-/* 按钮 */
+/***绿底白字****/ 
 .btn-success {
   cursor: pointer;
   width: 90px;
@@ -166,12 +161,10 @@ input:hover {
   border-radius: 4px;
   height: 32px;
   text-align: center;
+  &:hover {
+    background-color: #2dd670;
+  }
 }
-
-.btn-success:hover {
-  background-color: #2dd670;
-}
-
 .btn-success-samll {
   cursor: pointer;
   width: 64px;
@@ -182,12 +175,12 @@ input:hover {
   height: 32px;
   line-height: 32px;
   text-align: center;
+  &::hover {
+    background-color: #2dd670;
+  }
 }
 
-.btn-success-samll:hover {
-  background-color: #2dd670;
-}
-
+/***灰字灰边***/ 
 .btn-ghost {
   width: 90px;
   height: 32px;
@@ -199,12 +192,10 @@ input:hover {
   border: 1px solid #c1c9d0;
   background-color: #fff;
   color: #000;
+  &:hover {
+    background: #eff1f5;
+  }
 }
-
-.btn-ghost:hover {
-  background: #eff1f5;
-}
-
 .btn-ghost-samll {
   width: 64px;
   height: 32px;
@@ -216,12 +207,12 @@ input:hover {
   border: 1px solid #c1c9d0;
   background-color: #fff;
   color: #000;
+  &:hover {
+    background: #eff1f5;
+  }
 }
 
-.btn-ghost-samll:hover {
-  background: #eff1f5;
-}
-
+/****白字蓝底****/ 
 .btn-primary {
   cursor: pointer;
   width: 90px;
@@ -232,12 +223,10 @@ input:hover {
   font-size: 14px;
   padding: 0 10px;
   border-radius: 4px;
+  &:hover {
+    background: #469cf8;
+  }
 }
-
-.btn-primary:hover {
-  opacity: 0.8;
-}
-
 .btn-primary-small {
   cursor: pointer;
   min-width: 64px;
@@ -248,12 +237,12 @@ input:hover {
   font-size: 14px;
   padding: 0 10px;
   border-radius: 4px;
+  &:hover {
+    background: #469cf8;
+  }
 }
 
-.btn-primary-small {
-  opacity: 0.8;
-}
-
+/***蓝字灰边***/ 
 .btn-blank {
   min-width: 90px;
   text-align: center;
@@ -265,13 +254,11 @@ input:hover {
   padding: 0 10px;
   border-radius: 4px;
   cursor: pointer;
+  &:hover {
+    background-color: #d2e5f6;
+    border: 1px solid #007aff;
+  }
 }
-
-.btn-blank:hover {
-  background-color: #d2e5f6;
-  border: 1px solid #007aff;
-}
-
 .btn-blank-small {
   min-width: 64px;
   text-align: center;
@@ -283,13 +270,13 @@ input:hover {
   padding: 0 10px;
   border-radius: 4px;
   cursor: pointer;
+  &:hover {
+    background-color: #d2e5f6;
+    border: 1px solid #007aff;
+  }
 }
 
-.btn-blank-small:hover {
-  background-color: #d2e5f6;
-  border: 1px solid #007aff;
-}
-
+/****红字灰边****/ 
 .btn-danger {
   cursor: pointer;
   min-width: 90px;
@@ -301,26 +288,12 @@ input:hover {
   color: #f36;
   border: 1px solid #c1c9d0;
   background-color: #fff;
+  &:hover {
+    border: 1px solid #f36;
+    background: #ffedf1;
+  }
 }
 
-.btn-danger:hover {
-  border: 1px solid #f36;
-  background: #ffedf1;
-}
-
-/* 分页按钮 */
-.btn-page {
-  cursor: pointer;
-  height: 32px;
-  line-height: 32px;
-  text-align: center;
-  min-width: 70px;
-  border-radius: 4px;
-  background: #fff;
-  font-size: 14px;
-  color: #007aff;
-  border: 1px solid #dadbe0;
-}
 
 /* 清除浮动 */
 .clear-float::after {
@@ -331,9 +304,6 @@ input:hover {
   visibility: hidden;
 }
 
-.el-input__icon {
-  line-height: 28px;
-}
 
 /* *********浮动样式 ***********/
 .float-left {
@@ -461,7 +431,7 @@ input:hover {
   bottom: 0;
   left: 0;
   position: fixed;
-  overflow: auto;
+  // overflow: auto;
   margin: 0;
   z-index: 1992;
   .cover-wrapper {
@@ -490,5 +460,28 @@ i.icon-del {
   cursor: pointer;
   &:hover {
     background-color: @color_e5e9f3;
+  }
+}
+
+/****************小输入框***********/
+.gl-input-wrapper {
+  font-size: 14px;
+  display: inline-block;
+  input {
+    width: 60px;
+    text-align: center;
+    background-color: #fff;
+    color: #000;
+    border-radius: 3px;
+    border: 1px solid #ced0da;
+    height: 32px;
+    line-height: 32px;
+  }
+}
+
+.input-disabled {
+  input {
+    cursor: not-allowed;
+    background-color: #f7f7f7;
   }
 }

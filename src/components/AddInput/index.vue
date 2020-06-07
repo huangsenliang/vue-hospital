@@ -1,12 +1,13 @@
 <template>
     <div class="add-input">
         <i class="iconfont icon-jia"></i>
-        <input type="text" placeholder="输入项目拼音码">
+        <input type="text" :placeholder="placeholder">
     </div>
 </template>
 
 <script>
 export default {
+  props:["placeholder"]
     
 }
 </script>
