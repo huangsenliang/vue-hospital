@@ -23,11 +23,11 @@ export default {
         { title: "药品/物资", name: "InventoryGoods" },
         { title: "采购", name: "InventoryPurchase" },
         { title: "入库", name: "InventoryCargo" },
-        { title: "出库", name: "Outbound" },
-        { title: "盘点", name: "Calculate" },
-        { title: "供应商", name: "Provide" },
-        { title: "结算申请", name: "Apply" },
-        { title: "结算审核", name: "Audit" }
+        { title: "出库", name: "InventoryOutbound" },
+        { title: "盘点", name: "InventoryCalculate" },
+        { title: "供应商", name: "InventoryProvide" },
+        { title: "结算申请", name: "InventoryApply" },
+        { title: "结算审核", name: "InventoryAudit" }
       ] // 标签数据
     };
   }

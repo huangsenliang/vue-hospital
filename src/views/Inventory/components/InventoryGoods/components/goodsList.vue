@@ -155,10 +155,7 @@
     </ul>
     <!-- 弹窗 -->
     <div v-show="showDetailsPopper" class="dialog">
-      <div class="cover-wrapper"></div>
-      <div class="content-style">
         <Dialog-Details-Tabs @showDetailsPopper="showDetailsPopper=false"></Dialog-Details-Tabs>
-      </div>
     </div>
   </div>
 </template>

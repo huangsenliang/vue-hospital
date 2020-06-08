@@ -1,502 +1,505 @@
 <template>
   <div class="goods-tabs">
-    <el-tabs v-model="activeName" @tab-click="handleClick">
-      <el-tab-pane label="药品信息" name="drugInformation">
-        <div class="drug-information-wrapper">
-          <!-- 药品信息 -->
-          <div class="drug-information-body flex">
-            <!-- 右侧 -->
-            <div class="body-left flex-item">
-              <!-- 通用名 -->
-              <div class="form-wrapper flex flex-wrap align-items">
-                <div class="form-item">
-                  <label for>
-                    <span>通用名</span>
-                    <i class="icon-zhongdian iconfont"></i>
-                  </label>
-                  <input type="text" />
-                </div>
-                <div class="form-item">
-                  <label for>
-                    <span>药品类型</span>
-                  </label>
-                  <div class="select-wrapper flex">
-                    <el-cascader :options="options" clearable></el-cascader>
-                  </div>
-                </div>
-                <div class="form-item">
-                  <label for>
-                    <span>商品名</span>
-                    <i class="icon-zhongdian iconfont"></i>
-                  </label>
-                  <input type="text" />
-                </div>
-                <div class="form-item">
-                  <label for>
-                    <span>生产厂家</span>
-                    <i class="icon-zhongdian iconfont"></i>
-                  </label>
-                  <input type="text" />
-                </div>
-                <div class="form-item">
-                  <label for>
-                    <span>国药准字</span>
-                    <i class="icon-zhongdian iconfont"></i>
-                  </label>
-                  <input type="text" />
-                </div>
-                <div class="form-item">
-                  <label for>
-                    <span>条形码</span>
-                    <i class="icon-zhongdian iconfont"></i>
-                  </label>
-                  <input type="text" />
-                </div>
-              </div>
-              <!-- 剂量 -->
-              <div class="form-wrapper flex-wrap flex align-items">
-                <div class="form-item">
-                  <label for>
-                    <span>剂量</span>
-                    <i class="icon-zhongdian iconfont"></i>
-                  </label>
-                  <div class="goods-num flex">
-                    <div class="num">
-                      <input style="width:130px" type="text" />
-                      <div></div>
-                    </div>
-                    <div class="goods-dosageformunit">
-                      <input style="width:80px" type="text" />
-                      <div></div>
-                    </div>
-                    <span style="margin:10px 0 0 15px">*</span>
-                  </div>
-                </div>
-                <div class="form-item">
-                  <label for>
-                    <span>制剂</span>
-                    <i class="icon-zhongdian iconfont"></i>
-                  </label>
-                  <div class="goods-num flex">
-                    <div class="num">
-                      <input style="width:130px" type="text" />
-                      <div></div>
-                    </div>
-                    <div class="goods-dosageformunit">
-                      <input style="width:80px" type="text" />
-                      <div></div>
-                    </div>
-                    <span style="margin:8px 0 0 15px">/</span>
-                  </div>
-                </div>
-                <div @click="showUnit=!showUnit" class="form-item">
-                  <label for>
-                    <span>包装</span>
-                    <i class="icon-zhongdian iconfont"></i>
-                  </label>
-                  <button class="btn-ghost-samll unit">{{unit}}</button>
-                  <ul v-show="showUnit" class="flex unit-li-wrapper">
-                    <li
-                      @click="unit=item"
-                      v-for="(item,index) of unitList"
-                      :key="index"
-                      class="item"
-                      :class="{'is-selected':unit===item}"
-                    >
-                      <span>{{item}}</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <!-- 价格 -->
-              <div class="form-wrapper flex flex-wrap align-items">
-                <!-- 零售价格 -->
-                <div class="form-item" style="marginTop:3px">
-                  <label class="cost-price flex">
-                    <span>
-                      零售价格
+    <div class="cover-wrapper"></div>
+    <div class="content-style goods-content">
+      <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="药品信息" name="drugInformation">
+          <div class="drug-information-wrapper">
+            <!-- 药品信息 -->
+            <div class="drug-information-body flex">
+              <!-- 右侧 -->
+              <div class="body-left flex-item">
+                <!-- 通用名 -->
+                <div class="form-wrapper flex flex-wrap align-items">
+                  <div class="form-item">
+                    <label for>
+                      <span>通用名</span>
                       <i class="icon-zhongdian iconfont"></i>
-                    </span>
-                    <div class="view-cost-price">
-                      <span class="cost">进价</span>
-                      <div></div>
-                    </div>
-                  </label>
-                  <div class="price-wrapper flex">
-                    <span class="symbol">￥</span>
+                    </label>
                     <input type="text" />
-                    <div class="price-num">
-                      <span>/盒</span>
+                  </div>
+                  <div class="form-item">
+                    <label for>
+                      <span>药品类型</span>
+                    </label>
+                    <div class="select-wrapper flex">
+                      <el-cascader :options="options" clearable></el-cascader>
                     </div>
                   </div>
-                </div>
-                <!-- 允许拆零售 -->
-                <div class="form-item">
-                  <label for>
-                    <el-checkbox v-model="checkedAgree">允许拆零售</el-checkbox>
-                  </label>
-                  <div class="price-wrapper flex">
-                    <span class="symbol">￥</span>
-                    <input
-                      :class="{'is-disabled':checkedAgree==true}"
-                      :disabled="checkedAgree"
-                      type="text"
-                    />
-                    <div class="price-num">
-                      <span></span>
-                    </div>
+                  <div class="form-item">
+                    <label for>
+                      <span>商品名</span>
+                      <i class="icon-zhongdian iconfont"></i>
+                    </label>
+                    <input type="text" />
+                  </div>
+                  <div class="form-item">
+                    <label for>
+                      <span>生产厂家</span>
+                      <i class="icon-zhongdian iconfont"></i>
+                    </label>
+                    <input type="text" />
+                  </div>
+                  <div class="form-item">
+                    <label for>
+                      <span>国药准字</span>
+                      <i class="icon-zhongdian iconfont"></i>
+                    </label>
+                    <input type="text" />
+                  </div>
+                  <div class="form-item">
+                    <label for>
+                      <span>条形码</span>
+                      <i class="icon-zhongdian iconfont"></i>
+                    </label>
+                    <input type="text" />
                   </div>
                 </div>
-                <!-- 进项税率 -->
-                <div class="form-item flex">
-                  <div class="left-tax">
-                    <label for>进项税率</label>
-                    <div class="flex">
+                <!-- 剂量 -->
+                <div class="form-wrapper flex-wrap flex align-items">
+                  <div class="form-item">
+                    <label for>
+                      <span>剂量</span>
+                      <i class="icon-zhongdian iconfont"></i>
+                    </label>
+                    <div class="goods-num flex">
+                      <div class="num">
+                        <input style="width:130px" type="text" />
+                        <div></div>
+                      </div>
+                      <div class="goods-dosageformunit">
+                        <input style="width:80px" type="text" />
+                        <div></div>
+                      </div>
+                      <span style="margin:10px 0 0 15px">*</span>
+                    </div>
+                  </div>
+                  <div class="form-item">
+                    <label for>
+                      <span>制剂</span>
+                      <i class="icon-zhongdian iconfont"></i>
+                    </label>
+                    <div class="goods-num flex">
+                      <div class="num">
+                        <input style="width:130px" type="text" />
+                        <div></div>
+                      </div>
+                      <div class="goods-dosageformunit">
+                        <input style="width:80px" type="text" />
+                        <div></div>
+                      </div>
+                      <span style="margin:8px 0 0 15px">/</span>
+                    </div>
+                  </div>
+                  <div @click="showUnit=!showUnit" class="form-item">
+                    <label for>
+                      <span>包装</span>
+                      <i class="icon-zhongdian iconfont"></i>
+                    </label>
+                    <button class="btn-ghost-samll unit">{{unit}}</button>
+                    <ul v-show="showUnit" class="flex unit-li-wrapper">
+                      <li
+                        @click="unit=item"
+                        v-for="(item,index) of unitList"
+                        :key="index"
+                        class="item"
+                        :class="{'is-selected':unit===item}"
+                      >
+                        <span>{{item}}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- 价格 -->
+                <div class="form-wrapper flex flex-wrap align-items">
+                  <!-- 零售价格 -->
+                  <div class="form-item" style="marginTop:3px">
+                    <label class="cost-price flex">
+                      <span>
+                        零售价格
+                        <i class="icon-zhongdian iconfont"></i>
+                      </span>
+                      <div class="view-cost-price">
+                        <span class="cost">进价</span>
+                        <div></div>
+                      </div>
+                    </label>
+                    <div class="price-wrapper flex">
+                      <span class="symbol">￥</span>
                       <input type="text" />
-                      <div class="tax">
-                        <span>%</span>
-                      </div>
-                      <span style="padding:5px 0 0 8px">-</span>
-                    </div>
-                  </div>
-                  <div class="right-tax">
-                    <label for>销项税率</label>
-                    <div class="flex">
-                      <input type="text" />
-                      <div class="tax">
-                        <span>%</span>
+                      <div class="price-num">
+                        <span>/盒</span>
                       </div>
                     </div>
                   </div>
+                  <!-- 允许拆零售 -->
+                  <div class="form-item">
+                    <label for>
+                      <el-checkbox v-model="checkedAgree">允许拆零售</el-checkbox>
+                    </label>
+                    <div class="price-wrapper flex">
+                      <span class="symbol">￥</span>
+                      <input
+                        :class="{'is-disabled':checkedAgree==true}"
+                        :disabled="checkedAgree"
+                        type="text"
+                      />
+                      <div class="price-num">
+                        <span></span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 进项税率 -->
+                  <div class="form-item flex">
+                    <div class="left-tax">
+                      <label for>进项税率</label>
+                      <div class="flex">
+                        <input type="text" />
+                        <div class="tax">
+                          <span>%</span>
+                        </div>
+                        <span style="padding:5px 0 0 8px">-</span>
+                      </div>
+                    </div>
+                    <div class="right-tax">
+                      <label for>销项税率</label>
+                      <div class="flex">
+                        <input type="text" />
+                        <div class="tax">
+                          <span>%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 左侧 -->
+              <div class="body-right">
+                <!-- 上 -->
+                <div class="goods-code">
+                  <div class="detail-code">
+                    <label class="goods-code-type">药品编码</label>
+                    <div class="code-wrapper">
+                      <input type="text" placeholder="系统生成或自定义" />
+                      <i class="iconfont icon-iconfront-"></i>
+                    </div>
+                  </div>
+                  <div class="detail-code">
+                    <label class="goods-code-type">社保编码</label>
+                    <div class="code-wrapper">
+                      <input type="text" placeholder="-" />
+                      <i class="iconfont icon-iconfront-"></i>
+                    </div>
+                  </div>
+                  <div class="detail-code">
+                    <label class="goods-code-type">本位码</label>
+                    <div class="code-wrapper">
+                      <input type="text" placeholder="-" />
+                      <i class="iconfont icon-iconfront-"></i>
+                    </div>
+                  </div>
+                </div>
+                <!-- 下 -->
+                <div class="update-log-wrapper">
+                  <button @click="showHistoryList=!showHistoryList" class="btn-history">查看修改记录</button>
+                  <div v-if="showHistoryList" class="log-list-wrapper">
+                    <ul class="event-list">
+                      <li class="row" v-for="(item,index) of 3" :key="index">
+                        <div class="log-title">
+                          <span class="title">2020-05-21 15:03</span>
+                          <span class="title">李思思</span>
+                          <span class="title">惠民体验</span>
+                        </div>
+                        <div class="log-detail">
+                          <span>进项税率</span>
+                          <span>从默认值修改为1</span>
+                        </div>
+                        <div class="log-detail">
+                          <span>销项税率</span>
+                          <span>从默认值修改为1</span>
+                        </div>
+                        <div class="log-detail">
+                          <span>创建药品</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-            <!-- 左侧 -->
-            <div class="body-right">
-              <!-- 上 -->
-              <div class="goods-code">
-                <div class="detail-code">
-                  <label class="goods-code-type">药品编码</label>
-                  <div class="code-wrapper">
-                    <input type="text" placeholder="系统生成或自定义" />
-                    <i class="iconfont icon-iconfront-"></i>
-                  </div>
-                </div>
-                <div class="detail-code">
-                  <label class="goods-code-type">社保编码</label>
-                  <div class="code-wrapper">
-                    <input type="text" placeholder="-" />
-                    <i class="iconfont icon-iconfront-"></i>
-                  </div>
-                </div>
-                <div class="detail-code">
-                  <label class="goods-code-type">本位码</label>
-                  <div class="code-wrapper">
-                    <input type="text" placeholder="-" />
-                    <i class="iconfont icon-iconfront-"></i>
-                  </div>
-                </div>
+            <!-- 底部按钮 -->
+            <div class="details-footer flex">
+              <div class="footer-left">
+                <button style="marginRight:8px" class="btn-primary">保存</button>
+                <button @click="$emit('showDetailsPopper')" class="btn-blank">取消</button>
               </div>
-              <!-- 下 -->
-              <div class="update-log-wrapper">
-                <button @click="showHistoryList=!showHistoryList" class="btn-history">查看修改记录</button>
-                <div v-if="showHistoryList" class="log-list-wrapper">
-                  <ul class="event-list">
-                    <li class="row" v-for="(item,index) of 3" :key="index">
-                      <div class="log-title">
-                        <span class="title">2020-05-21 15:03</span>
-                        <span class="title">李思思</span>
-                        <span class="title">惠民体验</span>
-                      </div>
-                      <div class="log-detail">
-                        <span>进项税率</span>
-                        <span>从默认值修改为1</span>
-                      </div>
-                      <div class="log-detail">
-                        <span>销项税率</span>
-                        <span>从默认值修改为1</span>
-                      </div>
-                      <div class="log-detail">
-                        <span>创建药品</span>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+              <button class="btn-danger">删除药品</button>
+            </div>
+          </div>
+        </el-tab-pane>
+        <el-tab-pane label="批次信息" name="batchInfo">
+          <div class="batch-info-wrapper">
+            <!-- 搜索框 -->
+            <div class="search-wrapper flex">
+              <Search-Input placeholder="搜索批次"></Search-Input>
+            </div>
+            <!-- 表格 -->
+            <div class="batch-table">
+              <ul class="table-header flex">
+                <li class="item1">
+                  <span>门诊</span>
+                </li>
+                <li class="item2">
+                  <span>批次</span>
+                </li>
+                <li class="item3">
+                  <span>剩余库存</span>
+                </li>
+                <li class="item4">
+                  <span>入库时间</span>
+                </li>
+                <li class="item5">
+                  <span>生产批号</span>
+                </li>
+                <li class="item6">
+                  <span>效期</span>
+                </li>
+                <li class="item7">
+                  <span>进价</span>
+                </li>
+                <li class="item8">
+                  <span>进价总金额</span>
+                </li>
+                <li class="item9">
+                  <span>入库人</span>
+                </li>
+              </ul>
+              <ul
+                v-for="(item,index) of 2"
+                :key="index"
+                class="row flex"
+                @click="showBatchPopper=true"
+              >
+                <li class="item1">
+                  <span>ABC体验诊所</span>
+                </li>
+                <li class="item2">
+                  <span>51028557</span>
+                </li>
+                <li class="item3">
+                  <span>12g</span>
+                </li>
+                <li class="item4">
+                  <span>2020-03-10 10:41:16</span>
+                </li>
+                <li class="item5">
+                  <span>--</span>
+                </li>
+                <li class="item6">
+                  <span>--</span>
+                </li>
+                <li class="item7">
+                  <span>0.045g</span>
+                </li>
+                <li class="item8">
+                  <span>0.54</span>
+                </li>
+                <li class="item9">
+                  <span>李思思</span>
+                </li>
+              </ul>
+            </div>
+            <!-- 批次明显弹窗 -->
+            <div v-show="showBatchPopper">
+              <Dialog-Batch @showBatchPopper="showBatchPopper=false"></Dialog-Batch>
+            </div>
+            <!-- 底部分页 -->
+            <div class="batch-footer flex">
+              <div class="footer-left">
+                <button class="btn-blank-small">上一页</button>
+                <span style="padding:0 15px;fontSize:16px">1</span>
+                <button class="btn-blank-small">下一页</button>
+              </div>
+              <div class="footer-right">
+                <p>
+                  共
+                  <span style="fontWeight: 700;">3</span> 条数据
+                </p>
               </div>
             </div>
           </div>
-          <!-- 底部按钮 -->
-          <div class="details-footer flex">
-            <div class="footer-left">
-              <button style="marginRight:8px" class="btn-primary">保存</button>
-              <button @click="$emit('showDetailsPopper')" class="btn-blank">取消</button>
+        </el-tab-pane>
+        <el-tab-pane label="进销存清单" name="listing">
+          <div class="listing-wrapper">
+            <!-- 搜索框 -->
+            <div class="search-wrapper flex align-items">
+              <Calendar-Input style="marginRight:10px"></Calendar-Input>
+              <Select-Input placeholder="搜索批次"></Select-Input>
             </div>
-            <button class="btn-danger">删除药品</button>
-          </div>
-        </div>
-      </el-tab-pane>
-      <el-tab-pane label="批次信息" name="batchInfo">
-        <div class="batch-info-wrapper">
-          <!-- 搜索框 -->
-          <div class="search-wrapper flex">
-            <Search-Input placeholder="搜索批次"></Search-Input>
-          </div>
-          <!-- 表格 -->
-          <div class="batch-table">
-            <ul class="table-header flex">
-              <li class="item1">
-                <span>门诊</span>
-              </li>
-              <li class="item2">
-                <span>批次</span>
-              </li>
-              <li class="item3">
-                <span>剩余库存</span>
-              </li>
-              <li class="item4">
-                <span>入库时间</span>
-              </li>
-              <li class="item5">
-                <span>生产批号</span>
-              </li>
-              <li class="item6">
-                <span>效期</span>
-              </li>
-              <li class="item7">
-                <span>进价</span>
-              </li>
-              <li class="item8">
-                <span>进价总金额</span>
-              </li>
-              <li class="item9">
-                <span>入库人</span>
-              </li>
-            </ul>
-            <ul
-              v-for="(item,index) of 2"
-              :key="index"
-              class="row flex"
-              @click="showBatchPopper=true"
-            >
-              <li class="item1">
-                <span>ABC体验诊所</span>
-              </li>
-              <li class="item2">
-                <span>51028557</span>
-              </li>
-              <li class="item3">
-                <span>12g</span>
-              </li>
-              <li class="item4">
-                <span>2020-03-10 10:41:16</span>
-              </li>
-              <li class="item5">
-                <span>--</span>
-              </li>
-              <li class="item6">
-                <span>--</span>
-              </li>
-              <li class="item7">
-                <span>0.045g</span>
-              </li>
-              <li class="item8">
-                <span>0.54</span>
-              </li>
-              <li class="item9">
-                <span>李思思</span>
-              </li>
-            </ul>
-          </div>
-          <!-- 批次明显弹窗 -->
-          <div v-show="showBatchPopper">
-            <Dialog-Batch @showBatchPopper="showBatchPopper=false"></Dialog-Batch>
-          </div>
-          <!-- 底部分页 -->
-          <div class="batch-footer flex">
-            <div class="footer-left">
-              <button class="btn-blank-small">上一页</button>
-              <span style="padding:0 15px;fontSize:16px">1</span>
-              <button class="btn-blank-small">下一页</button>
+            <!-- 表单 -->
+            <div class="table-wrapper">
+              <ul class="th flex align-items">
+                <li class="item1">
+                  <span>时间</span>
+                </li>
+                <li class="item2">
+                  <span>类型</span>
+                </li>
+                <li class="item3">
+                  <span>生产批号</span>
+                </li>
+                <li class="item4">
+                  <span>效期</span>
+                </li>
+                <li class="item5">
+                  <span>进价</span>
+                </li>
+                <li class="item6">
+                  <span>售价</span>
+                </li>
+                <li class="item7">
+                  <span>原始数量</span>
+                </li>
+                <li class="item8">
+                  <span>变更数量</span>
+                </li>
+                <li class="item9">
+                  <span>变更总进价</span>
+                </li>
+                <li class="item10">
+                  <span>变更总售价</span>
+                </li>
+                <li class="item11">
+                  <span>结余数量</span>
+                </li>
+                <li class="item12">
+                  <span>操作人</span>
+                </li>
+              </ul>
+              <ul v-for="(item,index) of 8" :key="index" class="td flex align-items">
+                <li class="item1">
+                  <span>2020-05-29 18:07:50</span>
+                </li>
+                <li class="item2">
+                  <span>发药</span>
+                </li>
+                <li class="item3">
+                  <span>生产批号</span>
+                </li>
+                <li class="item4">
+                  <span>效期</span>
+                </li>
+                <li class="item5">
+                  <span>0.00</span>
+                </li>
+                <li class="item6">
+                  <span>12.00</span>
+                </li>
+                <li class="item7">
+                  <span>9粒</span>
+                </li>
+                <li class="item8">
+                  <span>9粒</span>
+                </li>
+                <li class="item9">
+                  <span>0.00</span>
+                </li>
+                <li class="item10">
+                  <span>18.00</span>
+                </li>
+                <li class="item11">
+                  <span>0盒</span>
+                </li>
+                <li class="item12">
+                  <span>李思思</span>
+                </li>
+              </ul>
             </div>
-            <div class="footer-right">
+            <!-- 分页 -->
+            <div class="pag-wrapper flex align-items justify-between">
+              <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
               <p>
                 共
-                <span style="fontWeight: 700;">3</span> 条数据
+                <span style="font-weight: 700;">55</span> 条数据
               </p>
             </div>
           </div>
-        </div>
-      </el-tab-pane>
-      <el-tab-pane label="进销存清单" name="listing">
-        <div class="listing-wrapper">
-          <!-- 搜索框 -->
-          <div class="search-wrapper flex align-items">
-            <Calendar-Input style="marginRight:10px"></Calendar-Input>
-            <Select-Input placeholder="搜索批次"></Select-Input>
-          </div>
-          <!-- 表单 -->
-          <div class="table-wrapper">
-            <ul class="th flex align-items">
-              <li class="item1">
-                <span>时间</span>
-              </li>
-              <li class="item2">
-                <span>类型</span>
-              </li>
-              <li class="item3">
-                <span>生产批号</span>
-              </li>
-              <li class="item4">
-                <span>效期</span>
-              </li>
-              <li class="item5">
-                <span>进价</span>
-              </li>
-              <li class="item6">
-                <span>售价</span>
-              </li>
-              <li class="item7">
-                <span>原始数量</span>
-              </li>
-              <li class="item8">
-                <span>变更数量</span>
-              </li>
-              <li class="item9">
-                <span>变更总进价</span>
-              </li>
-              <li class="item10">
-                <span>变更总售价</span>
-              </li>
-              <li class="item11">
-                <span>结余数量</span>
-              </li>
-              <li class="item12">
-                <span>操作人</span>
-              </li>
-            </ul>
-            <ul v-for="(item,index) of 8" :key="index" class="td flex align-items">
-              <li class="item1">
-                <span>2020-05-29 18:07:50</span>
-              </li>
-              <li class="item2">
-                <span>发药</span>
-              </li>
-              <li class="item3">
-                <span>生产批号</span>
-              </li>
-              <li class="item4">
-                <span>效期</span>
-              </li>
-              <li class="item5">
-                <span>0.00</span>
-              </li>
-              <li class="item6">
-                <span>12.00</span>
-              </li>
-              <li class="item7">
-                <span>9粒</span>
-              </li>
-              <li class="item8">
-                <span>9粒</span>
-              </li>
-              <li class="item9">
-                <span>0.00</span>
-              </li>
-              <li class="item10">
-                <span>18.00</span>
-              </li>
-              <li class="item11">
-                <span>0盒</span>
-              </li>
-              <li class="item12">
-                <span>李思思</span>
-              </li>
-            </ul>
-          </div>
-          <!-- 分页 -->
-          <div class="pag-wrapper flex align-items justify-between">
-            <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
-            <p>
-              共
-              <span style="font-weight: 700;">55</span> 条数据
-            </p>
-          </div>
-        </div>
-      </el-tab-pane>
-      <el-tab-pane label="预警设置" name="warnSet">
-        <div class="warn-set">
-          <!-- -----------标题---------- -->
-          <div class="goods-title">
-            <span style="marginRight:8px">阿莫西林</span>
-            <span>5g*24粒</span>
-          </div>
-          <!---------------------------- 内容------------------- -->
-          <div class="warn-set-content">
-            <!--------------- 行：库存预警----------->
-            <div class="warn-set-item flex flex-direction">
-              <div class="set-name">库存预警</div>
-              <!-- 右侧 -->
-              <div class="set-content flex-item">
-                <!-- 单选按钮 -->
-                <div class="radio-wrapper">
-                  <el-radio v-model="inventoryRadio" label="1" style="marginRight:10px">系统设置</el-radio>
-                  <el-radio v-model="inventoryRadio" label="2">自定义设置</el-radio>
-                </div>
-                <!-- 内容:1 -->
-                <div class="item-content">
-                  <div>
-                    药品周转天数小于
-                    <!-- 输入框 -->
-                    <div class="gl-input-wrapper">
-                      <input type="text" />
-                    </div>天，系统预警提示
+        </el-tab-pane>
+        <el-tab-pane label="预警设置" name="warnSet">
+          <div class="warn-set">
+            <!-- -----------标题---------- -->
+            <div class="goods-title">
+              <span style="marginRight:8px">阿莫西林</span>
+              <span>5g*24粒</span>
+            </div>
+            <!---------------------------- 内容------------------- -->
+            <div class="warn-set-content">
+              <!--------------- 行：库存预警----------->
+              <div class="warn-set-item flex flex-direction">
+                <div class="set-name">库存预警</div>
+                <!-- 右侧 -->
+                <div class="set-content flex-item">
+                  <!-- 单选按钮 -->
+                  <div class="radio-wrapper">
+                    <el-radio v-model="inventoryRadio" label="1" style="marginRight:10px">系统设置</el-radio>
+                    <el-radio v-model="inventoryRadio" label="2">自定义设置</el-radio>
                   </div>
-                  <p class="item-tip">周转天数=当前库存/日均销量</p>
+                  <!-- 内容:1 -->
+                  <div class="item-content">
+                    <div>
+                      药品周转天数小于
+                      <!-- 输入框 -->
+                      <div style="width:60px" class="gl-input-wrapper">
+                        <input type="text" />
+                      </div>天，系统预警提示
+                    </div>
+                    <p class="item-tip">周转天数=当前库存/日均销量</p>
+                  </div>
+                  <!-- 内容:2 -->
+                  <div class="item-content">
+                    <el-checkbox v-model="inventoryChecked">开启库存最小值预警</el-checkbox>
+                    <div v-show="inventoryChecked">
+                      药品周转天数小于
+                      <!-- 输入框 -->
+                      <div style="width:60px" class="gl-input-wrapper">
+                        <input type="text" />
+                      </div>天，系统预警提示
+                    </div>
+                  </div>
                 </div>
-                <!-- 内容:2 -->
-                <div class="item-content">
-                  <el-checkbox v-model="inventoryChecked">开启库存最小值预警</el-checkbox>
-                  <div v-show="inventoryChecked">
-                    药品周转天数小于
-                    <!-- 输入框 -->
-                    <div class="gl-input-wrapper">
-                      <input type="text" />
-                    </div>天，系统预警提示
+              </div>
+              <!-- --------行：效期预警---------- -->
+              <div class="warn-set-item flex flex-direction">
+                <div class="set-name">效期预警</div>
+                <!-- 右侧 -->
+                <div class="set-content flex-item">
+                  <!-- 单选按钮 -->
+                  <div class="radio-wrapper">
+                    <el-radio v-model="effectiveRadio" label="1" style="marginRight:10px">系统设置</el-radio>
+                    <el-radio v-model="effectiveRadio" label="2">自定义设置</el-radio>
+                  </div>
+                  <!-- 内容:1 -->
+                  <div class="item-content">
+                    <div>
+                      药品有效期不足
+                      <!-- 输入框 -->
+                      <div style="width:60px" class="gl-input-wrapper">
+                        <input type="text" />
+                      </div>天，系统预警提示
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- --------行：效期预警---------- -->
-            <div class="warn-set-item flex flex-direction">
-              <div class="set-name">效期预警</div>
-              <!-- 右侧 -->
-              <div class="set-content flex-item">
-                <!-- 单选按钮 -->
-                <div class="radio-wrapper">
-                  <el-radio v-model="effectiveRadio" label="1" style="marginRight:10px">系统设置</el-radio>
-                  <el-radio v-model="effectiveRadio" label="2">自定义设置</el-radio>
-                </div>
-                <!-- 内容:1 -->
-                <div class="item-content">
-                  <div>
-                   药品有效期不足 
-                    <!-- 输入框 -->
-                    <div class="gl-input-wrapper">
-                      <input type="text" />
-                    </div>天，系统预警提示
-                  </div>
-                </div>
-              </div>
+            <!------------------------按钮------------  -->
+            <div class="btn-wrapper flex align-items">
+              <button class="btn-primary" style="marginRight:10px">保存</button>
+              <button @click="$emit('showDetailsPopper')" class="btn-blank">取消</button>
             </div>
           </div>
-          <!------------------------按钮------------  -->
-          <div class="btn-wrapper flex align-items">
-            <button class="btn-primary" style="marginRight:10px">保存</button>
-            <button @click="$emit('showDetailsPopper')" class="btn-blank">取消</button>
-          </div>
-        </div>
-      </el-tab-pane>
-    </el-tabs>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
   </div>
 </template>
 
@@ -518,8 +521,8 @@ export default {
   data() {
     return {
       /*************************预警设置*************8****/
-      inventoryRadio:'1', // 预警自定义、系统设置单选按钮变量
-      effectiveRadio:'1',  // 效期自定义、系统设置单选按钮
+      inventoryRadio: "1", // 预警自定义、系统设置单选按钮变量
+      effectiveRadio: "1", // 效期自定义、系统设置单选按钮
       inventoryChecked: true, // 开启库存最小值多选按钮双向绑定
       /************************批次信息*****************/
       showBatchPopper: false, // 批次明显弹窗控制变量
@@ -823,540 +826,543 @@ export default {
 
 <style lang="less" scoped>
 .goods-tabs {
-  width: 1100px;
-  border-radius: 3px;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background: #fff;
-  // 药品信息
-  .drug-information-wrapper {
-    padding: 0 24px;
-    .drug-information-body {
-      /*左侧*/
-      .body-left {
-        // padding: 0 24px 30px;
-        height: 445px;
-        overflow-y: auto;
-        .form-wrapper {
-          border-bottom: 1px dashed #dadbe0;
-          margin-bottom: 16px;
-          .form-item {
-            position: relative;
-            margin-bottom: 24px;
-            margin-right: 15px;
-            label.cost-price {
-              -ms-display: flex !important;
-              -webkit-display: flex !important;
-              display: flex !important;
-              padding-left: 8px;
-              justify-content: space-between;
-              .view-cost-price {
-                .cost {
-                  cursor: pointer;
-                  color: @color_007aff;
+  .goods-content {
+    width: 1100px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    // 药品信息
+    .drug-information-wrapper {
+      padding: 0 24px;
+      padding-top: 10px;
+      .drug-information-body {
+        /*左侧*/
+        .body-left {
+          // padding: 0 24px 30px;
+          height: 445px;
+          overflow-y: auto;
+          .form-wrapper {
+            border-bottom: 1px dashed #dadbe0;
+            margin-bottom: 16px;
+            .form-item {
+              position: relative;
+              margin-bottom: 24px;
+              margin-right: 15px;
+              label.cost-price {
+                -ms-display: flex !important;
+                -webkit-display: flex !important;
+                display: flex !important;
+                padding-left: 8px;
+                justify-content: space-between;
+                .view-cost-price {
+                  .cost {
+                    cursor: pointer;
+                    color: @color_007aff;
+                  }
                 }
               }
-            }
-            label {
               label {
-                padding: 0;
-              }
-              display: block;
-              -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-              float: none;
-              text-align: left;
-              padding: 0 0 8px;
-              font-size: 14px;
-              color: #7a8794;
-              white-space: nowrap;
-              i.icon-zhongdian {
-                color: @color_FF9933;
-              }
-            }
-            input {
-              -webkit-appearance: none;
-              -moz-appearance: none;
-              appearance: none;
-              background-color: rgba(0, 0, 0, 0);
-              border-radius: 3px;
-              border: 1px solid #ced0da;
-              -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-              color: #000;
-              display: inline-block;
-              font-size: 14px;
-              height: 32px;
-              line-height: 1;
-              outline: none;
-              padding: 3px 8px;
-              width: 210px;
-            }
-            .select-wrapper {
-              input {
-                width: 105px;
-              }
-              .select-input:nth-child(1) {
-                input {
-                  border-top-right-radius: 0;
-                  border-bottom-right-radius: 0;
+                label {
+                  padding: 0;
                 }
-              }
-              .select-input:nth-child(2) {
-                margin-left: -1px;
-                input {
-                  border-left: 0;
-                }
-              }
-              input + input {
-                margin-left: -1px;
-              }
-            }
-            .goods-num {
-              .goods-dosageformunit {
-                input {
-                  border-left: 0;
-                  margin-left: -1px;
-                  border-top-left-radius: 0;
-                  border-bottom-left-radius: 0;
-                }
-              }
-              .num {
-                input {
-                  border-top-right-radius: 0;
-                  border-bottom-right-radius: 0;
-                }
-              }
-            }
-            /*单位*/
-            .unit {
-              width: 70px;
-              height: 32px;
-              cursor: pointer;
-              padding: 3px 12px 3px 10px;
-              &:hover {
-                border: 1px solid @color_007aff;
-              }
-            }
-            .unit-li-wrapper {
-              width: 322px;
-              flex-wrap: wrap;
-              position: absolute;
-              top: 24px;
-              left: 74px;
-              border: 1px solid #dadbe0;
-              border-radius: 3px;
-              -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
-              box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
-              z-index: 9999;
-              background-color: #fff;
-              -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-              margin-top: 2px;
-              .is-selected {
-                background-color: #00ace9;
-                color: #fff;
-              }
-              .item {
-                display: inline-block;
-                width: 80px;
-                height: 36px;
-                line-height: 36px;
-                text-align: center;
-                border-bottom: 1px solid #e6eaee;
-                border-right: 1px solid #e6eaee;
-                cursor: pointer;
-                font-size: 14px;
+                display: block;
                 -webkit-box-sizing: border-box;
                 box-sizing: border-box;
-                vertical-align: middle;
-              }
-            }
-            /*价格*/
-            .price-wrapper {
-              position: relative;
-              input {
-                width: 130px;
-                padding-left: 30px;
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-                // border-right:0 ;
-              }
-              .is-disabled {
-                background-color: #f7f7f7 !important;
-                border-color: #e6eaee;
-                color: #000;
-                cursor: not-allowed;
-              }
-              .symbol {
-                position: absolute;
-                top: 5px;
-                left: 5px;
-              }
-              .price-num {
-                width: 80px;
-                line-height: 30px;
-                padding: 0 5px;
-                background-color: #f5f7fb;
-                border-radius: 0 4px 4px 0;
-                border: 1px solid #ced0da;
-                border-left: 0;
-                text-align: center;
-              }
-            }
-            /*税率*/
-            .left-tax,
-            .right-tax {
-              margin-right: 8px;
-              input {
-                width: 57px;
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-              }
-              .tax {
-                width: 32px;
-                height: 32px;
-                line-height: 32px;
-                text-align: center;
-                padding: 0 5px;
-                background-color: #f5f7fb;
-                border-radius: 0 4px 4px 0;
-                border: 1px solid #ced0da;
-                border-left: 0;
-                border-left: none;
-                text-align: center;
-              }
-            }
-          }
-        }
-        .form-wrapper:last-child {
-          border: 0;
-        }
-      }
-      /*右侧*/
-      .body-right {
-        padding: 24px 0 0 10px;
-        border-left: 1px solid #e6eaee;
-        width: 372px;
-        max-height: 445px;
-        overflow-y: auto;
-        background-color: #f7f8fa;
-        /*上*/
-        .goods-code {
-          .detail-code {
-            height: 78px;
-            .goods-code-type {
-              padding: 0 0 8px 6px;
-              color: #7a8794;
-              font-size: 14px;
-              line-height: 14px;
-            }
-            .code-wrapper {
-              width: 100%;
-              display: -webkit-box;
-              display: -webkit-flex;
-              display: -ms-flexbox;
-              display: flex;
-              -webkit-box-align: center;
-              -webkit-align-items: center;
-              -ms-flex-align: center;
-              align-items: center;
-              height: 26px;
-              margin: 10px 0;
-              position: relative;
-              font-size: 12px;
-              input {
-                height: 26px;
-                padding: 6px;
-                border-radius: 0;
-                font-size: 12px;
-                border-radius: 4px;
-                margin-right: 5px;
-                background: transparent;
-                border: 1px solid #f7f8fa;
-              }
-            }
-          }
-        }
-        /*下*/
-        .update-log-wrapper {
-          font-size: 12px;
-          margin: 0 16px 0 6px;
-          border-top: 1px solid #e6eaee;
-          padding-top: 16px;
-          .btn-history {
-            cursor: pointer;
-            min-width: 44px;
-            height: 14px;
-            line-height: 14px;
-            padding: 0;
-            color: #2680f7;
-            font-size: 14px;
-            background: rgba(0, 0, 0, 0);
-            border: none;
-          }
-          .log-list-wrapper {
-            .event-list {
-              li.row {
-                padding: 16px 0;
-                border-bottom: 1px solid #e6eaee;
-              }
-              .log-title {
-                .title {
-                  width: auto;
-                  font-size: 12px;
-                  line-height: 1;
-                  color: #96a4b3;
-                  margin-right: 6px;
-                }
-              }
-              .log-detail {
-                font-size: 12px;
-                line-height: 17px;
-                margin-top: 8px;
+                float: none;
+                text-align: left;
+                padding: 0 0 8px;
+                font-size: 14px;
                 color: #7a8794;
-                span:nth-child(1) {
-                  width: 72px;
-                  min-width: 72px;
-                  max-width: 72px;
-                  margin-right: 12px;
+                white-space: nowrap;
+                i.icon-zhongdian {
+                  color: @color_FF9933;
+                }
+              }
+              input {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                background-color: rgba(0, 0, 0, 0);
+                border-radius: 3px;
+                border: 1px solid #ced0da;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                color: #000;
+                display: inline-block;
+                font-size: 14px;
+                height: 32px;
+                line-height: 1;
+                outline: none;
+                padding: 3px 8px;
+                width: 210px;
+              }
+              .select-wrapper {
+                input {
+                  width: 105px;
+                }
+                .select-input:nth-child(1) {
+                  input {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                  }
+                }
+                .select-input:nth-child(2) {
+                  margin-left: -1px;
+                  input {
+                    border-left: 0;
+                  }
+                }
+                input + input {
+                  margin-left: -1px;
+                }
+              }
+              .goods-num {
+                .goods-dosageformunit {
+                  input {
+                    border-left: 0;
+                    margin-left: -1px;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                  }
+                }
+                .num {
+                  input {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                  }
+                }
+              }
+              /*单位*/
+              .unit {
+                width: 70px;
+                height: 32px;
+                cursor: pointer;
+                padding: 3px 12px 3px 10px;
+                &:hover {
+                  border: 1px solid @color_007aff;
+                }
+              }
+              .unit-li-wrapper {
+                width: 322px;
+                flex-wrap: wrap;
+                position: absolute;
+                top: 24px;
+                left: 74px;
+                border: 1px solid #dadbe0;
+                border-radius: 3px;
+                -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+                box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+                z-index: 9999;
+                background-color: #fff;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                margin-top: 2px;
+                .is-selected {
+                  background-color: #00ace9;
+                  color: #fff;
+                }
+                .item {
+                  display: inline-block;
+                  width: 80px;
+                  height: 36px;
+                  line-height: 36px;
+                  text-align: center;
+                  border-bottom: 1px solid #e6eaee;
+                  border-right: 1px solid #e6eaee;
+                  cursor: pointer;
+                  font-size: 14px;
+                  -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+                  vertical-align: middle;
+                }
+              }
+              /*价格*/
+              .price-wrapper {
+                position: relative;
+                input {
+                  width: 130px;
+                  padding-left: 30px;
+                  border-top-right-radius: 0;
+                  border-bottom-right-radius: 0;
+                  // border-right:0 ;
+                }
+                .is-disabled {
+                  background-color: #f7f7f7 !important;
+                  border-color: #e6eaee;
+                  color: #000;
+                  cursor: not-allowed;
+                }
+                .symbol {
+                  position: absolute;
+                  top: 5px;
+                  left: 5px;
+                }
+                .price-num {
+                  width: 80px;
+                  line-height: 30px;
+                  padding: 0 5px;
+                  background-color: #f5f7fb;
+                  border-radius: 0 4px 4px 0;
+                  border: 1px solid #ced0da;
+                  border-left: 0;
+                  text-align: center;
+                }
+              }
+              /*税率*/
+              .left-tax,
+              .right-tax {
+                margin-right: 8px;
+                input {
+                  width: 57px;
+                  border-top-right-radius: 0;
+                  border-bottom-right-radius: 0;
+                }
+                .tax {
+                  width: 32px;
+                  height: 32px;
+                  line-height: 32px;
+                  text-align: center;
+                  padding: 0 5px;
+                  background-color: #f5f7fb;
+                  border-radius: 0 4px 4px 0;
+                  border: 1px solid #ced0da;
+                  border-left: 0;
+                  border-left: none;
+                  text-align: center;
+                }
+              }
+            }
+          }
+          .form-wrapper:last-child {
+            border: 0;
+          }
+        }
+        /*右侧*/
+        .body-right {
+          padding: 24px 0 0 10px;
+          border-left: 1px solid #e6eaee;
+          width: 372px;
+          max-height: 445px;
+          overflow-y: auto;
+          background-color: #f7f8fa;
+          /*上*/
+          .goods-code {
+            .detail-code {
+              height: 78px;
+              .goods-code-type {
+                padding: 0 0 8px 6px;
+                color: #7a8794;
+                font-size: 14px;
+                line-height: 14px;
+              }
+              .code-wrapper {
+                width: 100%;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-align: center;
+                -webkit-align-items: center;
+                -ms-flex-align: center;
+                align-items: center;
+                height: 26px;
+                margin: 10px 0;
+                position: relative;
+                font-size: 12px;
+                input {
+                  height: 26px;
+                  padding: 6px;
+                  border-radius: 0;
+                  font-size: 12px;
+                  border-radius: 4px;
+                  margin-right: 5px;
+                  background: transparent;
+                  border: 1px solid #f7f8fa;
+                }
+              }
+            }
+          }
+          /*下*/
+          .update-log-wrapper {
+            font-size: 12px;
+            margin: 0 16px 0 6px;
+            border-top: 1px solid #e6eaee;
+            padding-top: 16px;
+            .btn-history {
+              cursor: pointer;
+              min-width: 44px;
+              height: 14px;
+              line-height: 14px;
+              padding: 0;
+              color: #2680f7;
+              font-size: 14px;
+              background: rgba(0, 0, 0, 0);
+              border: none;
+            }
+            .log-list-wrapper {
+              .event-list {
+                li.row {
+                  padding: 16px 0;
+                  border-bottom: 1px solid #e6eaee;
+                }
+                .log-title {
+                  .title {
+                    width: auto;
+                    font-size: 12px;
+                    line-height: 1;
+                    color: #96a4b3;
+                    margin-right: 6px;
+                  }
+                }
+                .log-detail {
+                  font-size: 12px;
+                  line-height: 17px;
+                  margin-top: 8px;
+                  color: #7a8794;
+                  span:nth-child(1) {
+                    width: 72px;
+                    min-width: 72px;
+                    max-width: 72px;
+                    margin-right: 12px;
+                  }
                 }
               }
             }
           }
         }
       }
-    }
-    /*底部按钮*/
-    .details-footer {
-      -webkit-justify-content: space-between;
-      -ms-justify-content: space-between;
-      justify-content: space-between;
-      border-top: solid 1px @color_dadbe0;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      line-height: 1;
-      height: auto;
-      padding: 14px 0;
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
-    }
-  }
-  // 批次信息
-  .batch-info-wrapper {
-    padding: 0 24px;
-    /*搜索框*/
-    .search-wrapper {
-      height: 64px;
-      -ms-align-items: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
-    /*表格内容*/
-    .batch-table {
-      max-height: 450px;
-      min-height: 300px;
-      overflow-y: auto;
-      .row {
-        cursor: pointer;
-        height: 48px;
-        line-height: 48px;
-        border-bottom: 1px solid #dadbe0;
-        &:hover {
-          background: @color_e9eff8;
-        }
-      }
-      ul > li {
-        padding: 0 6px;
-      }
-      .item1 {
-        width: 17.6028%;
-      }
-      .item2 {
-        width: 11.6383%;
-      }
-      .item3 {
-        width: 7.0922%;
-      }
-      .item4 {
-        text-align: center;
-        width: 14.1844%;
-      }
-      .item5 {
-        text-align: center;
-        width: 12.0567%;
-      }
-      .item6 {
-        text-align: center;
-        width: 12.0567%;
-      }
-      .itme7 {
-        text-align: right;
-        width: 7.0922%;
-      }
-      .item8 {
-        text-align: right;
-        width: 10.6383%;
-      }
-      .item9 {
-        text-align: center;
-        -webkit-flex: 1;
-        -ms-flex: 1;
-        flex: 1;
-      }
-      .table-header {
-        width: 100%;
-        height: 36px;
-        line-height: 36px;
-        color: @color_96a4b3;
-        background: #f5f7fb;
-        border-top: 1px solid #e6eaee;
-        border-bottom: 1px solid #e6eaee;
+      /*底部按钮*/
+      .details-footer {
+        -webkit-justify-content: space-between;
+        -ms-justify-content: space-between;
+        justify-content: space-between;
+        border-top: solid 1px @color_dadbe0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        line-height: 1;
+        height: auto;
+        padding: 14px 0;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
       }
     }
-
-    /*底部分页*/
-    .batch-footer {
-      height: 50px;
-      margin-top: 16px;
-      -webkit-justify-content: space-between;
-      -ms-justify-content: space-between;
-      justify-content: space-between;
-      -ms-align-items: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
-  }
-  // 进销清单
-  .listing-wrapper {
-    padding: 0 24px;
-    // 输入框
-    .search-wrapper {
-      height: 64px;
-    }
-    // 表格
-    .table-wrapper {
-      li {
-        padding: 0 4px;
+    // 批次信息
+    .batch-info-wrapper {
+      padding: 0 24px;
+      /*搜索框*/
+      .search-wrapper {
+        height: 64px;
+        -ms-align-items: center;
+        -webkit-align-items: center;
+        align-items: center;
       }
-      .item1 {
-        width: 13.3047%;
-      }
-      .item2 {
-        width: 9.22747%;
-      }
-      .item3 {
-        width: 9.01288%;
-        text-align: left;
-      }
-      .item4 {
-        text-align: left;
-        width: 8.58369%;
-      }
-      .item5 {
-        width: 6.22318%;
-        text-align: right;
-      }
-      .item6 {
-        text-align: right;
-        width: 6.22318%;
-      }
-      .item7 {
-        text-align: right;
-        width: 7.29614%;
-      }
-      .item8 {
-        text-align: right;
-        width: 7.29614%;
-      }
-      .item9 {
-        width: 9.01288%;
-        text-align: right;
-      }
-      .item10 {
-        width: 9.01288%;
-        text-align: right;
-      }
-      .item11 {
-        width: 7.29614%;
-        text-align: right;
-      }
-      .item12 {
-        width: 7.51073%;
-        text-align: right;
-      }
-      .td {
-        height: 48px;
-        border-color: #e6eaee;
-        border-bottom: 1px solid @color_dadbe0;
-      }
-      .th {
-        background-color: @color_f5f7fb;
-        border-bottom: 1px solid @color_e6eaee;
-        height: 36px;
-        border-top: 1px solid @color_e6eaee;
-      }
-    }
-    // 分页
-    .pag-wrapper {
-      height: 55px;
-    }
-  }
-  // 预警设置
-  .warn-set {
-    padding: 0 24px;
-    // 投标题
-    .goods-title {
-      margin-top: 15px;
-      border-bottom: 1px solid #e6eaee;
-      padding-bottom: 8px;
-      span:nth-child(1) {
-        font-size: 16px;
-      }
-      span:nth-child(2) {
-        color: @color_96a4b3;
-        font-size: 14px;
-      }
-    }
-    // 内容
-    .warn-set-content {
-      padding-bottom: 24px;
-      // 行
-      .warn-set-item {
-        // 左侧名字
-        padding-top: 24px;
-        .set-name {
-          color: @color_96a4b3;
-          width: 96px;
-          min-width: 96px;
-          max-width: 96px;
-        }
-        // 右侧设置内容
-        .set-content {
-          // 行样式
-          .item-content {
-            padding-bottom: 24px;
-            margin-top: 16px;
-
-            .item-tip {
-              color: #8493a4;
-              font-size: 12px;
-              margin-top: 5px;
-            }
-            &:not(:last-child) {
-              border-bottom: 1px solid @color_e6eaee;
-            }
+      /*表格内容*/
+      .batch-table {
+        max-height: 450px;
+        min-height: 300px;
+        overflow-y: auto;
+        .row {
+          cursor: pointer;
+          height: 48px;
+          line-height: 48px;
+          border-bottom: 1px solid #dadbe0;
+          &:hover {
+            background: @color_e9eff8;
           }
         }
-        &:not(:last-child) {
-          border-bottom: 1px solid @color_e6eaee;
+        ul > li {
+          padding: 0 6px;
+        }
+        .item1 {
+          width: 17.6028%;
+        }
+        .item2 {
+          width: 11.6383%;
+        }
+        .item3 {
+          width: 7.0922%;
+        }
+        .item4 {
+          text-align: center;
+          width: 14.1844%;
+        }
+        .item5 {
+          text-align: center;
+          width: 12.0567%;
+        }
+        .item6 {
+          text-align: center;
+          width: 12.0567%;
+        }
+        .itme7 {
+          text-align: right;
+          width: 7.0922%;
+        }
+        .item8 {
+          text-align: right;
+          width: 10.6383%;
+        }
+        .item9 {
+          text-align: center;
+          -webkit-flex: 1;
+          -ms-flex: 1;
+          flex: 1;
+        }
+        .table-header {
+          width: 100%;
+          height: 36px;
+          line-height: 36px;
+          color: @color_96a4b3;
+          background: #f5f7fb;
+          border-top: 1px solid #e6eaee;
+          border-bottom: 1px solid #e6eaee;
         }
       }
+
+      /*底部分页*/
+      .batch-footer {
+        height: 50px;
+        margin-top: 16px;
+        -webkit-justify-content: space-between;
+        -ms-justify-content: space-between;
+        justify-content: space-between;
+        -ms-align-items: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
     }
-    // 按钮
-    .btn-wrapper{
-      height: 61px;
-      border-top: solid 1px @color_e6eaee;
+    // 进销清单
+    .listing-wrapper {
+      padding: 0 24px;
+      // 输入框
+      .search-wrapper {
+        height: 64px;
+      }
+      // 表格
+      .table-wrapper {
+        li {
+          padding: 0 4px;
+        }
+        .item1 {
+          width: 13.3047%;
+        }
+        .item2 {
+          width: 9.22747%;
+        }
+        .item3 {
+          width: 9.01288%;
+          text-align: left;
+        }
+        .item4 {
+          text-align: left;
+          width: 8.58369%;
+        }
+        .item5 {
+          width: 6.22318%;
+          text-align: right;
+        }
+        .item6 {
+          text-align: right;
+          width: 6.22318%;
+        }
+        .item7 {
+          text-align: right;
+          width: 7.29614%;
+        }
+        .item8 {
+          text-align: right;
+          width: 7.29614%;
+        }
+        .item9 {
+          width: 9.01288%;
+          text-align: right;
+        }
+        .item10 {
+          width: 9.01288%;
+          text-align: right;
+        }
+        .item11 {
+          width: 7.29614%;
+          text-align: right;
+        }
+        .item12 {
+          width: 7.51073%;
+          text-align: right;
+        }
+        .td {
+          height: 48px;
+          border-color: #e6eaee;
+          border-bottom: 1px solid @color_dadbe0;
+        }
+        .th {
+          background-color: @color_f5f7fb;
+          border-bottom: 1px solid @color_e6eaee;
+          height: 36px;
+          border-top: 1px solid @color_e6eaee;
+        }
+      }
+      // 分页
+      .pag-wrapper {
+        height: 55px;
+      }
+    }
+    // 预警设置
+    .warn-set {
+      padding: 0 24px;
+      // 投标题
+      .goods-title {
+        margin-top: 15px;
+        border-bottom: 1px solid #e6eaee;
+        padding-bottom: 8px;
+        span:nth-child(1) {
+          font-size: 16px;
+        }
+        span:nth-child(2) {
+          color: @color_96a4b3;
+          font-size: 14px;
+        }
+      }
+      // 内容
+      .warn-set-content {
+        padding-bottom: 24px;
+        // 行
+        .warn-set-item {
+          // 左侧名字
+          padding-top: 24px;
+          .set-name {
+            color: @color_96a4b3;
+            width: 96px;
+            min-width: 96px;
+            max-width: 96px;
+          }
+          // 右侧设置内容
+          .set-content {
+            // 行样式
+            .item-content {
+              padding-bottom: 24px;
+              margin-top: 16px;
+
+              .item-tip {
+                color: #8493a4;
+                font-size: 12px;
+                margin-top: 5px;
+              }
+              &:not(:last-child) {
+                border-bottom: 1px solid @color_e6eaee;
+              }
+            }
+          }
+          &:not(:last-child) {
+            border-bottom: 1px solid @color_e6eaee;
+          }
+        }
+      }
+      // 按钮
+      .btn-wrapper {
+        height: 61px;
+        border-top: solid 1px @color_e6eaee;
+      }
     }
   }
 }

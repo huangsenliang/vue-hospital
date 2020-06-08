@@ -97,25 +97,39 @@ const routes = [
         name: "InventoryIndex",
         redirect: "/inventory/inventoryIndex/goods",
         component: () => import("../views/Inventory/index.vue"),
-        children:[
+        children: [
           // 物资页面
           {
-            path:"goods",
-            name:"InventoryGoods",
-            component: () => import("../views/Inventory/components/InventoryGoods/index.vue"),
+            path: "goods",
+            name: "InventoryGoods",
+            component: () =>
+              import("../views/Inventory/components/InventoryGoods/index.vue"),
           },
           // 采购页面
           {
-            path:"purchase",
-            name:"InventoryPurchase",
-            component: () => import("../views/Inventory/components/InventoryPurchase/index.vue"),
+            path: "purchase",
+            name: "InventoryPurchase",
+            component: () =>
+              import(
+                "../views/Inventory/components/InventoryPurchase/index.vue"
+              ),
           },
-           // 入库页面
-           {
-            path:"cargo",
-            name:"InventoryCargo",
-            component: () => import("../views/Inventory/components/InventoryCargo/index.vue"),
-          }
+          // 入库页面
+          {
+            path: "cargo",
+            name: "InventoryCargo",
+            component: () =>
+              import("../views/Inventory/components/InventoryCargo/index.vue"),
+          },
+          // 出库页面
+          {
+            path: "outbound",
+            name: "InventoryOutbound",
+            component: () =>
+              import(
+                "../views/Inventory/components/InventoryOutbound/index.vue"
+              ),
+          },
         ],
       },
     ],
@@ -137,18 +151,20 @@ router.beforeEach((to, from, next) => {
     store.commit("layout/setTabName", "Registered");
   } else if (to.name == "OutpatientIndex") {
     store.commit("layout/setTabName", "Outpatient");
-  }else if (to.name == "ChargeIndex") {
+  } else if (to.name == "ChargeIndex") {
     store.commit("layout/setTabName", "Charge");
-  }else if (to.name == "InventoryGoods") {
+  } else if (to.name == "InventoryGoods") {
     store.commit("layout/setTabName", "Inventory");
     store.commit("inventory/setTabName", "InventoryGoods");
-  }else if (to.name == "InventoryPurchase") {
+  } else if (to.name == "InventoryPurchase") {
     store.commit("layout/setTabName", "Inventory");
     store.commit("inventory/setTabName", "InventoryPurchase");
-  }
-  else if (to.name == "InventoryCargo") {
+  } else if (to.name == "InventoryCargo") {
     store.commit("layout/setTabName", "Inventory");
     store.commit("inventory/setTabName", "InventoryCargo");
+  } else if (to.name == "InventoryOutbound") {
+    store.commit("layout/setTabName", "Inventory");
+    store.commit("inventory/setTabName", "InventoryOutbound");
   }
   next();
 });

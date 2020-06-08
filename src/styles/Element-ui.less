@@ -29,7 +29,7 @@
 }
 
 // 日期选择器
-.el-date-table td span{
+.el-date-table td span {
   text-align: center;
 }
 
@@ -62,15 +62,31 @@
 
 // 修改库存/入库:日期选择器
 #inventory {
+  // 入库页面
   .inventory-cargo .dialog-cargo-application-item {
-    /*****日期输入框样式*****/ 
+    /*****日期输入框样式*****/
     .el-input--prefix .el-input__inner {
       padding: 0 5px;
-      color:#000;
+      color: #000;
     }
     .el-icon-date:before {
       content: "";
     }
-    
+  }
+  // 出库页面
+  .inventory-outbound {
+    // 时间选择日历
+    .el-date-editor.el-input__inner {
+      display: flex;
+      align-items: center;
+      width: 220px;
+      border: 1px solid @color_ced0da;
+      .el-input__icon {
+        line-height: 25px;
+      }
+      .el-range-separator {
+        height: 0;
+      }
+    }
   }
 }
