@@ -21,11 +21,16 @@
 }
 
 .el-select .el-input.is-disabled .el-input__inner {
-  width: 90px;
+  width: 100%;
 }
 
 .el-select-dropdown__item {
   padding: 0 20px;
+}
+
+// 日期选择器
+.el-date-table td span{
+  text-align: center;
 }
 
 // 级联选择样式
@@ -53,4 +58,19 @@
   background-color: #eff1f5;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
+}
+
+// 修改库存/入库:日期选择器
+#inventory {
+  .inventory-cargo .dialog-cargo-application-item {
+    /*****日期输入框样式*****/ 
+    .el-input--prefix .el-input__inner {
+      padding: 0 5px;
+      color:#000;
+    }
+    .el-icon-date:before {
+      content: "";
+    }
+    
+  }
 }

@@ -35,7 +35,7 @@
       </div>
     </div>
     <!-- 采购列表 -->
-    <Purchase-List style="height:62%"></Purchase-List>
+    <Purchase-List style="height:61.5%"></Purchase-List>
     <!-- 分页 -->
     <div class="pag-wrapper flex align-items justify-between">
       <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>

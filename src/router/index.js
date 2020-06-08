@@ -109,6 +109,12 @@ const routes = [
             path:"purchase",
             name:"InventoryPurchase",
             component: () => import("../views/Inventory/components/InventoryPurchase/index.vue"),
+          },
+           // 入库页面
+           {
+            path:"cargo",
+            name:"InventoryCargo",
+            component: () => import("../views/Inventory/components/InventoryCargo/index.vue"),
           }
         ],
       },
@@ -137,7 +143,12 @@ router.beforeEach((to, from, next) => {
     store.commit("layout/setTabName", "Inventory");
     store.commit("inventory/setTabName", "InventoryGoods");
   }else if (to.name == "InventoryPurchase") {
+    store.commit("layout/setTabName", "Inventory");
     store.commit("inventory/setTabName", "InventoryPurchase");
+  }
+  else if (to.name == "InventoryCargo") {
+    store.commit("layout/setTabName", "Inventory");
+    store.commit("inventory/setTabName", "InventoryCargo");
   }
   next();
 });

@@ -15,7 +15,7 @@ export default {
 <style lang="less" scoped>
 .add-input{
     position: relative;
-    height: 40px;
+    height: 32px;
     width: 100%;
     input{
       border-radius: 3px;
@@ -34,7 +34,7 @@ export default {
     i.icon-jia{
       position: absolute;
       left: 10px;
-      top: 14px;
+      top: 9px;
       font-size: 14px;
       color: @color_ced0da;
     }

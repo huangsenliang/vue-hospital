@@ -22,7 +22,7 @@ export default {
       tabsList: [
         { title: "药品/物资", name: "InventoryGoods" },
         { title: "采购", name: "InventoryPurchase" },
-        { title: "入库", name: "Cargo" },
+        { title: "入库", name: "InventoryCargo" },
         { title: "出库", name: "Outbound" },
         { title: "盘点", name: "Calculate" },
         { title: "供应商", name: "Provide" },

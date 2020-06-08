@@ -26,7 +26,7 @@
       </div>
       <!-- 搜索 -->
       <div class="add-input-wrapper">
-        <Add-Input></Add-Input>
+        <Add-Input placeholder="请输入入库药品或扫码识别"></Add-Input>
       </div>
       <!-- 表单 -->
       <div class="table-wrapper">

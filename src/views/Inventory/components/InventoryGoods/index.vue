@@ -43,7 +43,7 @@
       </div>
     </div>
     <!-- 药品表格 -->
-    <Goods-List style="height:61%"></Goods-List>
+    <Goods-List style="height:60.5%"></Goods-List>
     <!-- 分页 -->
     <div class="pag-wrapper flex align-items justify-between">
       <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>

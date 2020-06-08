@@ -9,8 +9,9 @@ import api from '@/request/api'
 // import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 // import "./utils/elementComponents"
-import { Tabs, Collapse, Cascader, PageHeader, CollapseItem, TabPane, Radio, Upload, Dialog, Message, Popover, Tree, Container, Pagination, Select, Option, Checkbox, Aside, Main, Calendar, Drawer, Table, TableColumn, Button, Input } from "element-ui";
+import { Tabs, Collapse,DatePicker, Cascader, PageHeader, CollapseItem, TabPane, Radio, Upload, Dialog, Message, Popover, Tree, Container, Pagination, Select, Option, Checkbox, Aside, Main, Calendar, Drawer, Table, TableColumn, Button, Input } from "element-ui";
 Vue.use(TabPane);
+Vue.use(DatePicker);
 Vue.use(PageHeader);
 Vue.use(Cascader);
 Vue.use(CollapseItem);

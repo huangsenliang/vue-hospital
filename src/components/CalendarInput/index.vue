@@ -1,25 +1,23 @@
 <template>
   <div class="calendar-input">
-    <i class="icon-rili iconfont"></i>
-    <input type="text" placeholder="选中日期范围" />
-    <div class="calendar-wrapper"></div>
+    <el-date-picker v-model="value" type="date" placeholder="选择日期"></el-date-picker>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+    return {
+      value:'',
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>
 .calendar-input {
   position: relative;
-  width: 250px;
-  i.icon-rili {
-    position: absolute;
-    top: 8px;
-    left: 11px;
-    color: @color_96a4b3;
-  }
+  width: 220px;
   input {
     width: 100%;
     height: 32px;

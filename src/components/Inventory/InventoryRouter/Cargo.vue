@@ -1,4 +1,5 @@
 <template>
+<!-- 入库 -->
   <div class="cargo-wrapper">
     <!-- 头部 -->
     <div class="cargo-header flex">

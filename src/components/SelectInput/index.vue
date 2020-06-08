@@ -2,7 +2,7 @@
   <!-- 下拉选择框组件 -->
   <div class="select-input">
     <!-- 通过父组件是否传了options来决定禁用状态 -->
-    <el-select v-model="value" :disabled="disabled=='true'?true:false" filterable :placeholder="placeholder">
+    <el-select v-model="val" :disabled="disabled=='true'?true:false" filterable :placeholder="placeholder">
       <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
     </el-select>
   </div>
@@ -13,19 +13,13 @@ export default {
   props: ["value", "options", "placeholder", "disabled"],
   data() {
     return {
-
+      val:this.value,
     };
   }
 };
 </script>
 
 <style lang="less" scoped>
-.select-input {
-  .el-input__inner {
-    width: 120px;
-    height: 32px;
-    border-radius: 4px;
-  }
-}
+
 
 </style>

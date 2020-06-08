@@ -30,7 +30,7 @@
         <span>审核日期</span>
       </li>
     </ul>
-    <ul v-for="(item,index) of 10" :key="index" class="row flex">
+    <ul @click="showPurchaseApplication=true" v-for="(item,index) of 10" :key="index" class="row flex">
       <li style="color: rgb(10, 140, 234);" class="item1">
         <span>CG202005200000001</span>
       </li>
@@ -59,19 +59,24 @@
         <span>2020-05-20</span>
       </li>
     </ul>
+    <!-- 申请清单弹窗 -->
+    <div v-show="showPurchaseApplication">
+      <Dialog-Purchase-Application @showPurchaseApplication="showPurchaseApplication=false"></Dialog-Purchase-Application>
+    </div>
   </div>
 </template>
 
 <script>
 /*****************局部组件*************/
-// 商品详情弹窗
-// import DialogDetailsTabs from "../dialog/dialogDetailsTabs";
+// 清单申请组件
+import DialogPurchaseApplication from "../dialog/dialogPurchaseApplication";
 export default {
   components: {
-    // DialogDetailsTabs
+    DialogPurchaseApplication
   },
   data() {
     return {
+      showPurchaseApplication:false, // 申请弹窗列表显示隐藏控制变量
       showDetailsPopper: false // 商品详情页面显示隐藏控制变量
     };
   },
