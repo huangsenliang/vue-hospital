@@ -1,12 +1,12 @@
 <template>
   <!-- 结算单弹窗组件 -->
-  <div class="dialog-apply-application dialog">
+  <div class="dialog-audit-application dialog">
     <div class="cover-wrapper"></div>
     <div class="content-style application-body">
       <!-- 头部 -->
       <div class="application-header flex align-items justify-between">
         <h4>结算单 RK2020060800001</h4>
-        <i class="icon-del iconfont" @click="$emit('showApplyApplication')"></i>
+        <i class="icon-del iconfont" @click="$emit('showAuditApplication')"></i>
       </div>
       <!-- 内容 -->
       <div class="application-content-wrapper hidden-scorll">
@@ -19,7 +19,41 @@
               <div class="item-label">
                 <span>供应商</span>
               </div>
-              <span>四川四维医药有限公司</span>
+              <span>华纳大药厂</span>
+            </div>
+            <!-- 行：发票 -->
+            <div class="settlement-item flex">
+              <div class="item-label">
+                <span>关联发票</span>
+              </div>
+              <div class="item-content flex flex-item flex-wrap">
+                <!-- 发票 -->
+                <div class="invoice-wrapper" v-for="(item,index) of 10" :key="index">
+                  <Audit-Invoice></Audit-Invoice>
+                </div>
+              </div>
+            </div>
+            <!-- 行：供应商 -->
+            <div class="settlement-item flex">
+              <div class="item-label">
+                <span>结算金额</span>
+              </div>
+              <div class="item-content">
+                <ul class="amount-content flex">
+                  <li>
+                    <span>价水合计：</span>
+                    <span class="amount">3100.00</span>
+                  </li>
+                  <li>
+                    <span>金额：</span>
+                    <span class="amount">3100.00</span>
+                  </li>
+                  <li>
+                    <span>税额：</span>
+                    <span class="amount">3100.00</span>
+                  </li>
+                </ul>
+              </div>
             </div>
             <!-- 行：关联单据 -->
             <div class="settlement-item flex">
@@ -111,27 +145,6 @@
                 </div>
               </div>
             </div>
-            <!-- 行：发票 -->
-            <div class="settlement-item flex">
-              <div class="item-label">
-                <span>关联发票</span>
-              </div>
-              <div class="item-content flex flex-item flex-wrap">
-                <!-- 发票 -->
-                <div class="invoice" v-for="(item,index) of 10" :key="index">
-                  <div class="invoice-content">
-                    <div class="ellipsis">
-                      <span>发票号：</span>
-                      <span>222</span>
-                    </div>
-                    <div>
-                      <span>开票日期：</span>
-                      <span>2020-06-05</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <!-- 操作记录 -->
@@ -161,18 +174,26 @@
       <!-- 底部按钮 -->
       <div class="btn-wrapper flex align-items justify-end">
         <button class="btn-primary" style="marginRight:8px">撤回</button>
-        <button class="btn-blank" @click="$emit('showApplyApplication')">取消</button>
+        <button class="btn-blank" @click="$emit('showAuditApplication')">取消</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+/**************引入局部组件************/
+
+// 发票组件
+import AuditInvoice from "../components/auditInvoice";
+export default {
+  components: {
+    AuditInvoice
+  }
+};
 </script>
 
 <style lang="less" scoped>
-.dialog-apply-application {
+.dialog-audit-application {
   .application-body {
     background: #fff;
     //   头部
@@ -270,9 +291,21 @@ export default {};
           }
         }
         // 发票
-        .invoice {
+        .invoice-wrapper {
+          margin-top: 8px;
           margin-right: 8px;
-          margin-bottom: 8px;
+        }
+        // 结算金额
+        .amount-content {
+          > li {
+            color: @color_7a8794;
+            margin-right: 25px;
+            .amount {
+              color: @color_f93;
+              font-weight: 700;
+              font-size: 16px;
+            }
+          }
         }
       }
       // 操作记录

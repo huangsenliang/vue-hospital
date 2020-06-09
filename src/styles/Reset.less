@@ -105,7 +105,7 @@ h6 {
 .text-ellipsis {
   text-overflow: ellipsis;
   overflow: hidden;
-  white-space:nowrap;
+  white-space: nowrap;
 }
 
 /*********输入框********/
@@ -500,10 +500,37 @@ i.icon-del {
     line-height: 32px;
   }
 }
-
+// 禁用按钮样式
 .input-disabled {
   input {
     cursor: not-allowed;
     background-color: #f7f7f7;
+  }
+}
+
+/***************发票样式************/
+// 发票
+.invoice {
+  border: 1px solid @color_ced0da;
+  color: @color_7a8794;
+  font-size: 12px;
+  cursor: pointer;
+  .invoice-content {
+    padding: 8px;
+    width: 150px;
+    height: 54px;
+    line-height: 20px;
+  }
+  .invoice-footer {
+    border-top: 1px solid @color_e6eaee;
+    padding: 0 8px;
+    height: 30px;
+    span:nth-child(1) {
+      color: @color_2680f7;
+      margin-right: 8px;
+    }
+    span:nth-child(2) {
+      color: @color_f33;
+    }
   }
 }

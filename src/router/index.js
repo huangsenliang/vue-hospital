@@ -153,9 +153,14 @@ const routes = [
             path: "apply",
             name: "InventoryApply",
             component: () =>
-              import(
-                "../views/Inventory/components/InventoryApply/index.vue"
-              ),
+              import("../views/Inventory/components/InventoryApply/index.vue"),
+          },
+          // 结算审核页面
+          {
+            path: "audit",
+            name: "InventoryAudit",
+            component: () =>
+              import("../views/Inventory/components/InventoryAudit/index.vue"),
           },
         ],
       },
@@ -192,17 +197,18 @@ router.beforeEach((to, from, next) => {
   } else if (to.name == "InventoryOutbound") {
     store.commit("layout/setTabName", "Inventory");
     store.commit("inventory/setTabName", "InventoryOutbound");
-  }else if (to.name == "InventoryCalculate") {
+  } else if (to.name == "InventoryCalculate") {
     store.commit("layout/setTabName", "Inventory");
     store.commit("inventory/setTabName", "InventoryCalculate");
-  }
-  else if (to.name == "InventoryProvider") {
+  } else if (to.name == "InventoryProvider") {
     store.commit("layout/setTabName", "Inventory");
     store.commit("inventory/setTabName", "InventoryProvider");
-  }
-  else if (to.name == "InventoryApply") {
+  } else if (to.name == "InventoryApply") {
     store.commit("layout/setTabName", "Inventory");
     store.commit("inventory/setTabName", "InventoryApply");
+  } else if (to.name == "InventoryAudit") {
+    store.commit("layout/setTabName", "Inventory");
+    store.commit("inventory/setTabName", "InventoryAudit");
   }
   next();
 });

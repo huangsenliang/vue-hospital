@@ -1,6 +1,6 @@
 <template>
   <!-- 结算申请列表组件 -->
-  <div class="apply-List">
+  <div class="audit-List">
     <!-- 表头 -->
     <ul class="table-header flex">
       <li class="item1">
@@ -36,7 +36,7 @@
     </ul>
     <!-- 表内容 -->
     <div class="table-body">
-      <ul @click="showApplyApplication=true" class="td flex" v-for="(item,index) of 10" :key="index">
+      <ul @click="showAuditApplication=true" class="td flex" v-for="(item,index) of 10" :key="index">
         <li class="item1">
           <span>4561364564156</span>
         </li>
@@ -70,8 +70,8 @@
       </ul>
     </div>
     <!-- 结算单弹窗组件 -->
-    <div v-show="showApplyApplication">
-      <Dialog-Apply-Application @showApplyApplication="showApplyApplication=false"></Dialog-Apply-Application>
+    <div v-show="showAuditApplication">
+      <Dialog-Audit-Application @showAuditApplication="showAuditApplication=false"></Dialog-Audit-Application>
     </div>
   </div>
 </template>
@@ -79,21 +79,21 @@
 <script>
 /*****************局部组件*********/ 
 // 结算单弹窗组件
-import DialogApplyApplication from "../dialog/dialogApplyApplication";
+import DialogAuditApplication from "../dialog/dialogAuditApplication";
 export default {
   components:{
-    DialogApplyApplication
+    DialogAuditApplication
   },
   data(){
     return {
-      showApplyApplication:false,  // 结算单弹窗组件显示隐藏控制
+      showAuditApplication:false,  // 结算单弹窗组件显示隐藏控制
     }
   }
 };
 </script>
 
 <style lang="less" scoped>
-.apply-List {
+.audit-List {
   // 表内容
   .table-body {
     height: calc(100% - 36px);
