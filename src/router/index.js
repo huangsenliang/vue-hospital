@@ -130,6 +130,33 @@ const routes = [
                 "../views/Inventory/components/InventoryOutbound/index.vue"
               ),
           },
+          // 盘点页面
+          {
+            path: "calculate",
+            name: "InventoryCalculate",
+            component: () =>
+              import(
+                "../views/Inventory/components/InventoryCalculate/index.vue"
+              ),
+          },
+          // 供应商页面
+          {
+            path: "provider",
+            name: "InventoryProvider",
+            component: () =>
+              import(
+                "../views/Inventory/components/InventoryProvider/index.vue"
+              ),
+          },
+          // 结算申请页面
+          {
+            path: "apply",
+            name: "InventoryApply",
+            component: () =>
+              import(
+                "../views/Inventory/components/InventoryApply/index.vue"
+              ),
+          },
         ],
       },
     ],
@@ -165,6 +192,17 @@ router.beforeEach((to, from, next) => {
   } else if (to.name == "InventoryOutbound") {
     store.commit("layout/setTabName", "Inventory");
     store.commit("inventory/setTabName", "InventoryOutbound");
+  }else if (to.name == "InventoryCalculate") {
+    store.commit("layout/setTabName", "Inventory");
+    store.commit("inventory/setTabName", "InventoryCalculate");
+  }
+  else if (to.name == "InventoryProvider") {
+    store.commit("layout/setTabName", "Inventory");
+    store.commit("inventory/setTabName", "InventoryProvider");
+  }
+  else if (to.name == "InventoryApply") {
+    store.commit("layout/setTabName", "Inventory");
+    store.commit("inventory/setTabName", "InventoryApply");
   }
   next();
 });

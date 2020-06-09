@@ -1,19 +1,20 @@
 <template>
-  <!-- 库存：入库组件 -->
-  <div class="inventory-cargo" style="height:100%">
+  <!-- 库存：结算申请组件 -->
+  <div class="inventory-apply" style="height:100%">
     <!------------ 头部-------------- -->
-    <div class="cargo-header flex align-items justify-between">
+    <div class="apply-header flex align-items justify-between">
       <div class="flex">
+        <Select-Input style="marginRight:16px;width:150px"></Select-Input>
+        <Select-Input style="marginRight:16px;width:120px"></Select-Input>
         <Calendar-Input style="marginRight:16px"></Calendar-Input>
-        <Select-Input style="marginRight:16px"></Select-Input>
-        <Search-Input placeholder="药品名称/条形码"></Search-Input>
+        <Select-Input style="marginRight:16px;width:200px"></Select-Input>
       </div>
-      <div class="cargo-header-right flex align-items">
+      <div class="apply-header-right flex align-items">
         <!-- 新增入库弹窗 -->
-        <div class="add-cargo-wrapper">
-          <button @click="showAddCargo=!showAddCargo" class="btn-success">新增入库</button>
-          <div v-show="showAddCargo">
-            <Dialog-Cargo @showAddCargo="showAddCargo=false"></Dialog-Cargo>
+        <div class="add-apply-wrapper">
+          <button @click="showDialogApply=!showDialogApply" class="btn-success">新增结算单</button>
+          <div v-show="showDialogApply">
+            <Dialog-Apply @showDialogApply="showDialogApply=false"></Dialog-Apply>
           </div>
         </div>
         <div class="upload">
@@ -22,7 +23,7 @@
       </div>
     </div>
     <!-- -----------列表---------------  -->
-    <Cargo-List style="height:60.5%"></Cargo-List>
+    <Apply-List style="height:60.5%"></Apply-List>
     <!-- 分页 -->
     <div class="pag-wrapper flex align-items justify-between">
       <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
@@ -43,19 +44,19 @@ import SearchInput from "@/components/SearchInput";
 import CalendarInput from "@/components/CalendarInput";
 /*******************局部组件**************/
 
-import DialogCargo from "./dialog/dialogCargo";
-import CargoList from "./components/cargoList";
+import DialogApply from "./dialog/dialogApply";
+import ApplyList from "./components/applyList";
 export default {
   components: {
     SelectInput,
     SearchInput,
     CalendarInput,
-    DialogCargo,
-    CargoList
+    DialogApply,
+    ApplyList
   },
   data() {
     return {
-      showAddCargo: false // 新增入库盒子弹窗显示隐藏控制变量
+      showDialogApply: false // 新增入库盒子弹窗显示隐藏控制变量
     };
   },
   methods: {
@@ -80,10 +81,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.inventory-cargo {
+.inventory-apply {
   padding: 0 16px;
   // 头部
-  .cargo-header {
+  .apply-header {
     height: 64px;
   }
   // 分页

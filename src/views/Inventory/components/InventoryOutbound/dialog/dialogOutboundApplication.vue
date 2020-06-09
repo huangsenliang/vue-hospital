@@ -1,12 +1,12 @@
 <template>
-  <!-- 采购申请弹窗组件 -->
-  <div class="dialog-cargo-application dialog">
+  <!-- 科室出库单弹窗组件 -->
+  <div class="dialog-outbound-application dialog">
     <div class="cover-wrapper"></div>
-    <div class="content-style dialog-cargo-content">
+    <div class="content-style dialog-outbound-content">
       <!-- 头部 -->
       <div class="top-header flex align-items justify-between">
-        <h4>入库单 RK2020060800001</h4>
-        <i class="icon-del iconfont" @click="$emit('showCargoApplication')"></i>
+        <h4>科室出库单 RK2020060800001</h4>
+        <i class="icon-del iconfont" @click="$emit('showOutboundApplication')"></i>
       </div>
       <!-- 描述1 -->
       <div class="describe flex align-items">
@@ -15,69 +15,77 @@
           <span>李思思</span>
         </div>
         <div class="ellipsis">
-          入库门店：
+          出库门店：
           <span>惠民体验诊所</span>
         </div>
-        <div class="flex align-items">
-          <label for>供应商：</label>
-          <Select-Input value="李思思" :disabled="isDisabled+''" style="width:145px"></Select-Input>
-        </div>
-        <div class="flex align-items">
-          <label for>随货单号：</label>
-          <Search-Input
-            value="12345678"
-            :disabled="isDisabled+''"
-            placeholder="请输入随货单号"
-            style="width:150px"
-          ></Search-Input>
-        </div>
-        <div class="set-btn">
-          <span v-show="isDisabled" @click="isDisabled=false">修改</span>
-          <span v-show="!isDisabled" @click="isDisabled=true">保存</span>
+        <div>
+          领用人：
+          <span>中西医 毛永强</span>
         </div>
       </div>
       <!-- 表格 -->
       <div class="table-wrapper">
+        <!-- 表头 -->
         <ul class="flex align-items th">
           <li class="item1">
-            <span>批次</span>
-          </li>
-          <li class="item2">
             <span>药品编码</span>
           </li>
-          <li class="item3 flex-item">
+          <li class="item2 flex-item text-ellipsis">
             <span>药品名称</span>
           </li>
-          <li class="item4">
-            <span>税率</span>
-          </li>
-          <li class="item5 text-ellipsis">
+          <li class="item3 text-ellipsis">
             <span>厂家</span>
           </li>
-          <li class="item6">
+          <li class="item4">
+            <span>批次</span>
+          </li>
+          <li class="item5">
             <span>生产批号</span>
           </li>
-          <li class="item7">
-            <span>生产日期</span>
-          </li>
-          <li class="item8">
+          <li class="item6">
             <span>效期</span>
           </li>
-          <li class="item9">
-            <span>数量</span>
-          </li>
-          <li class="item10">
+          <li class="item7">
             <span>进价</span>
           </li>
-          <li class="item11">
-            <span>含税金额</span>
+          <li class="item8">
+            <span>出库数量</span>
           </li>
-          <li class="item12">
-            <span></span>
+          <li class="item9">
+            <span>金额</span>
           </li>
         </ul>
+        <!-- 表内容 -->
         <div class="table-body">
-          <Dialog-Cargo-Application-Item></Dialog-Cargo-Application-Item>
+          <ul class="flex align-items td">
+            <li class="item1">
+              <span>15645466</span>
+            </li>
+            <li class="item2 flex-item text-ellipsis">
+              <span>阿莫西林</span>
+            </li>
+            <li class="item3 text-ellipsis">
+              <span>广州白云山</span>
+            </li>
+            <li class="item4">
+              <span>515555347</span>
+            </li>
+            <li class="item5">
+              <span>--</span>
+            </li>
+            <li class="item6">
+              <span>--</span>
+            </li>
+            <li class="item7">
+              <span>4.00/盒</span>
+            </li>
+            <li class="item8">
+              <span>2盒</span>
+            </li>
+            <li class="item9">
+              <span>8.00</span>
+            </li>
+          </ul>
         </div>
         <div class="table-footer flex justify-end align-items">
           <ul class="total-info flex">
@@ -90,12 +98,8 @@
               <span>16,102</span>
             </li>
             <li>
-              售价合计(含税)：
+              金额：
               <span>320.00</span>
-            </li>
-            <li>
-              含税金额：
-              <span>25.00</span>
             </li>
           </ul>
         </div>
@@ -133,22 +137,10 @@
 </template>
 
 <script>
-/*******************全局组件*************/
-import SelectInput from "@/components/SelectInput";
-import SearchInput from "@/components/SearchInput";
-/********************局部组件***************/
-
-// 列表行组件
-import DialogCargoApplicationItem from "../components/dialogCargoApplicationItem";
 export default {
-  components: {
-    SelectInput,
-    SearchInput,
-    DialogCargoApplicationItem
-  },
   data() {
     return {
-      isDisabled: false // 是否修改信息
+
     };
   },
   methods: {}
@@ -156,8 +148,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.dialog-cargo-application {
-  .dialog-cargo-content {
+.dialog-outbound-application {
+  .dialog-outbound-content {
     width: 1210px;
     border-radius: 3px;
     -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -205,94 +197,7 @@ export default {
       li {
         padding: 0 8px;
       }
-      .item1 {
-        width: 70px;
-      }
-      .item2 {
-        width: 90px;
-      }
-      .item4 {
-        text-align: right;
-        padding-right: 16px;
-        width: 60px;
-      }
-      .item5 {
-        width: 120px;
-      }
-      .item6 {
-        width: 102px;
-      }
-      .item7 {
-        width: 120px;
-      }
-      .item8 {
-        text-align: center;
-        width: 120px;
-      }
-      .item9 {
-        text-align: right;
-        width: 108px;
-        // 输入框
-        .select-wrapper {
-          input {
-            border: 3px;
-            height: 32px;
-            width: 70px;
-            margin-right: -1px;
-            border: @color_ced0da 1px solid;
-          }
-          // 单位选择
-          .unit-wrapper {
-            position: relative;
-            .unit {
-              display: inline-block;
-              width: 40px;
-              height: 32px;
-              line-height: 27px;
-              text-align: center;
-              border: @color_ced0da 1px solid;
-            }
-            // 选择列表
-            .unit-list {
-              position: absolute;
-              top: 33px;
-              background: #fff;
-              border: 3px;
-              z-index: 1000;
-              border: 1px solid @color_ced0da;
-              li {
-                width: 38px;
-                height: 32px;
-                line-height: 32px;
-                text-align: center;
-              }
-              li + li {
-                border-top: 1px solid @color_ced0da;
-              }
-              .is-selected {
-                background: @color_007aff;
-                color: #fff;
-              }
-            }
-          }
-        }
-      }
-      .item10 {
-        text-align: right;
-        padding-right: 16px;
-        width: 98px;
-      }
-      .item11 {
-        text-align: right;
-        width: 88px;
-      }
-      .item12 {
-        padding-left: 8px;
-        width: 80px;
-        color: @color_007aff;
-        cursor: pointer;
-      }
-
+      // 表头
       .th {
         color: @color_8493a4;
         font-weight: 700;
@@ -301,6 +206,40 @@ export default {
         border-top: 1px solid #e6eaee;
         background-color: #f5f7fb;
       }
+      // 表内容
+      .table-body {
+        .td {
+          height: 48px;
+          border-bottom: 1px solid @color_e6eaee;
+        }
+      }
+      .item1 {
+        width: 90px;
+      }
+      .item3 {
+        width: 160px;
+      }
+      .item4 {
+        margin-left: 16px;
+        width: 100px;
+      }
+      .item5 {
+        margin-left: 16px;
+        width: 120px;
+      }
+      .item6 {
+        width: 100px;
+      }
+      .item7,
+      .item8 {
+        text-align: right;
+        width: 80px;
+      }
+      .item9 {
+        text-align: right;
+        width: 76px;
+      }
+      // 合计
       .table-footer {
         height: 64px;
         color: #7a8794;
@@ -325,9 +264,6 @@ export default {
           margin-bottom: 12px;
           .log-action {
             margin-left: 26px;
-            >span{
-              margin-right: 16px;
-            }
           }
         }
       }

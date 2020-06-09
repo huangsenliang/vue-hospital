@@ -233,18 +233,50 @@
         </el-tab-pane>
         <el-tab-pane label="退货出库" name="refund">
           <div class="refund-wrapper">
-            <div class="input-wrapper flex align-items">
-              <div class="calendar-wrapper" style="width:250px">
-                <el-date-picker
-                v-model="valueDate"
-                type="daterange"
-                range-separator="-"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-              ></el-date-picker>
+            <!-- 内容 -->
+            <div class="content-body">
+              <!-- 头部 -->
+              <div class="input-wrapper flex align-items">
+                <div class="calendar-wrapper" style="width:250px">
+                  <el-date-picker
+                    v-model="valueDate"
+                    type="daterange"
+                    range-separator="-"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                  ></el-date-picker>
+                </div>
+                <Select-Input></Select-Input>
+                <SelectInput></SelectInput>
               </div>
-              <Select-Input></Select-Input>
-              <SelectInput></SelectInput>
+              <!-- 记录 -->
+              <div class="in-order-list hidden-scorll">
+                <!-- 行：记录 -->
+                <div v-for="(item,index) of 10" :key="index" class="in-order-item flex align-items">
+                  <div class="info flex-item">
+                    <!-- 顶部 -->
+                    <div class="title flex align-items">
+                      <h4>RK2020060800007</h4>
+                      <span class="type">盘点入库</span>
+                      <!-- 查看详情弹窗 -->
+                      <div class="detail-wrapper">
+                        <span class="detail-btn">查看详情</span>
+                        <div class="dialog-detail">
+                          <Dialog-Check-Detail></Dialog-Check-Detail>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="ellipsis">胶体果胶铋胶囊 20盒</p>
+                  </div>
+                  <div class="btn">
+                    <button class="btn-primary-small">选择</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 底部分页 -->
+            <div class="pag-wrapper flex align-items justify-end">
+              <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
             </div>
           </div>
         </el-tab-pane>
@@ -258,15 +290,19 @@
 import SelectInput from "@/components/SelectInput";
 import SearchInput from "@/components/SearchInput";
 import AddInput from "@/components/AddInput";
+/**************局部组件**********/
+
+import DialogCheckDetail from "../dialog/dialogCheckDetail";
 export default {
   components: {
     SelectInput,
     SearchInput,
-    AddInput
+    AddInput,
+    DialogCheckDetail
   },
   data() {
     return {
-      valueDate:'', // 入库时间绑定变量
+      valueDate: "", // 入库时间绑定变量
       showUnitSelect: false, // 单位盒子显示隐藏控制变量
       selectedUnit: "盒", // 选中的单位值
       options1: [
@@ -551,13 +587,13 @@ export default {
     -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background: #fff;
-    // 科室出库
+    // 科室出库，报损出库
     .department-wrapper,
     .breakage-wrapper {
+      padding: 0px 24px;
       /*内容*/
       .body-content {
         font-size: 14px;
-        padding: 0px 24px;
         height: 335px;
         min-height: 335px;
         // 描述
@@ -699,11 +735,91 @@ export default {
       }
       // 底部按钮
       .btn-wrapper {
-        padding: 0 24px;
         height: 61px;
         border-bottom-left-radius: 4px;
         border-bottom-right-radius: 4px;
         border-top: 1px solid @color_e6eaee;
+      }
+    }
+    // 退货出库
+    .refund-wrapper {
+      // 内容
+      .content-body {
+        padding: 0 24px;
+        // 头部输入框
+        .input-wrapper {
+          height: 64px;
+        }
+        // 记录
+        .in-order-list {
+          cursor: pointer;
+          height: 400px;
+          overflow: auto;
+          border: 1px solid #ced0da;
+          border-radius: 3px;
+          .in-order-item {
+            // 信息
+            .info {
+              padding: 16px 0 16px 16px;
+              // 顶部
+              .title {
+                font-size: 16px;
+                line-height: 16px;
+                h4 {
+                  font-weight: 700;
+                  margin-right: 16px;
+                }
+                // 类型
+                .type {
+                  color: @color_7a8794;
+                }
+                // 查看详情弹窗
+                .detail-wrapper {
+                  margin-left: 16px;
+                  display: none;
+                  .detail-btn {
+                    cursor: pointer;
+                    color: @color_007aff;
+                  }
+                  .dialog-detail {
+                    display: none;
+                    position: relative;
+                  }
+                  &:hover {
+                    .dialog-detail {
+                      display: inline-block;
+                    }
+                  }
+                }
+              }
+              // 描述
+              .ellipsis {
+                margin-top: 8px;
+              }
+            }
+            // 按钮
+            .btn {
+              display: none;
+              padding-right: 16px;
+            }
+            &:hover {
+              background: @color_e9eff8;
+              > .btn {
+                display: inline-block !important;
+              }
+              .detail-wrapper {
+                display: inline-block !important;
+              }
+            }
+          }
+        }
+      }
+      // 分页
+      .pag-wrapper {
+        padding: 0 24px;
+        margin-top: 16px;
+        height: 64px;
+        border-top: 1px solid @color_ced0da;
       }
     }
   }

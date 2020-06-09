@@ -25,7 +25,7 @@ export default {
         { title: "入库", name: "InventoryCargo" },
         { title: "出库", name: "InventoryOutbound" },
         { title: "盘点", name: "InventoryCalculate" },
-        { title: "供应商", name: "InventoryProvide" },
+        { title: "供应商", name: "InventoryProvider" },
         { title: "结算申请", name: "InventoryApply" },
         { title: "结算审核", name: "InventoryAudit" }
       ] // 标签数据
