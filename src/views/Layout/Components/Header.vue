@@ -134,7 +134,7 @@ export default {
         { name: "/home/patient", value: "患者" },
         { name: "/home/statistical", value: "统计" },
         { name: "/home/marketing", value: "营销" },
-        { name: "/home/admin", value: "管理" }
+        { name: "Admin", value: "管理" }
       ]
     };
   },

@@ -6,38 +6,9 @@ import api from '@/request/api'
 
 
 // 引入element-ui 组件
-// import ElementUI from 'element-ui';
+import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-// import "./utils/elementComponents"
-import { Tabs, Collapse,DatePicker, Cascader, PageHeader, CollapseItem, TabPane, Radio, Upload, Dialog, Message, Popover, Tree, Container, Pagination, Select, Option, Checkbox, Aside, Main, Calendar, Drawer, Table, TableColumn, Button, Input } from "element-ui";
-Vue.use(TabPane);
-Vue.use(DatePicker);
-Vue.use(PageHeader);
-Vue.use(Cascader);
-Vue.use(CollapseItem);
-Vue.use(Tabs);
-Vue.use(Collapse);
-Vue.use(Container);
-Vue.use(Aside);
-Vue.use(Main);
-Vue.use(Calendar);
-Vue.use(Drawer);
-Vue.use(Table);
-Vue.use(TableColumn);
-Vue.use(Button)
-Vue.use(Checkbox);
-Vue.use(Option);
-Vue.use(Select);
-Vue.use(Pagination);
-Vue.use(Input);
-Vue.use(Select);
-Vue.use(Popover);
-Vue.use(Tree);
-Vue.use(Radio);
-Vue.use(Dialog);
-Vue.use(Upload);
-Vue.use(Dialog);
-Vue.prototype.$message = Message;
+Vue.use(ElementUI);
 
 // 引入打印机调用插件 
 import Print from 'vue-print-nb'

@@ -33,7 +33,7 @@
                 </div>
               </div>
             </div>
-            <!-- 行：供应商 -->
+            <!-- 行：结算金额 -->
             <div class="settlement-item flex">
               <div class="item-label">
                 <span>结算金额</span>
@@ -55,14 +55,113 @@
                 </ul>
               </div>
             </div>
-            <!-- 行：关联单据 -->
+            <!-- 行：结算明细 -->
             <div class="settlement-item flex">
               <div class="item-label">
                 <span>关联单据</span>
               </div>
               <div class="item-content flex-item">
                 <!-- 表格 -->
-                <div class="table-wrapper">
+                <div class="table-detail">
+                  <ul class="th flex align-items">
+                    <li class="item1">
+                      <span>货物或应税劳务、服务名称</span>
+                    </li>
+                    <li class="item2">
+                      <span>规格类型</span>
+                    </li>
+                    <li class="item3">
+                      <span>单位</span>
+                    </li>
+                    <li class="item4">
+                      <span>数量</span>
+                    </li>
+                    <li class="item5">
+                      <span>单价</span>
+                    </li>
+                    <li class="item6">
+                      <span>价税合计</span>
+                    </li>
+                    <li class="item7">
+                      <span>金额</span>
+                    </li>
+                    <li class="item8">
+                      <span>税率</span>
+                    </li>
+                    <li class="item9">
+                      <span>税额</span>
+                    </li>
+                  </ul>
+                  <ul v-for="(item,index) of 2" :key="index" class="td flex align-items">
+                    <li class="item1">
+                      <span>药品</span>
+                    </li>
+                    <li class="item2">
+                      <span>无</span>
+                    </li>
+                    <li class="item3">
+                      <span>无</span>
+                    </li>
+                    <li class="item4">
+                      <span>1</span>
+                    </li>
+                    <li class="item5">
+                      <span>1.98</span>
+                    </li>
+                    <li class="item6">
+                      <span>2.00</span>
+                    </li>
+                    <li class="item7">
+                      <span>1.98</span>
+                    </li>
+                    <li class="item8">
+                      <span>1%</span>
+                    </li>
+                    <li class="item9">
+                      <span>0.02</span>
+                    </li>
+                  </ul>
+                  <div class="table-calc flex align-items justify-between">
+                    <ul class="flex align-items justify-end">
+                      <li>
+                        价税合计(大写)
+                        <span>贰元整</span>
+                      </li>
+                      <li>
+                        价税合计(小写)：
+                        <span>2.00</span>
+                      </li>
+                    </ul>
+                    <ul class="flex align-items justify-end">
+                      <li>
+                        单据数量：
+                        <span>1</span>
+                      </li>
+                      <li>
+                        价税合计(总计)：
+                        <span>100.00</span>
+                      </li>
+                      <li>
+                        金额(总计)：
+                        <span>100.00</span>
+                      </li>
+                      <li>
+                        税额(总计)：
+                        <span>0.00</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 行：附件 -->
+            <div class="settlement-item flex">
+              <div class="item-label">
+                <span>附件</span>
+              </div>
+              <div class="item-content flex-item">
+                <!-- 表格 -->
+                <div class="table-attachment">
                   <ul class="th flex align-items">
                     <li class="item1">
                       <span>单号</span>
@@ -71,11 +170,10 @@
                       <span>类型</span>
                     </li>
                     <li class="item3">
-                      <span>出/入库时间</span>
+                      <span>出入库时间</span>
                     </li>
                     <li class="item4">
                       <span>操作人</span>
-                    </li>
                     <li class="item5">
                       <span>品种</span>
                     </li>
@@ -83,47 +181,52 @@
                       <span>数量</span>
                     </li>
                     <li class="item7">
-                      <span>金额</span>
+                      <span>价税合计</span>
                     </li>
                     <li class="item8">
-                      <span>税额</span>
+                      <span>金额</span>
                     </li>
                     <li class="item9">
+                      <span>税额</span>
+                    </li>
+                    <li class="item10">
                       <span>出/入库门店</span>
                     </li>
                   </ul>
-                  <ul v-for="(item,index) of 8" :key="index" class="td flex align-items">
+                  <ul v-for="(item,index) of 2" :key="index" class="td flex align-items">
                     <li class="item1">
-                      <span>RK2020042400007</span>
+                      <span>RK2020060300009</span>
                     </li>
                     <li class="item2">
                       <span>入库</span>
                     </li>
                     <li class="item3">
-                      <span>2020-04-24</span>
+                      <span>2020-06-03</span>
                     </li>
                     <li class="item4">
-                      <span>李天文</span>
+                      <span>陈林凤</span>
                     </li>
                     <li class="item5">
                       <span>1</span>
                     </li>
                     <li class="item6">
-                      <span>20</span>
+                      <span>2</span>
                     </li>
                     <li class="item7">
-                      <span>100.00</span>
+                      <span>2.00</span>
                     </li>
                     <li class="item8">
-                      <span>0.00</span>
+                      <span>1.98</span>
                     </li>
                     <li class="item9">
-                      <span>惠民体验诊所</span>
+                      <span>1.02</span>
                     </li>
-                    <li class="item10"></li>
+                    <li class="item10">
+                      <span>ABC体验诊所</span>
+                    </li>
                   </ul>
-                  <div class="table-calc">
-                    <ul class="flex align-items justify-end">
+                  <div class="table-calc flex justify-end">
+                    <ul class="flex align-items ">
                       <li>
                         单据数量：
                         <span>1</span>
@@ -225,8 +328,9 @@ export default {
               width: 72px;
               color: #7a8794;
             }
-            //   表格
-            .table-wrapper {
+            //   表格：明细
+            .table-detail {
+              border: 1px solid @color_e6eaee;
               > ul > li {
                 padding: 0 6px;
               }
@@ -236,36 +340,35 @@ export default {
                 color: @color_8493a4;
                 line-height: 36px;
                 background: @color_f5f7fb;
-                border-top: 1px solid @color_e6eaee;
                 border-bottom: 1px solid @color_e6eaee;
               }
               // 表内容
               .td {
+                cursor: pointer;
                 height: 48px;
                 border-bottom: 1px solid @color_dadbe0;
+                &:hover {
+                  background: @color_e9eff8;
+                }
               }
               .item1 {
-                width: 15.9574%;
+                width: 23%;
               }
               .item2 {
-                width: 5.31915%;
+                text-align: center;
+                width: 18%;
               }
-              .item3 {
+              .item3,
+              .item4,
+              .item5,
+              .item6 {
                 width: 13.2979%;
               }
-              .item4 {
-                width: 10.6383%;
-              }
-              .item5 {
-                width: 5.31915%;
-              }
-              .item6 {
-                text-align: center;
-                width: 7.97872%;
-              }
-              .item7.item8 {
+              .item7,
+              .item8
+               {
                 text-align: right;
-                width: 7.97872%;
+                width: 9.61538%;
               }
               .item9 {
                 text-align: center;
@@ -275,15 +378,80 @@ export default {
                 width: 4.25532%;
               }
             }
+            // 表格：附件
+            .table-attachment {
+              border: 1px solid @color_e6eaee;
+              > ul > li {
+                padding: 0 6px;
+              }
+              //   表头
+              .th {
+                height: 36px;
+                color: @color_8493a4;
+                line-height: 36px;
+                background: @color_f5f7fb;
+                border-bottom: 1px solid @color_e6eaee;
+              }
+              // 表内容
+              .td {
+                cursor: pointer;
+                height: 48px;
+                border-bottom: 1px solid @color_dadbe0;
+                &:hover {
+                  background: @color_e9eff8;
+                }
+              }
+              .item1 {
+                width: 13.8889%;
+              }
+              .item2 {
+                text-align: center;
+                width: 6.94444%;
+              }
+              .item3 {
+                text-align: center;
+                width: 10.4167%;
+              }
+              .item4 {
+                text-align: center;
+                width: 9.02778%;
+              }
+              .item5 {
+                text-align: right;
+                width: 5.55556%;
+              }
+              .item6 {
+                text-align: right;
+                width: 6.94444%;
+              }
+              .item7 {
+                text-align: right;
+                width: 10.4167%;
+              }
+              .item8 {
+                text-align: right;
+                width: 6.94444%;
+              }
+              .item9 {
+                text-align: right;
+                width: 6.94444%;
+              }
+              .item10 {
+                text-align: center;
+                width: 22.9167%;
+              }
+            }
             //   表格统计
             .table-calc {
               ul {
-                height: 40px;
+                padding-left: 16px;
+                height: 50px;
                 > li {
                   margin-right: 25px;
                   color: @color_8493a4;
                   > span {
                     color: #000;
+                    font-weight: 700;
                   }
                 }
               }

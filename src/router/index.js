@@ -2,8 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "../store";
 
-// 引入布局组件
+// 引入全局布局组件
 import Layout from "@/views/Layout";
+// 引入管理布局组件
+import AdminLayout from "@/views/Admin/AdminLayout";
 
 Vue.use(VueRouter);
 
@@ -166,12 +168,88 @@ const routes = [
       },
     ],
   },
+  // 管理页面
+  {
+    path: "/admin",
+    name: "Admin",
+    redirect: "/admin/outpatient",
+    component: Layout,
+    children: [
+      // 诊所设置
+      {
+        path: "outpatient",
+        name: "AdminLayout",
+        meta: {
+          name: "诊所设置"
+        },
+        component: AdminLayout,
+        redirect: "/admin/outpatient/clinic",
+        children: [
+          {
+            // 诊所设置页面
+            path: "clinic",
+            name: "Clinic",
+            meta: {
+              name: "诊所设置"
+            },
+            component: () => import("../views/Admin/Outpatient/outpatientClinic.vue"),
+          },
+          {
+            // 诊所设置页面
+            path: "department",
+            name: "Department",
+            meta: {
+              name: "科室设置"
+            },
+            component: () => import("../views/Admin/Outpatient/outpatiendDepartment.vue"),
+          }
+        ]
+      },
+      // 预约设置
+      {
+        path: "reservation",
+        name: "AdminLayout",
+        meta: {
+          name: "预约设置"
+        },
+        component: AdminLayout,
+        redirect: "/admin/reservation/predetermine",
+        children: [
+          {
+            // 诊所设置页面
+            path: "predetermine",
+            name: "Predetermine",
+            meta: {
+              name: "预约设置"
+            },
+            component: () => import("../views/Admin/Reservation/reservationPredetermine.vue"),
+          },
+          {
+            // 排班设置页面
+            path: "scheduling",
+            name: "Scheduling",
+            meta: {
+              name: "排班设置"
+            },
+            component: () => import("../views/Admin/Reservation/reservationScheduling.vue"),
+          }
+        ]
+      },
+    ],
+  }
 ];
 
 const router = new VueRouter({
   mode: "history", //去掉url中的#
   routes,
+  // mode: 'hash',
 });
+
+// 解决：在使用ElementUI中的导航时，默认情况下如果重复点击某选项，会报错
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 // 全局路由守卫：处理每此路由切换时变动tabNum索引
 router.beforeEach((to, from, next) => {

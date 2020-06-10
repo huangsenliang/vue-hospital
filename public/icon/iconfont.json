@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "10666915",
+      "name": "提示",
+      "font_class": "tishi",
+      "unicode": "e671",
+      "unicode_decimal": 58993
+    },
+    {
+      "icon_id": "4143528",
+      "name": "设置",
+      "font_class": "shezhi1",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "6249916",
+      "name": "预约",
+      "font_class": "yuyue",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "7546275",
+      "name": "喇叭",
+      "font_class": "laba",
+      "unicode": "e7a8",
+      "unicode_decimal": 59304
+    },
+    {
       "icon_id": "82437",
       "name": "叹号提示",
       "font_class": "tanhaotishi",
