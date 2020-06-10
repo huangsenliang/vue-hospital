@@ -27,7 +27,7 @@ export default {
         CodeToText[value[1]] +
         ", " +
         CodeToText[value[2]];
-      console.log(data);
+      // console.log(data);
     }
   },
   created() {
@@ -36,7 +36,7 @@ export default {
       let cityCode = TextToCode[province][city].code+'';
       let countyCode = TextToCode[province][city][county].code+'';
       this.selectedOptions = [provinceCode,cityCode,countyCode];
-      console.log(this.selectedOptions);
+      // console.log(this.selectedOptions);
        
   }
 };
