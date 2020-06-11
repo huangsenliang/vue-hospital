@@ -59,6 +59,18 @@ export default {
               meta: {
                 name: "科室设置"
               }
+            },
+            {
+              path: "/admin/outpatient/members",
+              meta: {
+                name: "成员管理"
+              }
+            },
+            {
+              path: "/admin/outpatient/equipment",
+              meta: {
+                name: "医疗设备"
+              }
             }
           ]
         },

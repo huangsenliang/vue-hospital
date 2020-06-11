@@ -195,13 +195,31 @@ const routes = [
             component: () => import("../views/Admin/Outpatient/outpatientClinic.vue"),
           },
           {
-            // 诊所设置页面
+            // 科室设置页面
             path: "department",
             name: "Department",
             meta: {
               name: "科室设置"
             },
             component: () => import("../views/Admin/Outpatient/outpatiendDepartment.vue"),
+          },
+          {
+            // 成员管理设置页面
+            path: "members",
+            name: "Members",
+            meta: {
+              name: "成员管理"
+            },
+            component: () => import("../views/Admin/Outpatient/outpatiendMembers.vue"),
+          },
+          {
+            // 成员管理设置页面
+            path: "equipment",
+            name: "Equipment",
+            meta: {
+              name: "医疗设备"
+            },
+            component: () => import("../views/Admin/Outpatient/outpatiendEquipment.vue"),
           }
         ]
       },
