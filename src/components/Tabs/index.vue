@@ -3,7 +3,11 @@
     <!-- 标签按钮 -->
     <ul class="flex">
       <li v-for="(item,index) of tabsList" :key="index">
-        <router-link class="tab-item" :class="{'is-selected':item.name==$store.state.inventory.inventoryTabName}" :to={name:item.name}>
+        <router-link
+          class="tab-item"
+          :class="{'is-selected':item.path==$store.state.inventory.inventoryTabName}"
+          :to="{path:item.path}"
+        >
           <span>{{item.title}}</span>
         </router-link>
       </li>
@@ -19,9 +23,7 @@
 export default {
   props: ["tabsList"],
   data() {
-    return {
-      
-    };
+    return {};
   },
   methods: {
     // 处理：标签切换
@@ -43,7 +45,7 @@ export default {
   line-height: 48px;
   background: #fff;
   border-bottom: 1px solid @color_dadbe0;
-  li{
+  li {
     margin-right: 40px;
   }
   .tab-item {

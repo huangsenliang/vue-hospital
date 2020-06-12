@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from '@/router';
 import store from '@/store'
 import api from '@/request/api'
+import "./router/premit";
 
 
 // 引入element-ui 组件

@@ -20,14 +20,14 @@ export default {
   data() {
     return {
       tabsList: [
-        { title: "药品/物资", name: "InventoryGoods" },
-        { title: "采购", name: "InventoryPurchase" },
-        { title: "入库", name: "InventoryCargo" },
-        { title: "出库", name: "InventoryOutbound" },
-        { title: "盘点", name: "InventoryCalculate" },
-        { title: "供应商", name: "InventoryProvider" },
-        { title: "结算申请", name: "InventoryApply" },
-        { title: "结算审核", name: "InventoryAudit" }
+        { title: "药品/物资", path: "/inventory/goods" },
+        { title: "采购", path: "/inventory/purchase" },
+        { title: "入库", path: "/inventory/cargo" },
+        { title: "出库", path: "/inventory/outbound" },
+        { title: "盘点", path: "/inventory/calculate" },
+        { title: "供应商", path: "/inventory/provider" },
+        { title: "结算申请", path: "/inventory/apply" },
+        { title: "结算审核", path: "/inventory/audit" }
       ] // 标签数据
     };
   }

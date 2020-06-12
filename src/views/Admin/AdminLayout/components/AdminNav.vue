@@ -3,7 +3,7 @@
   <div class="admin-nav hidden-scorll" style="height:100%">
     <My-Aside>
       <el-menu
-        default-active="/admin/outpatient/clinic"
+        :default-active="$store.state.admin.adminTabName"
         class="el-menu-vertical-demo"
         background-color
         text-color="#000"
@@ -30,7 +30,6 @@
 
 <script>
 /************************全局组件**************/
-
 import MyAside from "@/components/MyAside";
 export default {
   components: {

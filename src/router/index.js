@@ -6,6 +6,7 @@ import store from "../store";
 import Layout from "@/views/Layout";
 // 引入管理布局组件
 import AdminLayout from "@/views/Admin/AdminLayout";
+import InventoryLayout from "@/views/Inventory/InventoryLayout";
 
 Vue.use(VueRouter);
 
@@ -14,98 +15,52 @@ const routes = [
   {
     path: "/",
     name: "redirectWorkbench",
+    component: Layout,   // 全局布局框架
     redirect: "/workbench",
-  },
-  // 工作台页面
-  {
-    path: "/workbench",
-    name: "Workbench",
-    redirect: "/workbench/WorkbenchIndex",
-    component: Layout,
     children: [
+      // 工作台
       {
-        path: "workbenchIndex",
-        name: "WorkbenchIndex",
+        path: "workbench",
+        name: "Workbench",
         component: () => import("../views/Workbench/index.vue"),
       },
-    ],
-  },
-  // 护士站页面
-  {
-    path: "/nurse",
-    name: "Nurse",
-    redirect: "/nurse/nurseIndex",
-    component: Layout,
-    children: [
-      // 待执行页面
+      // 护士站
       {
-        path: "nurseIndex",
-        name: "NurseIndex",
+        path: "nurse",
+        name: "Nurse",
         component: () => import("../views/Nurse/index.vue"),
       },
-    ],
-  },
-  // 挂号页面
-  {
-    path: "/registered",
-    name: "Registered",
-    redirect: "/registered/registeredIndex",
-    component: Layout,
-    children: [
+      // 挂号页面
       {
-        path: "registeredIndex",
-        name: "RegisteredIndex",
+        path: "registered",
+        name: "Registered",
         component: () => import("../views/Registered/index.vue"),
       },
-    ],
-  },
-  // 门诊页面
-  {
-    path: "/outpatient",
-    name: "Outpatient",
-    redirect: "/outpatient/outpatientIndex",
-    component: Layout,
-    children: [
+      // 门诊页面
       {
-        path: "outpatientIndex",
-        name: "OutpatientIndex",
+        path: "outpatient",
+        name: "Outpatient",
         component: () => import("../views/Outpatient/index.vue"),
       },
-    ],
-  },
-  // 收费页面
-  {
-    path: "/charge",
-    name: "Charge",
-    redirect: "/charge/chargeIndex",
-    component: Layout,
-    children: [
+      // 收费页面
       {
-        path: "chargeIndex",
-        name: "ChargeIndex",
+        path: "charge",
+        name: "Charge",
         component: () => import("../views/Charge/index.vue"),
       },
-    ],
-  },
-  // 库存页面
-  {
-    path: "/inventory",
-    name: "Inventory",
-    redirect: "/inventory/inventoryIndex",
-    component: Layout,
-    children: [
+      // 库存页面
       {
-        path: "inventoryIndex",
-        name: "InventoryIndex",
-        redirect: "/inventory/inventoryIndex/goods",
-        component: () => import("../views/Inventory/index.vue"),
+        path: "/inventory/",
+        name: "Inventory",
+        component: InventoryLayout,
+        redirect: "/inventory/goods",
         children: [
           // 物资页面
           {
             path: "goods",
             name: "InventoryGoods",
             component: () =>
-              import("../views/Inventory/components/InventoryGoods/index.vue"),
+              import("../views/Inventory/InventoryGoods/index.vue"),
           },
           // 采购页面
           {
@@ -113,7 +68,7 @@ const routes = [
             name: "InventoryPurchase",
             component: () =>
               import(
-                "../views/Inventory/components/InventoryPurchase/index.vue"
+                "../views/Inventory/InventoryPurchase/index.vue"
               ),
           },
           // 入库页面
@@ -121,7 +76,7 @@ const routes = [
             path: "cargo",
             name: "InventoryCargo",
             component: () =>
-              import("../views/Inventory/components/InventoryCargo/index.vue"),
+              import("../views/Inventory/InventoryCargo/index.vue"),
           },
           // 出库页面
           {
@@ -129,7 +84,7 @@ const routes = [
             name: "InventoryOutbound",
             component: () =>
               import(
-                "../views/Inventory/components/InventoryOutbound/index.vue"
+                "../views/Inventory/InventoryOutbound/index.vue"
               ),
           },
           // 盘点页面
@@ -138,7 +93,7 @@ const routes = [
             name: "InventoryCalculate",
             component: () =>
               import(
-                "../views/Inventory/components/InventoryCalculate/index.vue"
+                "../views/Inventory/InventoryCalculate/index.vue"
               ),
           },
           // 供应商页面
@@ -147,7 +102,7 @@ const routes = [
             name: "InventoryProvider",
             component: () =>
               import(
-                "../views/Inventory/components/InventoryProvider/index.vue"
+                "../views/Inventory/InventoryProvider/index.vue"
               ),
           },
           // 结算申请页面
@@ -155,15 +110,16 @@ const routes = [
             path: "apply",
             name: "InventoryApply",
             component: () =>
-              import("../views/Inventory/components/InventoryApply/index.vue"),
+              import("../views/Inventory/InventoryApply/index.vue"),
           },
           // 结算审核页面
           {
             path: "audit",
             name: "InventoryAudit",
             component: () =>
-              import("../views/Inventory/components/InventoryAudit/index.vue"),
+              import("../views/Inventory/InventoryAudit/index.vue"),
           },
+
         ],
       },
     ],
@@ -220,7 +176,16 @@ const routes = [
               name: "医疗设备"
             },
             component: () => import("../views/Admin/Outpatient/outpatiendEquipment.vue"),
-          }
+          },
+          {
+            // 编辑成员信息页面
+            path: "members-info",
+            name: "MembersInfo",
+            meta: {
+              name: "添加成员信息"
+            },
+            component: () => import("../views/Admin/Outpatient/outpatientMembersInfo.vue"),
+          },
         ]
       },
       // 预约设置
@@ -269,44 +234,6 @@ VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 
-// 全局路由守卫：处理每此路由切换时变动tabNum索引
-router.beforeEach((to, from, next) => {
-  if (to.name == "WorkbenchIndex") {
-    store.commit("layout/setTabName", "Workbench");
-  } else if (to.name == "NurseIndex") {
-    store.commit("layout/setTabName", "Nurse");
-  } else if (to.name == "RegisteredIndex") {
-    store.commit("layout/setTabName", "Registered");
-  } else if (to.name == "OutpatientIndex") {
-    store.commit("layout/setTabName", "Outpatient");
-  } else if (to.name == "ChargeIndex") {
-    store.commit("layout/setTabName", "Charge");
-  } else if (to.name == "InventoryGoods") {
-    store.commit("layout/setTabName", "Inventory");
-    store.commit("inventory/setTabName", "InventoryGoods");
-  } else if (to.name == "InventoryPurchase") {
-    store.commit("layout/setTabName", "Inventory");
-    store.commit("inventory/setTabName", "InventoryPurchase");
-  } else if (to.name == "InventoryCargo") {
-    store.commit("layout/setTabName", "Inventory");
-    store.commit("inventory/setTabName", "InventoryCargo");
-  } else if (to.name == "InventoryOutbound") {
-    store.commit("layout/setTabName", "Inventory");
-    store.commit("inventory/setTabName", "InventoryOutbound");
-  } else if (to.name == "InventoryCalculate") {
-    store.commit("layout/setTabName", "Inventory");
-    store.commit("inventory/setTabName", "InventoryCalculate");
-  } else if (to.name == "InventoryProvider") {
-    store.commit("layout/setTabName", "Inventory");
-    store.commit("inventory/setTabName", "InventoryProvider");
-  } else if (to.name == "InventoryApply") {
-    store.commit("layout/setTabName", "Inventory");
-    store.commit("inventory/setTabName", "InventoryApply");
-  } else if (to.name == "InventoryAudit") {
-    store.commit("layout/setTabName", "Inventory");
-    store.commit("inventory/setTabName", "InventoryAudit");
-  }
-  next();
-});
+
 
 export default router;

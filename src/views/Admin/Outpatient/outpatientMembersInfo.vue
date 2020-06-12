@@ -1,0 +1,162 @@
+<template>
+  <!-- 成员信息编辑 -->
+  <div class="outpatient-members-info">
+    <!-- 头部导航 -->
+    <div class="members-info-header flex align-items">
+      <el-page-header @back="goBack" content="新增成员"></el-page-header>
+    </div>
+    <div class="members-info-body">
+      <!-- 姓名电话 -->
+      <section>
+        <div class="content flex">
+          <div class="head-img"></div>
+          <div class="cont">
+            <Admin-Input style="width:160px" placeholder="姓名"></Admin-Input>
+            <Admin-Input style="width:160px;marginTop:10px" placeholder="电话"></Admin-Input>
+          </div>
+        </div>
+      </section>
+      <!-- 角色和权限 -->
+      <section class="base-info-section">
+        <div class="section-title">
+          <h4>角色权限</h4>
+        </div>
+        <!-- 行1：角色 -->
+        <div class="form-item role-item flex">
+          <label class="form-item-label">他的角色</label>
+          <div class="form-item-content">
+            <ul class="checkbox-wrapper flex">
+              <li>
+                <el-checkbox v-model="checked">医生</el-checkbox>
+              </li>
+              <li>
+                <el-checkbox v-model="checked">护士</el-checkbox>
+              </li>
+              <li>
+                <el-checkbox v-model="checked">检验师</el-checkbox>
+              </li>
+              <li>
+                <el-checkbox v-model="checked">理疗师</el-checkbox>
+              </li>
+              <li>
+                <el-checkbox v-model="checked">医助</el-checkbox>
+              </li>
+              <li>
+                <el-checkbox v-model="checked">其他</el-checkbox>
+              </li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+        <!-- 行2：权限 -->
+        <div class="form-item flex" style="marginTop:24px">
+          <label class="form-item-label">
+            <span>他的权限模块</span>
+          </label>
+          <div class="form-item-content">
+            <span @click="showDialogSubjectsList=true" style="color:#007aff; cursor: pointer;">修改</span>
+            <dialog-Permissions-List></dialog-Permissions-List>
+            <!-- <Dialog-Subjects-List
+              v-show="showDialogSubjectsList"
+              @showDialogSubjectsList="showDialogSubjectsList=false"
+            ></Dialog-Subjects-List>-->
+          </div>
+        </div>
+      </section>
+      <!-- 执业简介 -->
+      <section>
+        <div class="section-title flex">
+          <h4 class="title">执业简介</h4>
+          <p class="txt">执业照、职称、介绍信息尽量输入完整，患者挂号预约时可查看</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</template>
+
+<script>
+/*************局部组件************/
+import AdminHeader from "../components/adminHeader";
+import AdminInput from "../components/adminInput";
+// 权限列表选择弹窗
+import dialogPermissionsList from "./dialog/dialogPermissionsList";
+export default {
+  components: {
+    AdminInput,
+    AdminHeader,
+    dialogPermissionsList
+  },
+  data() {
+    return {
+      checked: false,
+      showDialogSubjectsList: false // 权限列表选择弹窗显示隐藏控制变量
+    };
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    }
+  }
+};
+</script>
+
+<style lang="less" scoped>
+.outpatient-members-info {
+  .members-info-header {
+    padding: 0 24px;
+    height: 40px;
+    border-bottom: 1px solid @color_ced0da;
+  }
+  .members-info-body {
+    //  姓名电话
+    section {
+      padding: 24px;
+      //   头像
+      .head-img {
+        width: 64px;
+        height: 64px;
+        border-radius: 3px;
+        background-color: @color_f0f0f0;
+        margin-right: 78px;
+      }
+      // 标题
+      .section-title {
+        color: #000;
+        padding-bottom: 8px;
+        border-bottom: 1px dashed @color_e6eaee;
+        h4.title {
+          font-weight: 700;
+          width: 130px;
+        }
+        p.txt {
+          color: #8493a4;
+          font-size: 12px;
+        }
+      }
+    }
+    // 角色和权限
+    section.base-info-section {
+      //   共有的表单样式
+      .form-item {
+        .form-item-label {
+          width: 130px;
+        }
+        .form-item-content {
+        }
+      }
+      //   表单
+      .role-item {
+        border-bottom: 1px dashed @color_e6eaee;
+        padding: 24px 0;
+        .checkbox-wrapper {
+          > li {
+            margin-right: 25px;
+          }
+        }
+      }
+    }
+  }
+}
+</style>

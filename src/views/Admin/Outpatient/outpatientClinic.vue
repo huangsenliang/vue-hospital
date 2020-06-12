@@ -15,7 +15,7 @@
           <i>*</i>
         </label>
         <div class="form-item-content">
-          <Admin-Input></Admin-Input>
+          <Admin-Input style="width:300px"></Admin-Input>
         </div>
       </div>
       <!-- 表单数据:诊所地址 -->
@@ -30,7 +30,7 @@
       <div class="form-item flex align-items">
         <label class="form-item-label flex align-items"></label>
         <div class="form-item-content">
-          <Admin-Input></Admin-Input>
+          <Admin-Input style="width:300px"></Admin-Input>
         </div>
       </div>
       <!-- 表单数据:联系电话 -->
@@ -39,7 +39,7 @@
           <span>联系电话1</span>
         </label>
         <div class="form-item-content">
-          <Admin-Input></Admin-Input>
+          <Admin-Input style="width:300px"></Admin-Input>
         </div>
       </div>
       <!-- 表单数据:联系电话 -->
@@ -48,7 +48,7 @@
           <span>联系电话2</span>
         </label>
         <div class="form-item-content">
-          <Admin-Input></Admin-Input>
+          <Admin-Input style="width:300px"></Admin-Input>
         </div>
       </div>
       <!-- 表单数据：执业许可科目 -->
@@ -141,7 +141,7 @@
 // 地区选择三级联动
 import AreaCascader from "@/components/AreaCascader";
 /****************局部组件***********/
-import AdminHeader from "./components/adminHeader";
+import AdminHeader from "../components/adminHeader";
 import { VueCropper } from "vue-cropper";
 // 输入框
 import AdminInput from "../components/adminInput";

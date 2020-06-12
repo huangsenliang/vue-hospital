@@ -158,7 +158,7 @@
 <script>
 import SearchInput from "@/components/SearchInput";
 import VAddress from "@/components/VAddress";
-import InputMoney from "@/components/Common/InputMoney";
+import InputMoney from "@/components/InputMoney";
 import RegisteredList from "./components/registeredList";
 export default {
   components: {

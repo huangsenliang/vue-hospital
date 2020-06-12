@@ -41,7 +41,7 @@
         <div class="form-item flex align-items">
           <label for class="form-item-label">科室名称</label>
           <div class="form-item-content">
-            <Admin-Input></Admin-Input>
+            <Admin-Input style="width:300px"></Admin-Input>
           </div>
         </div>
         <!-- 是否门诊科室 -->
@@ -57,7 +57,7 @@
         <div class="form-item flex align-items">
           <label for class="form-item-label">科室负责人</label>
           <div class="form-item-content">
-            <Admin-Input></Admin-Input>
+            <Admin-Input style="width:300px"></Admin-Input>
           </div>
         </div>
         <!-- 科室成立时间 -->
@@ -71,14 +71,14 @@
         <div class="form-item flex align-items">
           <label for class="form-item-label">科室负责人</label>
           <div class="form-item-content">
-            <Admin-Input></Admin-Input>
+            <Admin-Input style="width:300px"></Admin-Input>
           </div>
         </div>
         <!-- 科室床位数 -->
         <div class="form-item flex align-items">
           <label for class="form-item-label">科室床位数</label>
           <div class="form-item-content">
-            <Admin-Input></Admin-Input>
+            <Admin-Input style="width:300px"></Admin-Input>
           </div>
         </div>
         <!-- 标题 -->
@@ -407,7 +407,7 @@ export default {
   },
   methods: {
     handleChange(value) {
-      console.log(value);
+      // console.log(value);
     }
   }
 };

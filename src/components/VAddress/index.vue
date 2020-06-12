@@ -38,5 +38,5 @@ export default {
 </script>
 
 <style scoped>
-@import "../../assets/css/Common/VAddress/VAddress.css";
+
 </style>

@@ -267,7 +267,7 @@
 </template>
 
 <script>
-import InputMoney from "@/components/Common/InputMoney";
+import InputMoney from "@/components/InputMoney";
 export default {
   components: {
     InputMoney
