@@ -20,7 +20,7 @@
       <div class="table-wrapper">
         <ul class="flex align-items th">
           <li>
-            <span>科室名臣</span>
+            <span>科室名称</span>
           </li>
           <li>
             <span>科室类型</span>
@@ -69,10 +69,18 @@
 import AdminHeader from "../components/adminHeader";
 // 新增科室弹窗
 import DialogDepartmentInfo from "./dialog/dialogDepartmentInfo";
+// 接口
+// import { getConsultationList } from "@/api/admin";
 export default {
   components: {
     DialogDepartmentInfo,
     AdminHeader
+  },
+  methods:{
+
+  },
+  created(){
+
   },
   data() {
     return {

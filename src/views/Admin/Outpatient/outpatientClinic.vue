@@ -15,7 +15,7 @@
           <i>*</i>
         </label>
         <div class="form-item-content">
-          <Admin-Input style="width:300px"></Admin-Input>
+          <el-input style="width:300px" placeholder="请输入内容" v-model="clinicName" clearable></el-input>
         </div>
       </div>
       <!-- 表单数据:诊所地址 -->
@@ -24,13 +24,13 @@
           <span>诊所地址</span>
         </label>
         <div class="form-item-content">
-          <Area-Cascader :selectedData="selectedData"></Area-Cascader>
+          <el-cascader style="width:300px" size="medium" :options="options" @change="handleChange"></el-cascader>
         </div>
       </div>
       <div class="form-item flex align-items">
         <label class="form-item-label flex align-items"></label>
         <div class="form-item-content">
-          <Admin-Input style="width:300px"></Admin-Input>
+          <el-input style="width:300px" v-model="addressValue" clearable></el-input>
         </div>
       </div>
       <!-- 表单数据:联系电话 -->
@@ -39,7 +39,7 @@
           <span>联系电话1</span>
         </label>
         <div class="form-item-content">
-          <Admin-Input style="width:300px"></Admin-Input>
+          <el-input style="width:300px" v-model="phone1" clearable></el-input>
         </div>
       </div>
       <!-- 表单数据:联系电话 -->
@@ -48,7 +48,7 @@
           <span>联系电话2</span>
         </label>
         <div class="form-item-content">
-          <Admin-Input style="width:300px"></Admin-Input>
+          <el-input style="width:300px" v-model="phone2" clearable></el-input>
         </div>
       </div>
       <!-- 表单数据：执业许可科目 -->
@@ -58,14 +58,18 @@
         </label>
         <div class="form-item-content flex">
           <ul class="flex subjects-list">
-            <li v-for="(item,index) of subjectsData" :key="index">
-              <span>{{item}}</span>
+            <li v-for="(item,index) of subjectList" :key="index">
+              <span>{{item.name}}</span>
             </li>
           </ul>
           <span class="btn-xg" @click="showDialogSubjectsList=true">修改</span>
           <!-- 选取科目弹窗组件 -->
           <div v-show="showDialogSubjectsList">
-            <Dialog-Subjects-List @showDialogSubjectsList="showDialogSubjectsList=false"></Dialog-Subjects-List>
+            <Dialog-Subjects-List
+              :subjectList="subjectList"
+              @getSubjectsList="getSubjectsList"
+              @showDialogSubjectsList="showDialogSubjectsList=false"
+            ></Dialog-Subjects-List>
           </div>
         </div>
       </div>
@@ -78,40 +82,6 @@
             <!-- 设置 -->
             <div class="set-logo">
               <div class="logo-wrapper">
-                <!-- <div class="cover"></div>
-            <div class="cropper-wrapper flex">
-              <vueCropper
-                ref="cropper"
-                :img="option.img"
-                :outputSize="option.size"
-                :outputType="option.outputType"
-                :info="true"
-                :full="option.full"
-                :canMove="option.canMove"
-                :canMoveBox="option.canMoveBox"
-                :original="option.original"
-                :autoCrop="option.autoCrop"
-                :autoCropWidth="option.autoCropWidth"
-                :autoCropHeight="option.autoCropHeight"
-                :fixedBox="option.fixedBox"
-                @imgLoad="imgLoad"
-              ></vueCropper>
-              <div class="btn-wrapper">
-                <button class="btn-primary" @click="handleVueCropper">确定</button>
-                <br />
-                <button class="btn-blank" @click="showVueCropper=false" style="marginTop:10px">取消</button>
-              </div>
-                </div>-->
-                <!-- <div>
-              <input
-                type="file"
-                id="uploads"
-                :value="imgFile"
-                accept="image/png, image/jpeg, image/gif, image/jpg"
-                @change="uploadImg($event, 1)"
-              />
-              <img :src="option.img" alt />
-                </div>-->
                 <el-upload
                   :limit="limit"
                   action="https://jsonplaceholder.typicode.com/posts/"
@@ -130,7 +100,7 @@
         </div>
       </div>
       <div style="borderTop:1px solid #dadbe0;height:60px" class="flex align-items">
-        <button class="btn-blank">保存</button>
+        <button class="btn-blank" @click="addClinic">保存</button>
       </div>
     </div>
   </div>
@@ -142,59 +112,67 @@
 import AreaCascader from "@/components/AreaCascader";
 /****************局部组件***********/
 import AdminHeader from "../components/adminHeader";
-import { VueCropper } from "vue-cropper";
 // 输入框
 import AdminInput from "../components/adminInput";
 // 选取科目弹窗
 import DialogSubjectsList from "./dialog/dialogSubjectsList";
+// 接口
+import { getClinic, addClinic } from "@/api/admin";
+import { regionData, CodeToText, TextToCode } from "element-china-area-data";
 export default {
   components: {
     AdminHeader,
     AdminInput,
     AreaCascader,
-    DialogSubjectsList,
-    VueCropper
+    DialogSubjectsList
   },
   data() {
     return {
-      /************上传图片数据********/
-      // headImg: "",
-      // //剪切图片上传
-      // crap: false,
-      // previews: {},
-      // option: {
-      //   img: "", // 裁剪图片的地址
-      //   info: true, // 裁剪框的大小信息
-      //   outputSize: 1, // 剪切后的图片质量（0.1-1）
-      //   full: true, // 输出原图比例截图 props名full
-      //   outputType: "png", // 裁剪生成额图片的格式
-      //   canMove: true, // 能否拖动图片
-      //   original: true, // 上传图片是否显示原始宽高
-      //   canMoveBox: true, // 能否拖动截图框
-      //   autoCrop: true, // 是否默认生成截图框
-      //   autoCropWidth: 740, // 默认生成截图框宽度
-      //   autoCropHeight: 400, // 默认生成截图框高度
-      //   fixedBox: true // 截图框固定大小  //切图尺寸是固定的，想可修改可把fixedBox设置为false
-      // },
-      // fileName: "", //本机文件地址
-      // downImg: "#",
-      // imgFile: "",
-      // uploadImgRelaPath: "", //上传后的图片的地址（不带服务器域名）
-      /**************************/
+      clinicName: "", // 诊所名字
+      address: {}, // 地址
+      options: regionData, // 地址数据
+      phone1: "", // 电话1
+      phone2: "", // 电话2
+      logo: "", // logo
+      addressValue: "", // 详细地址
+      subjectList: [], // 科目数据列表
+
+      /********后端的数据********/
+      parame: {
+        address: {},
+        subjectList: []
+      },
+
       limit: 1,
       dialogImageUrl: "",
       dialogVisible: false,
       showVueCropper: false, // 截图弹窗
-      showDialogSubjectsList: false, // 选取科目弹窗显示隐藏控制变量
-      selectedData: {
-        province: "河北省",
-        city: "秦皇岛市",
-        county: "北戴河区"
-      }, // 地区联动数据
-      subjectsData: ["中医科", "全科", "医疗科", "内科"]
+      showDialogSubjectsList: false // 选取科目弹窗显示隐藏控制变量
     };
   },
   methods: {
+    // 添加诊所
+    addClinic() {
+      this.parame.address.address = this.addressValue;
+      this.parame.clinicName = this.clinicName;
+      this.parame.phone1 = this.phone1;
+      this.parame.phone2 = this.phone2;
+      this.parame.logo = this.logo;
+
+      addClinic(this.parame)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    // 获取子组件科目列表
+    getSubjectsList(data) {
+      this.parame.subjectList = data;
+      this.subjectList = data;
+    },
+
     //选择本地图片
     uploadImg(e, num) {
       this.showVueCropper = true;
@@ -229,17 +207,52 @@ export default {
     imgLoad(msg) {
       console.log(msg);
     },
-    handleVueCropper() {
-      this.showVueCropper = false;
-      console.log(this.option.img);
-    },
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
+    },
+    /********地址处理*******/
+
+    getAddress() {
+      let { province, city, county } = this.address;
+      province = province + "省";
+      city = city + "市";
+      county = county + "区";
+      let provinceCode = TextToCode[province].code + "";
+      let cityCode = TextToCode[province][city].code + "";
+      let countyCode = TextToCode[province][city][county].code + "";
+      this.selectedOptions = [provinceCode, cityCode, countyCode];
+    },
+    handleChange(value) {
+      let province = CodeToText[value[0]];
+      let county = CodeToText[value[1]];
+      let city = CodeToText[value[2]];
+      this.parame.address.province = province;
+      this.parame.address.county = county;
+      this.parame.address.city = city;
+      console.log(this.parame);
     }
+  },
+  created() {
+    // 获取诊所信息
+    getClinic({ id: 1 })
+      .then(response => {
+        let data = response.data.data;
+        this.clinicName = data.clinicName;
+        this.address = data.address;
+        this.phone1 = data.phone1;
+        this.phone2 = data.phone2;
+        this.logo = data.logo;
+        this.addressValue = data.address.address;
+        this.subjectList = data.subjectList;
+        this.getAddress();
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 };
 </script>

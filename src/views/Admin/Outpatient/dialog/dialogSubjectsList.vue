@@ -12,25 +12,25 @@
       <div class="subjects-content">
         <div class="data-col">
           <ul class="flex flex-wrap">
-            <li class="subjects-item" v-for="(item,index) of subjectsList" :key="index">
+            <li class="subjects-item" v-for="(item,index) of dataList" :key="index">
               <el-checkbox v-model="item.acitve" :label="item.name" border></el-checkbox>
             </li>
           </ul>
         </div>
         <div class="selected-col">
           <div class="top-tip">
-            <h4>已选{{selectedList.length}}项：</h4>
+            <h4>已选{{selectedLis.length}}项：</h4>
           </div>
           <ul class="flex selected-content flex-wrap">
-            <li v-for="(item,index) of selectedList" :key="index">
-              <span>{{item}}</span>
+            <li v-for="(item,index) of selectedLis" :key="index">
+              <span>{{item.name}}</span>
             </li>
           </ul>
         </div>
       </div>
       <!-- 底部按钮 -->
       <div class="btn-wrapper flex align-items justify-end">
-        <button class="btn-primary" style="marginRight:8px">确定</button>
+        <button class="btn-primary" @click="toSubjectsList" style="marginRight:8px">确定</button>
         <button class="btn-blank" @click="$emit('showDialogSubjectsList')">取消</button>
       </div>
     </div>
@@ -39,24 +39,26 @@
 
 <script>
 export default {
+  props: {
+    subjectList: {
+      type: Array,
+      default: () => []
+    }
+  },
   data() {
     return {
-      subjectsList: [
+      dataLis: [
         {
           name: "预防保健科",
           acitve: false
         },
         {
           name: "全科医疗科",
-          acitve: true
-        },
-        {
-          name: "内科",
           acitve: false
         },
         {
           name: "外科",
-          acitve: true
+          acitve: false
         },
         {
           name: "妇产科",
@@ -84,7 +86,7 @@ export default {
         },
         {
           name: "耳鼻咽喉科",
-          acitve: true
+          acitve: false
         },
         {
           name: "口腔科",
@@ -125,17 +127,40 @@ export default {
       ]
     };
   },
+  methods: {
+    // 传递参数父组件
+    toSubjectsList() {
+      this.$emit("getSubjectsList", this.selectedLis);
+      this.$emit("showDialogSubjectsList");
+    }
+  },
   computed: {
-    selectedList() {
+    // 选中数据
+    selectedLis() {
       let lis = [];
-      this.subjectsList.forEach(item => {
+      this.dataLis.forEach(item => {
         if (item.acitve) {
-          lis.push(item.name);
+          lis.push(item);
         }
       });
       return lis;
+    },
+    dataList() {
+      let lis = [];
+      this.subjectList.forEach(item => {
+        lis.push(item.name);
+      });
+      lis.forEach(item => {
+        this.dataLis.forEach((item2, index) => {
+          if (item2.name === item) {
+            this.dataLis[index].acitve = true;
+          }
+        });
+      });
+      return this.dataLis;
     }
-  }
+  },
+  created() {}
 };
 </script>
 

@@ -6,7 +6,7 @@
       <!-- 头部 -->
       <div class="permissions-top flex align-items justify-between">
         <h4>选择执业许可范围</h4>
-        <i class="iconfont icon-del" @click="$emit('')"></i>
+        <i class="iconfont icon-del" @click="$emit('close')"></i>
       </div>
       <!-- 内容 -->
       <div class="permissions-content flex">
@@ -27,7 +27,7 @@
         <!-- 选中数据 -->
         <div class="selected-col">
           <div class="header-top">
-            <h4>已选{{selectedData.length}}项</h4>
+            <h4>已选&nbsp;&nbsp;{{selectedData.length}}&nbsp;&nbsp;项</h4>
           </div>
           <ul class="table">
             <li>
@@ -35,6 +35,11 @@
             </li>
           </ul>
         </div>
+      </div>
+      <!-- 按钮 -->
+      <div class="btn-wrapper flex align-items justify-end">
+        <button class="btn-primary" style="marginRight:10px">确认</button>
+        <button class="btn-blank" @click="$emit('close')">取消</button>
       </div>
     </div>
   </div>
@@ -106,7 +111,8 @@ export default {
               name: "盘点"
             }
           ]
-        }
+        },
+        
       ],
       defaultProps: {
         children: "children",
@@ -147,7 +153,24 @@ export default {
       .selected-col {
         width: 280px;
         height: 100%;
+        .header-top {
+          height: 40px;
+          line-height: 40px;
+          border-bottom: 1px solid #e6eaee;
+          padding-left: 12px;
+          h4 {
+            font-weight: 700;
+          }
+        }
       }
+    }
+    // 按钮
+    .btn-wrapper {
+      height: 61px;
+      padding: 0 24px;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      border-top: 1px solid #e6eaee;
     }
   }
 }

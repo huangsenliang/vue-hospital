@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from '@/router';
 import store from '@/store'
-import api from '@/request/api'
 import "./router/premit";
 
 
@@ -42,7 +41,6 @@ require("echarts/lib/component/legend");
 Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
-Vue.prototype.$api = api  // 接口对象
 
 new Vue({
   router,

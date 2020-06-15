@@ -57,11 +57,10 @@
           </label>
           <div class="form-item-content">
             <span @click="showDialogSubjectsList=true" style="color:#007aff; cursor: pointer;">修改</span>
-            <dialog-Permissions-List></dialog-Permissions-List>
-            <!-- <Dialog-Subjects-List
+            <dialog-Permissions-List
               v-show="showDialogSubjectsList"
-              @showDialogSubjectsList="showDialogSubjectsList=false"
-            ></Dialog-Subjects-List>-->
+              @close="showDialogSubjectsList=false"
+            ></dialog-Permissions-List>
           </div>
         </div>
       </section>
@@ -70,6 +69,48 @@
         <div class="section-title flex">
           <h4 class="title">执业简介</h4>
           <p class="txt">执业照、职称、介绍信息尽量输入完整，患者挂号预约时可查看</p>
+        </div>
+        <div class="form-item flex">
+          <!-- 上传营业执照 -->
+          <label class="form-item-label">执业照</label>
+          <div class="form-item-content">
+            <el-upload
+              :limit="limit"
+              action="https://jsonplaceholder.typicode.com/posts/"
+              list-type="picture-card"
+              :on-preview="handlePictureCardPreview"
+              :on-remove="handleRemove"
+            >
+              <i class="el-icon-plus"></i>
+            </el-upload>
+          </div>
+        </div>
+        <div class="form-item flex">
+          <label class="form-item-label">医生介绍</label>
+          <div class="form-item-content">
+            <el-input placeholder="最多可输入2000字" type="textarea" v-model="textareaVale"></el-input>
+          </div>
+        </div>
+        <div class="form-item flex">
+          <label class="form-item-label">职称信息</label>
+          <div class="form-item-content">
+            <el-select style="marginRight:10px" v-model="value" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
+            <el-select v-model="value" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
+          </div>
         </div>
       </section>
     </div>
@@ -90,6 +131,8 @@ export default {
   },
   data() {
     return {
+      textareaVale: "",
+      limit: 1, // 上传数量
       checked: false,
       showDialogSubjectsList: false // 权限列表选择弹窗显示隐藏控制变量
     };
@@ -97,6 +140,14 @@ export default {
   methods: {
     goBack() {
       this.$router.go(-1);
+    },
+    /*********图片上传**********/
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
     }
   }
 };
@@ -126,6 +177,7 @@ export default {
         color: #000;
         padding-bottom: 8px;
         border-bottom: 1px dashed @color_e6eaee;
+        margin-bottom: 24px;
         h4.title {
           font-weight: 700;
           width: 130px;
@@ -135,17 +187,31 @@ export default {
           font-size: 12px;
         }
       }
-    }
-    // 角色和权限
-    section.base-info-section {
       //   共有的表单样式
       .form-item {
+        margin-bottom: 24px;
         .form-item-label {
           width: 130px;
         }
-        .form-item-content {
+        .el-textarea {
+          /deep/ .el-textarea__inner {
+            width: 448px;
+            height: 120px;
+          }
         }
+        // 上传营业照
+        .form-item-content {
+          /deep/ .el-upload--picture-card {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+          }
+        }
+        // 医生介绍
       }
+    }
+    // 角色和权限
+    section.base-info-section {
       //   表单
       .role-item {
         border-bottom: 1px dashed @color_e6eaee;
