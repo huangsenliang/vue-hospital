@@ -1,450 +1,285 @@
 <template>
-  <div class>
-    <el-breadcrumb>
-      <el-breadcrumb-item>人事管理</el-breadcrumb-item>
-      <el-breadcrumb-item>人员排班</el-breadcrumb-item>
-    </el-breadcrumb>
-    <!-- 列表 -->
-    <el-card class="box-card">
-      <div class="search">
-        <el-button type="info" @click="lastweek">上一周</el-button>
-        <el-button type="primary" @click="dialogVisible = true" class="addbtn">新增排班</el-button>
-        <el-button type="info" @click="nextweek">下一周</el-button>
-
-        <div>
-          <span>{{nextMonday}}</span>
-          <span>星期一</span>
-          <span>~</span>
-          <span>{{lastsunday}}</span>
-          <span>星期天</span>
+  <div class="scheduling">
+    <el-tabs type="border-card">
+      <el-tab-pane label="医生排班">
+        <div class="doctor-scheduling">
+          <!-- 过滤 -->
+          <div class="table-filter flex align-items justify-between">
+            <span class="btn">班次管理</span>
+            <div class="filter">
+              <span class="prev" @click="prev">
+                <i class="iconfont icon-zuojiantou"></i>
+              </span>
+              <span style="margin:0 5px">{{headerContent}}</span>
+              <span class="next" @click="next">
+                <i class="iconfont icon-youjiantou1"></i>
+              </span>
+            </div>
+            <span class="btn">复制上周</span>
+          </div>
+          <!-- 表格内容 -->
+          <div class="body">
+            <!-- 生成一个周 时间列表 -->
+            <ul class="table-header flex">
+              <li style="width:110px;padding:0 5px" class="flex align-items justify-center">
+                <el-select v-model="value" placeholder="请选择">
+                  <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  ></el-option>
+                </el-select>
+              </li>
+              <li
+                v-for="(header, index) in weekTableHeader"
+                v-bind:key="index"
+                class="flex-item flex align-items justify-center"
+                :class="header.class"
+              >{{header.date}}</li>
+            </ul>
+            <div class="table-body">
+              <ul class="employee-row flex">
+                <li style="width:110px" class="flex align-items justify-center">
+                  <span>Bubble</span>
+                </li>
+                <li v-for="(item,index) of 7" :key="index" class="flex-item">
+                  <div class="morning-info flex justify-between">
+                    <span>上午班</span>
+                    <span>号10</span>
+                  </div>
+                  <div class="afternoon-info flex justify-between">
+                    <span>下午班</span>
+                    <span>号2</span>
+                  </div>
+                  <div class="Scheduling-setting">
+                    <!-- <div>
+                      <span>预留</span>
+                    </div>
+                    <div>
+                      <span>排班</span>
+                    </div> -->
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-      <!-- 信息 -->
-      <el-table :data="tableData" stripe border @selection-change="handleSelectionChange">
-        <!-- <el-table-column show-overflow-tooltip label="员工" prop="nurseName" align="center">
-          <template slot-scope="scope">{{scope.row.nurse.nurseName}}</template>
-        </el-table-column>-->
-
-        <el-table-column
-          show-overflow-tooltip
-          :label="monday1"
-          prop="mondayStatus"
-          align="center"
-          width="175"
-        ></el-table-column>
-        <el-table-column
-          show-overflow-tooltip
-          :label="thursday1"
-          prop="thursdayStatus"
-          align="center"
-          width="175"
-        ></el-table-column>
-        <el-table-column
-          show-overflow-tooltip
-          :label="wednesday1"
-          prop="wednesdayStatus"
-          align="center"
-          width="175"
-        ></el-table-column>
-        <el-table-column
-          show-overflow-tooltip
-          :label="thuesday1"
-          prop="thuesdayStatus"
-          align="center"
-          width="175"
-        ></el-table-column>
-        <el-table-column
-          show-overflow-tooltip
-          :label="friday1"
-          prop="fridayStatus"
-          align="center"
-          width="175"
-        ></el-table-column>
-        <el-table-column
-          show-overflow-tooltip
-          :label="saturday1"
-          prop="saturdayStatus"
-          align="center"
-          width="175"
-        ></el-table-column>
-        <el-table-column
-          show-overflow-tooltip
-          :label="sunday1"
-          prop="sundayStatus"
-          align="center"
-          width="175"
-        ></el-table-column>
-        <el-table-column show-overflow-tooltip label="操作" align="center">
-          <template slot-scope="scope">
-            <el-button type="text" size="small" @click="showEditDialog(scope.row)">修改</el-button>
-            <el-button type="text" size="small" @click="removeUserById(scope.row.id)">删除</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-      <!-- 分页功能 -->
-      <el-pagination
-        background
-        layout="total, prev, pager, next,jumper"
-        @current-change="handleCurrentChange"
-        :current-page="queryInfo.pagenum"
-        :page-size="queryInfo.pagesize"
-        :total="total"
-      ></el-pagination>
-    </el-card>
-    <!-- 添加信息 -->
-    <el-dialog :title="title" :visible.sync="dialogVisible" width="55%" @close="dialogClosed">
-      <el-form label-width="120px" :model="form"  ref="formRef">
-        <el-form-item label="排班起始日期" prop="schedulingDay">
-          <el-date-picker
-            v-model="this.dateFormat2"
-            value-format="yyyy-MM-dd 00:00:00"
-            type="date"
-            editable
-            disabled
-          ></el-date-picker>
-        </el-form-item>
-        <el-form-item label="排班结束日期">
-          <el-date-picker
-            v-model="this.dateFormat8"
-            value-format="yyyy-MM-dd 00:00:00"
-            type="date"
-            editable
-            disabled
-          ></el-date-picker>
-        </el-form-item>
-        <el-form-item label="员工" prop="staffId">
-          <el-select v-model="form.staffId" placeholder="员工">
-            <el-option v-for="item in workers" :key="item.id" :label="item.name" :value="item.id"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="星期一" prop="mondayStatus">
-          <el-input v-model="form.mondayStatus" size="medium" placeholder="排班状态"></el-input>
-        </el-form-item>
-        <el-form-item label="星期二" prop="thursdayStatus">
-          <el-input v-model="form.thursdayStatus" size="medium" placeholder="排班状态"></el-input>
-        </el-form-item>
-        <el-form-item label="星期三" prop="wednesdayStatus">
-          <el-input v-model="form.wednesdayStatus" size="medium" placeholder="排班状态"></el-input>
-        </el-form-item>
-        <el-form-item label="星期四" prop="thuesdayStatus">
-          <el-input v-model="form.thuesdayStatus" size="medium" placeholder="排班状态"></el-input>
-        </el-form-item>
-        <el-form-item label="星期五" prop="fridayStatus">
-          <el-input v-model="form.fridayStatus" size="medium" placeholder="排班状态"></el-input>
-        </el-form-item>
-        <el-form-item label="星期六" prop="saturdayStatus">
-          <el-input v-model="form.saturdayStatus" size="medium" placeholder="排班状态"></el-input>
-        </el-form-item>
-        <el-form-item label="星期日" prop="sundayStatus">
-          <el-input v-model="form.sundayStatus" size="medium" placeholder="排班状态"></el-input>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="handleSubmit">确 定</el-button>
-      </span>
-    </el-dialog>
-    <!-- end -->
+      </el-tab-pane>
+      <el-tab-pane label="员工排班">配置管理</el-tab-pane>
+    </el-tabs>
   </div>
 </template>
-
+ 
 <script>
-
-
+import moment from "moment";
 export default {
   data() {
     return {
-      base: "",
-      monday: "",
-      today: "",
-      dateFormat2: "",
-      dateFormat8: "",
-      nextMonday: "",
-      lastsunday: "",
-      queryInfo: {
-        query: "",
-        pagenum: 1,
-        pagesize: 10
-      },
-      role: false,
-      homes: [],
-      workers: [],
-      total: 0,
-      tableData: [],
-      title: "新增",
-      dialogVisible: false,
-      form: {},
-      formRules: {}
+      options: [],
+      today: moment().format("YYYY-MM-DD"),
+      currentYearMonth: moment().format("YYYY-MM"),
+      weekTableHeader: [],
+      dates: [],
+      weekList: [],
+      headerContent: moment().format("YYYY-MM"),
+      currentWeekday: ""
     };
   },
-  components: {},
-  created() {},
-  watch: {},
-  mounted() {
-    this.getTableList();
-    this.getAddInfo();
-    this.getworkers();
-    this.getTime();
-  },
   methods: {
-    lastweek() {
-      this.getBeforNday(this.base, 7);
-      console.log(this.dateFormat2);
-      this.getTableList();
-    },
-    nextweek() {
-      this.getBeforNday(this.base, -7);
-      console.log(this.dateFormat2);
-      this.getTableList();
-    },
-    getTime() {
-      var myDate = new Date();
-      var year = myDate.getFullYear();
-      var month = myDate.getMonth() + 1;
-      var date = myDate.getDate();
-      var str = myDate.getDay();
-      console.log(str, 888);
-      if (str == 1) {
-        this.getBeforNday(myDate, 1);
-      }
-      if (str == 2) {
-        this.getBeforNday(myDate, 2);
-      }
-      if (str == 3) {
-        this.getBeforNday(myDate, 3);
-      }
-      if (str == 4) {
-        this.getBeforNday(myDate, 4);
-      }
-      if (str == 5) {
-        this.getBeforNday(myDate, 5);
-      }
-      if (str == 6) {
-        this.getBeforNday(myDate, 6);
-      }
-      if (str == 0) {
-        this.getBeforNday(myDate, 0);
-      }
-    },
-    getBeforNday(date, n) {
-      var todays = date.getTime();
-      var today = new Date();
-      this.today = today.setTime(todays);
-
-      var yesterday_milliseconds = date.getTime() - n * 1000 * 60 * 60 * 24;
-      var yesterday = new Date();
-
-      yesterday.setTime(yesterday_milliseconds);
-
-      var strYear = yesterday.getFullYear();
-      var strDay = yesterday.getDate();
-      var strMonth = yesterday.getMonth() + 1;
-      var strdate = yesterday.getDay();
-
-      if (strdate == 0) {
-      }
-      if (strMonth < 10) {
-        strMonth = "0" + strMonth;
-      }
-      let datastr = strYear + "年" + strMonth + "月" + strDay + "日";
-      let md = strMonth + "-" + strDay;
-      this.sunday = md;
-      this.lastsunday = datastr;
-      this.dateFormat1 = strYear + "-" + strMonth + "-" + strDay;
-      this.base = yesterday;
-      this.getotherday(yesterday, -1);
-      this.getotherday(yesterday, -2);
-      this.getotherday(yesterday, -3);
-      this.getotherday(yesterday, -4);
-      this.getotherday(yesterday, -5);
-      this.getotherday(yesterday, -6);
-      this.getotherday(yesterday, -7);
-    },
-    getotherday(date, n) {
-      var yesterday_milliseconds = date.getTime() - n * 1000 * 60 * 60 * 24;
-      var yesterday = new Date();
-      yesterday.setTime(yesterday_milliseconds);
-
-      var strYear = yesterday.getFullYear();
-      var strDay = yesterday.getDate();
-      var strMonth = yesterday.getMonth() + 1;
-      var strdate = yesterday.getDay();
-      if (strMonth < 10) {
-        strMonth = "0" + strMonth;
-      }
-      if (strDay < 10) {
-        strDay = "0" + strDay;
-      }
-      if (n == -1) {
-        this.monday = strMonth + "." + strDay;
-        this.monday1 =
-          "星期一" + "(" + strYear + " / " + strMonth + " / " + strDay + ")";
-        this.nextMonday = strYear + "年" + strMonth + "月" + strDay + "日";
-        this.dateFormat2 =
-          strYear + "-" + strMonth + "-" + strDay + " " + "00:00:00";
-      }
-      if (n == -2) {
-        this.thursday = strMonth + "." + strDay;
-        this.thursday1 =
-          "星期二" + "(" + strYear + " / " + strMonth + " / " + strDay + ")";
-        this.dateFormat3 = strYear + "-" + strMonth + "-" + strDay;
-      }
-      if (n == -3) {
-        this.wednesday = strMonth + "." + strDay;
-        this.wednesday1 =
-          "星期三" + "(" + strYear + " / " + strMonth + " / " + strDay + ")";
-        this.dateFormat4 = strYear + "-" + strMonth + "-" + strDay;
-      }
-      if (n == -4) {
-        this.thuesday = strMonth + "." + strDay;
-        this.thuesday1 =
-          "星期四" + "(" + strYear + " / " + strMonth + " / " + strDay + ")";
-        this.dateFormat5 = strYear + "-" + strMonth + "-" + strDay;
-      }
-      if (n == -5) {
-        this.friday = strMonth + "." + strDay;
-        this.friday1 =
-          "星期五" + "(" + strYear + " / " + strMonth + " / " + strDay + ")";
-        this.dateFormat6 = strYear + "-" + strMonth + "-" + strDay;
-      }
-      if (n == -6) {
-        this.saturday = strMonth + "." + strDay;
-        this.saturday1 =
-          "星期六" + "(" + strYear + " / " + strMonth + " / " + strDay + ")";
-        this.dateFormat7 = strYear + "-" + strMonth + "-" + strDay;
-      }
-      if (n == -7) {
-        this.sunday = strMonth + "." + strDay;
-        this.sunday1 =
-          "星期天" + "(" + strYear + " / " + strMonth + " / " + strDay + ")";
-        this.lastsunday = strYear + "年" + strMonth + "月" + strDay + "日";
-        this.dateFormat8 =
-          strYear + "-" + strMonth + "-" + strDay + " " + "00:00:00";
-      }
-    },
-
-    handleChange_1(data) {
-      console.log(data);
-    },
-    handleChange_2(data) {
-      console.log(data, 123);
-    },
-    dialogClosed() {
-      this.form = {};
-      this.title = "新增";
-    },
-    //获取workers
-    async getworkers() {
-      const { data: res } = await this.$http.post("", {
-        page: { pagesize: 10000, start: 0 }
-      });
-
-      this.workers = res.data;
-    },
-    async getTableList() {
-      var a = sessionStorage.getItem("elderlyHomeId");
-      if (a == 0) {
-        const { data: res } = await this.$http.post("", {
-          schedulingDay: this.dateFormat2,
-          page: {
-            pagesize: 1000,
-            start: 0
-          }
-        });
-
-        if (res.msg !== "success") {
-          return this.$message.error("接口出错！");
-        }
-        this.tableData = res.data;
-        this.total = res.data.length;
+    // 点击上个月 通过改变currentYearMonth来获取上个月的 YYYY-MM 格式
+    prev() {
+      if (this.showMonth) {
+        this.currentYearMonth = moment(this.currentYearMonth)
+          .subtract(1, "months")
+          .format("YYYY-MM");
+        this.headerContent = this.currentYearMonth;
+        this.createCalendar();
       } else {
-        const { data: res } = await this.$http.post("", {
-          elderlyHomeId: a,
-          schedulingDay: this.dateFormat2,
-          page: {
-            pagesize: 1000,
-            start: 0
+        this.currentWeekday = moment(this.currentWeekday).subtract(7, "days");
+        this.weekHeaderContent();
+        this.createWeekList();
+      }
+    },
+    next() {
+      if (this.showMonth) {
+        this.currentYearMonth = moment(this.currentYearMonth)
+          .add(1, "months")
+          .format("YYYY-MM");
+        this.headerContent = this.currentYearMonth;
+        this.createCalendar();
+      } else {
+        this.currentWeekday = moment(this.currentWeekday).add(7, "days");
+        this.weekHeaderContent();
+        this.createWeekList();
+      }
+    },
+    dateMouseEnter(weekIndex, dateIndex) {
+      this.dates[weekIndex][dateIndex].isAlive = "date-alive";
+    },
+    dateMouseLeave(weekIndex, dateIndex) {
+      this.dates[weekIndex][dateIndex].isAlive = "";
+    },
+    createCalendar() {
+      this.dates = [];
+      // 获取当月的一号是星期几 以便来生成上月的日期 填补够42个格子
+      const monthFirstDay = moment(this.currentYearMonth + "-01", "YYYY-MM-DD");
+      // 获得一号与第一个格子内应该有的天数距离 这里需要注意的是 weekday 是从周日 为 0 开始的
+      let firstDayWeekday = moment(monthFirstDay).weekday();
+      if (firstDayWeekday === 0) {
+        firstDayWeekday = 7;
+      }
+      let daysDistance = 1 - firstDayWeekday;
+      for (let weeks = 0; weeks < 6; weeks++) {
+        this.dates.push([]);
+        for (let weekday = 0; weekday < 7; weekday++) {
+          // 该对象有两个属性 一个是class属性 还有一个就是日期
+          let date = {};
+          date.day = moment(monthFirstDay).add(daysDistance, "days");
+          date.isAlive = "";
+          const dayMonth = moment(date.day).month();
+          // 是这个月的日期
+          if (dayMonth === moment(monthFirstDay).month()) {
+            date.class = "current-month ";
+            // 日期是今天的高亮
+            if (moment(date.day).isSame(this.today, "days")) {
+              date.class += "today ";
+            }
+          } else {
+            date.class = "not-current-month ";
           }
-        });
-
-        if (res.msg !== "success") {
-          return this.$message.error("接口出错！");
+          date.day = moment(date.day).format("DD");
+          this.dates[weeks].push(date);
+          daysDistance++;
         }
-        this.tableData = res.data;
-        this.total = res.data.length;
       }
     },
-    async removeUserById(id) {
-      // 弹框询问用户是否删除数据
-      const confirmResult = await this.$confirm(
-        "此操作将永久删除该数据, 是否继续?",
-        "提示",
-        {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning"
+    createWeekList() {
+      this.weekTableHeader = [
+        "周一 ",
+        "周二 ",
+        "周三 ",
+        "周四 ",
+        "周五 ",
+        "周六 ",
+        "周日 "
+      ];
+      this.weekList = [];
+      for (let index = 0; index < 7; index++) {
+        let item = {};
+        item.date = moment(this.currentWeekday).add(index, "days");
+        if (item.date.isSame(this.today, "days")) {
+          item.class = "today";
         }
-      ).catch(err => err);
-
-      // 如果用户确认删除，则返回值为字符串 confirm
-      // 如果用户取消了删除，则返回值为字符串 cancel
-      // console.log(confirmResult)
-      if (confirmResult !== "confirm") {
-        return this.$message.info("已取消删除");
+        item.date = this.weekTableHeader[index] + item.date.format("MM/DD");
+        this.weekTableHeader[index] = item;
       }
-
-      const { data: res } = await this.$http.post(
-        "5003/nurseHome/nurseSubstitute/del?id=" + id
-      );
-
-      if (res.msg !== "success") {
-        return this.$message.error("删除数据失败");
-      }
-      this.getTableList();
-      this.$message.success("删除数据成功！");
-    },
-    //添加or修改
-    showEditDialog(row) {
-      this.form = row;
-      this.title = "修改排班";
-      this.dialogVisible = true;
-    },
-    async handleSubmit() {
-      this.$refs.formRef.validate(async valid => {
-        if (!valid) return;
-        if (this.title === "修改排班") {
-          // request({
-          //   url: "",
-          //   data: this.form
-          // }).then(res => {
-          //   this.getTableList();
-          //   this.$message.success("修改数据成功！");
-          // });
-          this.dialogVisible = false;
-        } else {
-          var a = sessionStorage.getItem("elderlyHomeId");
-          this.form.elderlyHomeId = a;
-          this.form.schedulingDay = this.dateFormat2;
-          // request({
-          //   url: "",
-          //   data: this.form
-          // }).then(res => {
-          //   this.getTableList();
-          //   this.$message.success("添加数据成功！");
-          // });
-          this.dialogVisible = false;
+      for (let days = 0; days < 7; days++) {
+        this.weekList.push([]);
+        let item = "";
+        for (let hours = 0; hours < 48; hours++) {
+          if (hours % 2 === 0) {
+            item = hours / 2 + "点";
+          } else {
+            item = "";
+          }
+          this.weekList[days].push(item);
         }
-      });
+      }
     },
-    handleSelectionChange(val) {
-      this.checkedList = val;
-    },
-    handleCurrentChange(newPage) {
-      this.queryInfo.pagenum = newPage;
-      this.getTableList();
+    weekHeaderContent() {
+      this.headerContent =
+        moment(this.currentWeekday).format("YYYY-MM-DD") +
+        "  至  " +
+        moment(this.currentWeekday)
+          .add(6, "days")
+          .format("YYYY-MM-DD");
     }
+  },
+  created() {
+    // v-show是在创建后 保留dom 只是做切换的 不会v-if那样 销毁dom 所以只需要创建一次
+    this.createCalendar();
+    let weekday = moment().weekday() === 0 ? 7 : moment().weekday();
+    let daysDistance = 1 - weekday;
+    this.currentWeekday = moment().add(daysDistance, "days");
+    this.createWeekList();
+    this.weekHeaderContent();
   }
 };
 </script>
+ 
+
 <style lang="less" scoped>
+.scheduling {
+  padding: 24px 24px 40px;
+  .doctor-scheduling {
+    border: 1px solid #e6eaee;
+    border-radius: 4px;
+    // 筛选
+    .table-filter {
+      height: 48px;
+      padding: 0 15px;
+      border-bottom: 1px solid #e6eaee;
+      .btn {
+        color: #007aff;
+      }
+      .filter {
+        .prev,
+        .next {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          line-height: 22px;
+          text-align: center;
+          cursor: pointer;
+          border-radius: 2px;
+          border: 1px solid #ced0da;
+        }
+      }
+    }
+    // 表格内容
+    .body {
+      // 表头
+      .table-header {
+        li {
+          height: 40px;
+          padding: 0 12px;
+          border-right: 1px solid #e6eaee;
+        }
+        li:last-child {
+          border-right: 0;
+        }
+        .today {
+          color: #007aff;
+        }
+      }
+      // 表内容
+      .table-body {
+        border-top: 1px solid @color_e6eaee;
+        .employee-row {
+          height: 56px;
+          border-bottom: 1px solid @color_e6eaee;
+          li {
+            border-right: 1px solid #e6eaee;
+            padding: 0 6px;
+          }
+          li:not(:first-child) {
+            cursor: pointer;
+            &:hover {
+              background-color: #f5f7fb;
+            }
+          }
+          li:last-child {
+            border-right: 0;
+          }
+          .morning-info,
+          .afternoon-info {
+            height: 28px;
+            line-height: 28px;
+          }
+        }
+      }
+    }
+  }
+}
 </style>
