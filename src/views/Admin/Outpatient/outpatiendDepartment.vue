@@ -34,13 +34,13 @@
         </ul>
         <div class="table-body">
           <ul
-            @click="showDialogDepartmentInfo2=true"
             class="td flex align-items"
-            v-for="(item,index) of 5"
+            v-for="(item,index) of this.data"
             :key="index"
+            @click="updateRoomInfo(item)"
           >
             <li>
-              <span>中西医(22)人</span>
+              <span>{{item.roomName}}</span>
             </li>
             <li>
               <span>诊疗科室</span>
@@ -70,23 +70,42 @@ import AdminHeader from "../components/adminHeader";
 // 新增科室弹窗
 import DialogDepartmentInfo from "./dialog/dialogDepartmentInfo";
 // 接口
-// import { getConsultationList } from "@/api/admin";
+import { getListRoom, updateRoom } from "@/api/admin";
 export default {
   components: {
     DialogDepartmentInfo,
     AdminHeader
   },
-  methods:{
-
-  },
-  created(){
-
-  },
   data() {
     return {
       showDialogDepartmentInfo: false, // 科室弹窗显示隐藏控制变量
-      showDialogDepartmentInfo2: false // 科室弹窗显示隐藏控制变量
+      showDialogDepartmentInfo2: false, // 科室弹窗显示隐藏控制变量
+      data: {} // 接口数据
     };
+  },
+  methods: {
+    // 修改诊室
+    updateRoomInfo(value) {
+      let requestData = value;
+      this.showDialogDepartmentInfo2 = true;
+      updateRoom(requestData)
+        .then(response => {
+          console.log(response.data, 777);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  },
+  created() {
+    getListRoom({ clinicId: 1 })
+      .then(response => {
+        this.data = response.data.data;
+        console.log(this.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 };
 </script>

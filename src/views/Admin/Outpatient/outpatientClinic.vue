@@ -15,7 +15,13 @@
           <i>*</i>
         </label>
         <div class="form-item-content">
-          <el-input style="width:300px" placeholder="请输入内容" v-model="clinicName" clearable></el-input>
+          <el-input
+            @blur="testClinicName"
+            style="width:300px"
+            placeholder="请输入内容"
+            v-model="clinicName"
+            clearable
+          ></el-input>
         </div>
       </div>
       <!-- 表单数据:诊所地址 -->
@@ -33,22 +39,22 @@
           <el-input style="width:300px" v-model="addressValue" clearable></el-input>
         </div>
       </div>
-      <!-- 表单数据:联系电话 -->
+      <!-- 表单数据:联系电话1 -->
       <div class="form-item flex align-items">
         <label class="form-item-label flex align-items">
           <span>联系电话1</span>
         </label>
         <div class="form-item-content">
-          <el-input style="width:300px" v-model="phone1" clearable></el-input>
+          <el-input @blur="testPhone(phone1)" style="width:300px" v-model="phone1" clearable></el-input>
         </div>
       </div>
-      <!-- 表单数据:联系电话 -->
+      <!-- 表单数据:联系电话2 -->
       <div class="form-item flex align-items">
         <label class="form-item-label flex align-items">
           <span>联系电话2</span>
         </label>
         <div class="form-item-content">
-          <el-input style="width:300px" v-model="phone2" clearable></el-input>
+          <el-input @blur="testPhone(phone2)" style="width:300px" v-model="phone2" clearable></el-input>
         </div>
       </div>
       <!-- 表单数据：执业许可科目 -->
@@ -64,7 +70,7 @@
           </ul>
           <span class="btn-xg" @click="showDialogSubjectsList=true">修改</span>
           <!-- 选取科目弹窗组件 -->
-          <div v-show="showDialogSubjectsList">
+          <div v-if="showDialogSubjectsList">
             <Dialog-Subjects-List
               :subjectList="subjectList"
               @getSubjectsList="getSubjectsList"
@@ -117,8 +123,12 @@ import AdminInput from "../components/adminInput";
 // 选取科目弹窗
 import DialogSubjectsList from "./dialog/dialogSubjectsList";
 // 接口
-import { getClinic, addClinic } from "@/api/admin";
+import { getClinic, updateClinic, getListSubjects } from "@/api/admin";
+// 三级联动
 import { regionData, CodeToText, TextToCode } from "element-china-area-data";
+// 验证工具
+import { validatePhone } from "@/utils/validate.js";
+
 export default {
   components: {
     AdminHeader,
@@ -134,14 +144,13 @@ export default {
       phone1: "", // 电话1
       phone2: "", // 电话2
       logo: "", // logo
+      id: "", // 诊所id
       addressValue: "", // 详细地址
-      subjectList: [], // 科目数据列表
-
-      /********后端的数据********/
-      parame: {
-        address: {},
-        subjectList: []
-      },
+      subjectList: [1, 4], // 科目数据列表
+      province: "",
+      county: "",
+      city: "",
+      selectSubjectList: [1, 3],
 
       limit: 1,
       dialogImageUrl: "",
@@ -151,29 +160,44 @@ export default {
     };
   },
   methods: {
-    // 添加诊所
-    addClinic() {
-      this.parame.address.address = this.addressValue;
-      this.parame.clinicName = this.clinicName;
-      this.parame.phone1 = this.phone1;
-      this.parame.phone2 = this.phone2;
-      this.parame.logo = this.logo;
-
-      addClinic(this.parame)
-        .then(response => {
-          console.log(response.data);
-        })
-        .catch(error => {
-          console.log(error);
+    // 验证诊所名是否为空
+    testClinicName() {
+      if (!this.clinicName) {
+        this.$message({
+          showClose: true,
+          message: "诊所名称不能为空",
+          type: "warning"
         });
+        return false;
+      } else {
+        return true;
+      }
+    },
+    // 验证电话号码
+    testPhone(phone) {
+      if (!phone) {
+        this.$message({
+          showClose: true,
+          message: "电话不能为空",
+          type: "warning"
+        });
+        return false;
+      } else if (validatePhone(phone)) {
+        this.$message({
+          showClose: true,
+          message: "电话格式不正确",
+          type: "warning"
+        });
+        return false;
+      } else {
+        return true;
+      }
     },
     // 获取子组件科目列表
     getSubjectsList(data) {
-      this.parame.subjectList = data;
-      this.subjectList = data;
+      this.selectSubjectList = data;
     },
-
-    //选择本地图片
+    /*******选择本地图片********/
     uploadImg(e, num) {
       this.showVueCropper = true;
       var _this = this;
@@ -215,7 +239,6 @@ export default {
       this.dialogVisible = true;
     },
     /********地址处理*******/
-
     getAddress() {
       let { province, city, county } = this.address;
       province = province + "省";
@@ -226,14 +249,83 @@ export default {
       let countyCode = TextToCode[province][city][county].code + "";
       this.selectedOptions = [provinceCode, cityCode, countyCode];
     },
+    // 获取地址信息
     handleChange(value) {
-      let province = CodeToText[value[0]];
-      let county = CodeToText[value[1]];
-      let city = CodeToText[value[2]];
-      this.parame.address.province = province;
-      this.parame.address.county = county;
-      this.parame.address.city = city;
-      console.log(this.parame);
+      this.province = CodeToText[value[0]];
+      this.county = CodeToText[value[1]];
+      this.city = CodeToText[value[2]];
+    },
+    // 修改诊所信息
+    addClinic() {
+      if (!this.testClinicName()) {
+        return;
+      } else if (!this.testPhone(this.phone1)) {
+        return;
+      } else if (!this.testPhone(this.phone2)) {
+        return;
+      } else if (this.phone2 !== this.phone1) {
+        this.$message({
+          showClose: true,
+          message: "2次输入的电话不相同",
+          type: "warning"
+        });
+        return;
+      }
+      // // let parame = {};
+      // let clinic = {};
+      // let address = {};
+
+      // address.address = this.addressValue;
+      // address.city = this.city;
+      // address.province = this.province;
+      // address.county = this.county;
+      // address.id = this.address.id;
+
+      // clinic.clinicName = this.clinicName;
+      // clinic.id = this.id;
+      // clinic.logo = this.logo || "";
+      // clinic.phone1 = this.phone1;
+      // clinic.phone2 = this.phone2;
+
+      // parame.address = address;
+      // parame.clinic = clinic;
+      // parame.subjectIds = [1, 2];
+      // console.log(parame, 888888888888);
+
+      let parame = {
+        address: {
+          address: "腾讯大厦B座",
+          city: "抚宁区",
+          province: "河北省",
+          county: "秦皇岛市",
+          id: 0
+        },
+        clinic: {
+          clinicName: "abc体验诊所",
+          id: 0,
+          logo: "",
+          phone1: "18244909680",
+          phone2: "18244909680"
+        },
+        subjectIds: [1, 2]
+      };
+
+      // this.address.address = this.addressValue;
+      // // this.address.id = this.address.id;
+      // parame.subjectList = this.subjectList;
+      // parame.address = this.address;
+      // parame.clinicName = this.clinicName;
+      // parame.phone1 = this.phone1;
+      // parame.phone2 = this.phone2;
+      // parame.logo = this.logo || "";
+      // parame.id = this.id;
+      updateClinic(parame)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
   created() {
@@ -241,13 +333,15 @@ export default {
     getClinic({ id: 1 })
       .then(response => {
         let data = response.data.data;
+        console.log(data);
+        this.id = data.id;
         this.clinicName = data.clinicName;
         this.address = data.address;
         this.phone1 = data.phone1;
         this.phone2 = data.phone2;
         this.logo = data.logo;
         this.addressValue = data.address.address;
-        this.subjectList = data.subjectList;
+        // this.subjectList = data.subjectList;
         this.getAddress();
       })
       .catch(error => {

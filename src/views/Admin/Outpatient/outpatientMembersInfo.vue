@@ -123,6 +123,7 @@ import AdminHeader from "../components/adminHeader";
 import AdminInput from "../components/adminInput";
 // 权限列表选择弹窗
 import dialogPermissionsList from "./dialog/dialogPermissionsList";
+
 export default {
   components: {
     AdminInput,
@@ -149,7 +150,8 @@ export default {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
     }
-  }
+  },
+
 };
 </script>
 

@@ -107,7 +107,7 @@
       <!-- 底部按钮 -->
       <div class="btn-wrapper flex align-items justify-end">
         <button  class="btn-danger" v-show="type=='editor'" style="marginRight:8px">删除</button>
-        <button class="btn-primary" style="marginRight:8px">确定</button>
+        <button @click="handleAddRoom" class="btn-primary" style="marginRight:8px">确定</button>
         <button v-show="type=='add'" class="btn-blank" @click="$emit('showDialogDepartmentInfo')">取消</button>
         <button v-show="type=='editor'" class="btn-blank" @click="$emit('showDialogDepartmentInfo2')">取消</button>
       </div>
@@ -121,6 +121,8 @@ import CalendarInput from "@/components/CalendarInput";
 /*************引入局部组件*********/
 import AdminInput from "../../components/adminInput";
 import DialogSubjectsList from "./dialogSubjectsList";
+// 接口
+import { addRoom } from "@/api/admin";
 export default {
   props:["type"],
   components: {
@@ -408,6 +410,9 @@ export default {
   methods: {
     handleChange(value) {
       // console.log(value);
+    },
+    handleAddRoom(){
+      
     }
   }
 };

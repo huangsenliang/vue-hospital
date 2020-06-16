@@ -12,8 +12,8 @@
       <div class="subjects-content">
         <div class="data-col">
           <ul class="flex flex-wrap">
-            <li class="subjects-item" v-for="(item,index) of dataList" :key="index">
-              <el-checkbox v-model="item.acitve" :label="item.name" border></el-checkbox>
+            <li class="subjects-item" v-for="(item,index) of dataLis" :key="index">
+              <el-checkbox @change="handleChange(index)" v-model="item.acitve" :label="item.name" border></el-checkbox>
             </li>
           </ul>
         </div>
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+// 接口
+import { getListSubjects } from "@/api/admin";
 export default {
   props: {
     subjectList: {
@@ -47,84 +49,7 @@ export default {
   },
   data() {
     return {
-      dataLis: [
-        {
-          name: "预防保健科",
-          acitve: false
-        },
-        {
-          name: "全科医疗科",
-          acitve: false
-        },
-        {
-          name: "外科",
-          acitve: false
-        },
-        {
-          name: "妇产科",
-          acitve: false
-        },
-        {
-          name: "妇产保健科",
-          acitve: false
-        },
-        {
-          name: "儿科",
-          acitve: false
-        },
-        {
-          name: "小二外科",
-          acitve: false
-        },
-        {
-          name: "儿童保健科",
-          acitve: false
-        },
-        {
-          name: "眼科",
-          acitve: false
-        },
-        {
-          name: "耳鼻咽喉科",
-          acitve: false
-        },
-        {
-          name: "口腔科",
-          acitve: false
-        },
-        {
-          name: "皮肤科",
-          acitve: false
-        },
-        {
-          name: "医疗美容科",
-          acitve: false
-        },
-        {
-          name: "精神科",
-          acitve: false
-        },
-        {
-          name: "传染科",
-          acitve: false
-        },
-        {
-          name: "结核病科",
-          acitve: false
-        },
-        {
-          name: "地方病科",
-          acitve: false
-        },
-        {
-          name: "肿瘤科",
-          acitve: false
-        },
-        {
-          name: "急诊医学科",
-          acitve: false
-        }
-      ]
+      dataLis: []
     };
   },
   methods: {
@@ -132,6 +57,12 @@ export default {
     toSubjectsList() {
       this.$emit("getSubjectsList", this.selectedLis);
       this.$emit("showDialogSubjectsList");
+    },
+    // 按钮值改变
+    handleChange(index){
+      console.log(111)
+      this.dataLis[index].acitve = !this.dataLis[index].acitve;
+      console.log(this.dataLis,888)
     }
   },
   computed: {
@@ -143,24 +74,31 @@ export default {
           lis.push(item);
         }
       });
+      console.log(lis);
       return lis;
-    },
-    dataList() {
-      let lis = [];
-      this.subjectList.forEach(item => {
-        lis.push(item.name);
-      });
-      lis.forEach(item => {
-        this.dataLis.forEach((item2, index) => {
-          if (item2.name === item) {
-            this.dataLis[index].acitve = true;
-          }
-        });
-      });
-      return this.dataLis;
     }
   },
-  created() {}
+  created() {
+    // 获取科目列表
+    getListSubjects({ clinicId: 1 })
+      .then(response => {
+        console.log(this.subjectList,897)
+        this.dataLis = response.data.data;
+          this.dataLis.forEach((item, index) => {
+              this.dataLis[index].acitve = false;
+          });
+          this.subjectList.forEach(item=>{
+            this.dataLis.forEach((item2,index)=>{
+              if(item2.id == item){
+                this.dataLis[index].acitve = true;
+              }
+            })
+          })
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 };
 </script>
 
