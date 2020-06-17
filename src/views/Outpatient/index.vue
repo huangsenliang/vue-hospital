@@ -69,7 +69,7 @@
           </div>
         </div>
         <!-- 表格内容 -->
-        <div class="table-content">
+        <div class="table-content hidden-scorll">
           <!-- 患者信息盒子 -->
           <div class="info-wrapper-top flex align-items">
             <!-- 左边 -->
@@ -160,9 +160,9 @@
         </div>
       </div>
     </My-Main>
-    <My-Aside class="aside-right-wrapper">
+    <!-- <My-Aside class="aside-right-wrapper">
       <Intelligent-Diagnosis></Intelligent-Diagnosis>
-    </My-Aside>
+    </My-Aside> -->
   </div>
 </template>
 

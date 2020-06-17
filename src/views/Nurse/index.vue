@@ -5,13 +5,13 @@
       <!-- 患者列表 -->
       <Patient-List style="height:67%"></Patient-List>
       <!-- 就诊历史 -->
-        <History-List style="height:33%"></History-List>
+      <History-List style="height:33%"></History-List>
     </My-Aside>
     <My-Main class="flex-item" style="height:100%;marginLeft:10px">
       <!-- 患者用药信息 -->
-      <Nurse-Patient-Info v-show="!addPatient"></Nurse-Patient-Info>
+      <Nurse-Patient-Info style="height:100%" v-show="!addPatient"></Nurse-Patient-Info>
       <!-- 添加匿名患者切换内容 -->
-      <Add-Patient-Info v-show="addPatient"></Add-Patient-Info>
+      <Add-Patient-Info style="height:100%" v-show="addPatient"></Add-Patient-Info>
     </My-Main>
     <My-Aside class="aside-right-wrapper" style="height:100%">
       <h3 class="top-title">收费项目</h3>

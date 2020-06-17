@@ -22,6 +22,7 @@ export default {
 #main-wrap {
   height: calc(100% - 59px);
   margin-top: 10px;
-  overflow-y: auto;
+//  overflow-y:scroll;
+ overflow-x:visible;
 }
 </style>

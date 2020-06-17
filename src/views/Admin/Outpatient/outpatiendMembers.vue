@@ -1,9 +1,9 @@
 <template>
   <!-- 门诊设置：成员管理设置 -->
-  <div class="outpatiend-members">
+  <div class="outpatiend-members" style="height:100%">
     <AdminHeader title="成员管理" />
     <!-- 主体内容 -->
-    <div class="outpatiend-members-body">
+    <div class="outpatiend-members-body hidden-scorll" style="height:calc(100% - 40px)">
       <!-- 头部 -->
       <ul class="top-header flex align-items">
         <li>
@@ -111,6 +111,7 @@ export default {
   // 主体内容
   .outpatiend-members-body {
     padding: 0 24px;
+    overflow-y: auto;
     //   头部
     .top-header {
       height: 64px;

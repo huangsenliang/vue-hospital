@@ -7,7 +7,7 @@
       <button class="btn-blank-small">打印</button>
     </div>
     <!-- 内容 -->
-    <div class="patient-main-wrapper">
+    <div class="patient-main-wrapper hidden-scorll">
       <!-- 自定义个人信息组件 -->
       <Patient-Info name="毛波" sex="男" age="20" isDisabled="true" month="3" iphone="18244909680"></Patient-Info>
       <div class="patient-content-wrapper">
@@ -217,7 +217,6 @@ export default {
       color: #000;
       line-height: 47px;
       font-weight: 700;
-      padding: 0 24px;
       background-color: #f2f2f2;
     }
   }

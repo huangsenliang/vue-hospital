@@ -6,6 +6,7 @@
           <!-- 过滤 -->
           <div class="table-filter flex align-items justify-between">
             <span class="btn">班次管理</span>
+            <Dialog-Shift-Setting v-show="showShiftSetting"></Dialog-Shift-Setting>
             <div class="filter">
               <span class="prev" @click="prev">
                 <i class="iconfont icon-zuojiantou"></i>
@@ -17,9 +18,9 @@
             </div>
             <span class="btn">复制上周</span>
           </div>
-          <!-- 表格内容 -->
+          <!-- 表格-->
           <div class="body">
-            <!-- 生成一个周 时间列表 -->
+            <!-- 表头 -->
             <ul class="table-header flex">
               <li style="width:110px;padding:0 5px" class="flex align-items justify-center">
                 <el-select v-model="value" placeholder="请选择">
@@ -38,32 +39,44 @@
                 :class="header.class"
               >{{header.date}}</li>
             </ul>
+            <!-- 表格内容 -->
             <div class="table-body">
-              <ul class="employee-row flex">
+              <ul class="employee-row flex" v-for="(item,index) of 8" :key="index">
                 <li style="width:110px" class="flex align-items justify-center">
                   <span>Bubble</span>
                 </li>
-                <li v-for="(item,index) of 7" :key="index" class="flex-item">
+                <li v-for="(item,index2) of 7" :key="index2" class="flex-item">
                   <div class="morning-info flex justify-between">
                     <span>上午班</span>
-                    <span>号10</span>
+                    <span class="service-num">号10</span>
                   </div>
                   <div class="afternoon-info flex justify-between">
                     <span>下午班</span>
-                    <span>号2</span>
+                    <span class="service-num">号2</span>
                   </div>
+                  <!-- 设置 -->
                   <div class="Scheduling-setting">
-                    <!-- <div>
-                      <span>预留</span>
+                    <div class="flex justify-between" style="width:100%">
+                      <div class="reserved-wrapper">
+                        <span>预留</span>
+                      </div>
+                      <div class="scheduling-wrapper" @click="tagNum=index2;rowNum=index">
+                        <span>排班</span>
+                      </div>
                     </div>
-                    <div>
-                      <span>排班</span>
-                    </div> -->
                   </div>
+                  <!-- 排班设置弹窗 -->
+                  <Dialog-Scheduling
+                    @close="tagNum=null;rowNum=null"
+                    v-show="tagNum==index2&&rowNum==index"
+                  ></Dialog-Scheduling>
                 </li>
               </ul>
             </div>
           </div>
+        </div>
+        <div class="pag-wrapper flex align-items" style="height:61px">
+          <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
         </div>
       </el-tab-pane>
       <el-tab-pane label="员工排班">配置管理</el-tab-pane>
@@ -72,11 +85,52 @@
 </template>
  
 <script>
+/**********全局组件***********/
+// 时间格式化插件
 import moment from "moment";
+/***************局部组件**********/
+// 排班设置弹窗
+import DialogScheduling from "./dialog/dialogScheduling";
+// 排班管理设置弹窗
+import DialogShiftSetting from "./dialog/dialogShiftSetting";
 export default {
+  components: {
+    DialogScheduling,
+    DialogShiftSetting
+  },
   data() {
     return {
+      showShiftSetting:true,  // 排班管理弹窗显示隐藏控制变量
+      rowNum: null,
+      tagNum: null, // 当前点击的项
+      showDialogScheduling: false, // 是否显示排班弹窗
+      dialogTableVisible: true, // 班次管理弹窗控制变量
+      gridData: [
+        {
+          date: "2016-05-02",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          date: "2016-05-04",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          date: "2016-05-01",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄"
+        },
+        {
+          date: "2016-05-03",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄"
+        }
+      ], //  班次管理模拟数据
+      /**********/
+      value: "",
       options: [],
+      /**********/
       today: moment().format("YYYY-MM-DD"),
       currentYearMonth: moment().format("YYYY-MM"),
       weekTableHeader: [],
@@ -211,8 +265,13 @@ export default {
 
 <style lang="less" scoped>
 .scheduling {
+  font-size: 12px;
   padding: 24px 24px 40px;
+  /deep/ .el-tabs__content {
+    overflow: inherit;
+  }
   .doctor-scheduling {
+    // height: 500px;
     border: 1px solid #e6eaee;
     border-radius: 4px;
     // 筛选
@@ -236,6 +295,8 @@ export default {
           border: 1px solid #ced0da;
         }
       }
+      /**弹窗*/
+
     }
     // 表格内容
     .body {
@@ -260,8 +321,14 @@ export default {
           height: 56px;
           border-bottom: 1px solid @color_e6eaee;
           li {
+            position: relative;
             border-right: 1px solid #e6eaee;
             padding: 0 6px;
+            &:hover {
+              .Scheduling-setting {
+                display: block;
+              }
+            }
           }
           li:not(:first-child) {
             cursor: pointer;
@@ -274,8 +341,33 @@ export default {
           }
           .morning-info,
           .afternoon-info {
+            .service-num {
+              color: #8493a4;
+            }
             height: 28px;
             line-height: 28px;
+          }
+          // 设置排班
+          .Scheduling-setting {
+            display: none;
+            position: absolute;
+            bottom: -26px;
+            left: 0;
+            z-index: 1000;
+            background: #fff;
+            width: 123px;
+            height: 26px;
+            line-height: 26px;
+            box-shadow: 0 0 2px 1px #ccc;
+            .reserved-wrapper,
+            .scheduling-wrapper {
+              width: 50%;
+              text-align: center;
+              color: #007aff;
+            }
+            .reserved-wrapper {
+              border-right: 1px solid #ccc;
+            }
           }
         }
       }

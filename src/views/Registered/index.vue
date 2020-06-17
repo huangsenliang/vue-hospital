@@ -38,7 +38,7 @@
         <Registered-List></Registered-List>
       </div>
       <!-- 中间主要内容 -->
-      <div class="body-main-wrapper">
+      <div class="body-main-wrapper hidden-scorll">
         <!-- 头部内容 -->
         <div class="main-header flex">
           <div class="header-left flex">

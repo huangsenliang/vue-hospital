@@ -1,8 +1,8 @@
 <template>
   <!-- 排班设置：排班设置页面 -->
-  <div class="reservation-scheduling">
+  <div class="reservation-scheduling" style="height:100%">
     <Admin-Header title="排班设置"></Admin-Header>
-    <Scheduling></Scheduling>
+    <Scheduling style="height:calc(100% - 40px)"></Scheduling>
   </div>
 </template>
 
@@ -23,5 +23,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less" scoped>
+.reservation-scheduling{
+  // overflow-y:scroll;
+ overflow-x:visible;
+}
 </style>

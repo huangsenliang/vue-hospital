@@ -3,7 +3,7 @@
     <div class="workbench-wrapper">
       <el-container>
         <!-- 左侧内容 -->
-        <el-main>
+        <el-main class="hidden-scorll">
           <!-- 上半部分：经营状况 -->
           <div class="card profit-wrapper" style="padding: 0 46px 40px">
             <!-- 头部：人物、时间、汇总 -->
@@ -200,170 +200,12 @@
             <h3 class="header-title">排班信息</h3>
             <!-- main -->
             <div class="scheduling-content">
-              <!-- 标签头部 -->
-              <div class="scheduling-header">
-                <!-- 标签 -->
-                <div class="tag-wrapper flex">
-                  <ul class="tag-row">
-                    <li
-                      class="tag-item"
-                      @click="handleSchedulingTag(index)"
-                      :class="{'tag-item-active':schedulingTagNum==index}"
-                      v-for="(item,index) in schedulingTag"
-                      :key="index"
-                    >
-                      <span>{{item}}</span>
-                    </li>
-                  </ul>
-                  <div class="setting">
-                    <span class="setting-btn" @click="drawer = true">班次管理</span>
-                    <el-drawer title="排班信息" :visible.sync="drawer" direction="rtl" size="40%">
-                      <div>
-                        <el-button plain style="marginRight:20px">增加班次</el-button>
-                        <el-checkbox v-model="settingChecked">备选项</el-checkbox>
-                      </div>
-                      <el-table :data="gridData">
-                        <el-table-column property="date" label="班次" width="150"></el-table-column>
-                        <el-table-column property="name" label="时间" width="200"></el-table-column>
-                        <el-table-column property="address" label="管理">
-                          <span style="color:#2680f7;marginRight:5px">修改</span>
-                          <span style="color:red">删除</span>
-                        </el-table-column>
-                      </el-table>
-                    </el-drawer>
-                  </div>
-                </div>
-                <!-- 切换时间 -->
-                <div class="switch-time-wrapper flex">
-                  <div class="switch-center">
-                    <span class="switch-left">&lt;</span>
-                    <span>2020-04-27 至 2020-05-03</span>
-                    <span class="switch-right">&gt;</span>
-                  </div>
-                  <span class="copy-last-week">复制上周</span>
-                </div>
-                <!-- 表格头部 -->
-                <ul class="table-header flex">
-                  <li class="select-clinin">
-                    <el-select v-model="selectClininValue" filterable placeholder="请选择">
-                      <el-option
-                        v-for="item in options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                      ></el-option>
-                    </el-select>
-                  </li>
-                  <li>
-                    <span>今天04-27</span>
-                  </li>
-                  <li>
-                    <span>周二04-28</span>
-                  </li>
-                  <li>
-                    <span>周三04-29</span>
-                  </li>
-                  <li>
-                    <span>周四04-30</span>
-                  </li>
-                  <li>
-                    <span>周五05-01</span>
-                  </li>
-                  <li>
-                    <span>周六05-02</span>
-                  </li>
-                  <li>
-                    <span>周日05-03</span>
-                  </li>
-                </ul>
-                <!-- 表格内容 -->
-                <div class="table-body">
-                  <ul class="employee-row flex" v-for="(rowItem,index) of 5" :key="index">
-                    <li>
-                      <span>Charlie</span>
-                    </li>
-                    <li>
-                      <div
-                        class="schedules-list-item__reference flex"
-                        v-for="(item,index) of 3"
-                        :key="index"
-                      >
-                        <span>上午</span>
-                        <span style="color: #96a4b3;">号20</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        class="schedules-list-item__reference flex"
-                        v-for="(item,index) of 3"
-                        :key="index"
-                      >
-                        <span>上午</span>
-                        <span style="color: #96a4b3;">号20</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        class="schedules-list-item__reference flex"
-                        v-for="(item,index) of 3"
-                        :key="index"
-                      >
-                        <span>上午</span>
-                        <span style="color: #96a4b3;">号20</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        class="schedules-list-item__reference flex"
-                        v-for="(item,index) of 3"
-                        :key="index"
-                      >
-                        <span>上午</span>
-                        <span style="color: #96a4b3;">号20</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        class="schedules-list-item__reference flex"
-                        v-for="(item,index) of 3"
-                        :key="index"
-                      >
-                        <span>上午</span>
-                        <span style="color: #96a4b3;">号20</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        class="schedules-list-item__reference flex"
-                        v-for="(item,index) of 3"
-                        :key="index"
-                      >
-                        <span>上午</span>
-                        <span style="color: #96a4b3;">号20</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        class="schedules-list-item__reference flex"
-                        v-for="(item,index) of 3"
-                        :key="index"
-                      >
-                        <span>上午</span>
-                        <span style="color: #96a4b3;">号20</span>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <!-- 分页 -->
-                <div class="pagination-wrapper">
-                  <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
-                </div>
-              </div>
+              <Scheduling></Scheduling>
             </div>
           </div>
         </el-main>
         <!-- 右侧内容 -->
-        <el-aside>
+        <el-aside class="hidden-scorll">
           <div class="dashboard-sidebar">
             <h3>惠民体验诊所</h3>
             <!-- 顶部标题 -->
@@ -421,7 +263,12 @@
 </template>
 
 <script>
+// 排班组件
+import Scheduling from "@/components/Scheduling";
 export default {
+  components:{
+    Scheduling
+  },
   data() {
     return {
       options: [
@@ -470,32 +317,6 @@ export default {
           label: "其他"
         }
       ],
-      selectClininValue: 0, // 选择科室变量值：双向绑定
-      drawer: false, // 排班管理弹窗是否显示
-      direction: "rtl", // 排班管理弹窗位置
-      gridData: [
-        //  排班管理弹窗表格数据
-        {
-          date: "上午",
-          name: "08:00-12"
-        },
-        {
-          date: "上午",
-          name: "08:00-12"
-        },
-        {
-          date: "上午",
-          name: "08:00-12"
-        },
-        {
-          date: "上午",
-          name: "08:00-12"
-        }
-      ],
-      settingChecked: true, // 排班设置诊室
-
-      schedulingTagNum: 0, // 排班标签切换索引
-      schedulingTag: ["医生排班", "员工排班"], // 排班标签数据
       patientData: [
         // 今日看板数据
         {
@@ -793,7 +614,6 @@ export default {
         color: #333;
         text-align: center;
         overflow-y: auto;
-
         /* 卡片样式 */
         .card {
           background-color: #fff;
@@ -1181,167 +1001,8 @@ export default {
           h3 {
             font-weight: 700;
             font-size: 20px;
-            padding-bottom: 20px;
           }
-          /* main*/
-          .scheduling-content {
-            position: relative;
-            border-right: 0;
-            .scheduling-header {
-              /*标签*/
-              .tag-wrapper {
-                background: #f5f7fb;
-                font-size: 14px;
-                color: #7a8794;
-                align-items: center;
-                border-right: 1px #eee solid;
-                border-top: 1px #eee solid;
-                border-bottom: 1px #eee solid;
-                justify-content: space-between;
-                .tag-row {
-                  .tag-item {
-                    display: inline-block;
-                    padding: 8px 10px;
-                    border-bottom: solid 1px #eee;
-                    border-right: solid 1px #eee;
-                    border-left: 1px #eee solid;
-                    cursor: pointer;
-                  }
-                  /*切换选择样式*/
-                  .tag-item-active {
-                    background: rgb(255, 255, 255);
-                    color: #007aff;
-                    border-bottom: 1px solid transparent;
-                  }
-                }
-                /*班次管理*/
-                .setting {
-                  color: #007aff;
-                  margin-right: 20px;
-                  cursor: pointer;
-                  .el-drawer {
-                    .el-drawer__header {
-                      color: #fff;
-                      font-size: 20px;
-                      padding: 20px 10px;
-                    }
-                    .el-drawer__body {
-                      .el-table-row {
-                        min-width: 456px !important;
-                      }
-                      padding: 10px;
-                    }
-                  }
-                }
-              }
-              /* 切换时间*/
-              .switch-time-wrapper {
-                position: relative;
-                justify-content: center;
-                height: 48px;
-                align-items: center;
-                border-bottom: #eee solid 1px;
-                border-right: 1px #eee solid;
-                border-left: 1px #eee solid;
-                .switch-center {
-                  .switch-left,
-                  .switch-right {
-                    cursor: pointer;
-                    padding: 5px 8px;
-                    border-radius: 2px;
-                    border: 1px #eee solid;
-                    &:hover {
-                      background: #eee;
-                      border: 1px #007aff solid;
-                    }
-                  }
-                  span:nth-child(2) {
-                    padding: 0px 10px;
-                  }
-                }
-                .copy-last-week {
-                  position: absolute;
-                  padding: 6px 10px;
-                  border: 1px #eee solid;
-                  right: 10px;
-                  border-radius: 3px;
-                  color: #007aff;
-                  &:hover {
-                    background: rgb(209, 228, 233);
-                    border: 1px #007aff solid;
-                    cursor: pointer;
-                  }
-                  // top: 15px;
-                }
-              }
-              /* 表格头部*/
-              .table-header {
-                height: 40px;
-                li {
-                  width: 0;
-                  -webkit-box-flex: 1;
-                  -webkit-flex: 1;
-                  -ms-flex: 1;
-                  flex: 1;
-                  height: 40px;
-                  line-height: 40px;
-                  border-left: 1px #eee solid;
-                  border-bottom: 1px #eee solid;
-                  text-align: center;
-                }
-                li:last-child {
-                  border-right: 1px #eee solid;
-                }
-                .select-clinin {
-                  .el-input__inner {
-                    border-radius: 0;
-                    border: 0;
-                    padding: 0 10px;
-                    border-bottom: 1px #eee solid;
-                  }
-                }
-              }
-              /* 表格内容 */
-              .table-body {
-                font-size: 14px;
-                margin-bottom: 15px;
-                .employee-row {
-                  border-bottom: 1px #eee solid;
-                  li {
-                    cursor: pointer;
-                    padding: 2px 8px;
-                    flex: 1;
-                    border-left: 1px #eee solid;
-                    .schedules-list-item__reference {
-                      justify-content: space-between;
-                      span {
-                        display: inline-block;
-                        height: 26px;
-                      }
-                    }
-                    &:hover {
-                      background: #f5f7fb;
-                    }
-                  }
-                  li:last-child {
-                    border-right: 1px #eee solid;
-                  }
-                  li:nth-child(1) {
-                    padding-top: 10px;
-                  }
-                }
-              }
-              /*分页*/
-              .pagination-wrapper {
-                .el-pagination {
-                  text-align: center;
-                  .el-icon {
-                    text-align: center;
-                  }
-                }
-              }
-            }
-          }
+
         }
       }
       /*左侧内容*/
