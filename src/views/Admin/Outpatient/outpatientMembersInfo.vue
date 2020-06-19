@@ -1,9 +1,12 @@
 <template>
-  <!-- 成员信息编辑 -->
-  <div class="outpatient-members-info">
+  <!-- 成员信息-->
+  <div class="outpatient-members-info hidden-scorll" style="height:100%">
     <!-- 头部导航 -->
-    <div class="members-info-header flex align-items">
-      <el-page-header @back="goBack" content="新增成员"></el-page-header>
+    <div class="members-info-header flex align-items justify-between">
+      <el-page-header @back="goBack" :content="type=='add'?'新增成员':'成员详情'"></el-page-header>
+      <div class="btn-wrapper">
+        <button class="btn-primary-small" style="height:28px">保存</button>
+      </div>
     </div>
     <div class="members-info-body">
       <!-- 姓名电话 -->
@@ -132,6 +135,9 @@ export default {
   },
   data() {
     return {
+      type: "", // 页面类型
+      options: [],
+      value: "",
       textareaVale: "",
       limit: 1, // 上传数量
       checked: false,
@@ -151,12 +157,18 @@ export default {
       this.dialogVisible = true;
     }
   },
-
+  created() {
+    this.type = this.$route.query.type;
+    if (this.type === "editor") {
+      let userId = this.$route.query.userId;
+    }
+  }
 };
 </script>
 
 <style lang="less" scoped>
 .outpatient-members-info {
+  overflow-y: auto;
   .members-info-header {
     padding: 0 24px;
     height: 40px;

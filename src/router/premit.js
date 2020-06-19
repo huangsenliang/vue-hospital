@@ -13,13 +13,16 @@ router.beforeEach((to, from, next) => {
   }
   /*********************管理************************/
   if (/^\/admin/.test(to.path)) {
-    console.log(/^\/admin/.test(to.path))
     store.commit("layout/setTabName", "Admin");
     store.commit("admin/setTabName", to.path);
+    // 新增成员
     if (/\/members-info$/.test(to.path)) {
-      console.log(111)
       store.commit("layout/setTabName", "Admin");
       store.commit("admin/setTabName", '/admin/outpatient/members');
+      // 新增设备
+    }else if(/\/equipment-info$/.test(to.path)){
+      store.commit("layout/setTabName", "Admin");
+      store.commit("admin/setTabName", '/admin/outpatient/equipment');
     }
   }
   next();

@@ -10,7 +10,7 @@
           <button class="btn-success">微信邀请</button>
         </li>
         <li>
-          <button class="btn-success" @click="hanleAddMembersInfo">新增成员</button>
+          <button class="btn-success" @click="toAddMembersInfo">新增成员</button>
         </li>
         <li>
           <Search-Input placeholder="成员姓名/手机号"></Search-Input>
@@ -21,6 +21,7 @@
       </ul>
       <!-- 表格 -->
       <div class="table-wrapper">
+        <!-- 表头 -->
         <ul class="th flex align-items">
           <li class="item1">
             <span>姓名</span>
@@ -41,8 +42,9 @@
             <span></span>
           </li>
         </ul>
+        <!-- 表内容 -->
         <div class="table-body">
-          <ul v-for="(item,index) of 5" :key="index" class="td flex align-items">
+          <ul v-for="(item,index) of 5" :key="index" class="td flex align-items" @click="toEditorMembersInfo(1)">
             <li class="item1">
               <span>李思思</span>
               <span class="identity">管理员</span>
@@ -94,14 +96,26 @@ export default {
     return {};
   },
   methods: {
-    hanleAddMembersInfo() {
-      this.$router.push({ name: "MembersInfo" });
+    // 添加成员
+    toAddMembersInfo() {
+      this.$router.push({
+        name: "MembersInfo",
+        query: { type: "add" }
+      });
+    },
+    // 编辑成员
+    toEditorMembersInfo(userId) {
+      this.$router.push({
+        name: "MembersInfo",
+        query: { type: "editor", userId }
+      });
     }
   },
   // 保存成员管理选项的激活状态
   beforeRouteLeave(to, from, next) {
-    to.name=='MembersInfo'|| this.$store.commit("admin/setTabName", "/outpatient/members");
-    next()
+    to.name == "MembersInfo" ||
+      this.$store.commit("admin/setTabName", "/outpatient/members");
+    next();
   }
 };
 </script>

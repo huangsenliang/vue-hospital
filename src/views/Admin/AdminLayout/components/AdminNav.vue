@@ -94,6 +94,28 @@ export default {
               }
             }
           ]
+        },
+        // 叫号设置
+        {
+          path: "/admin/call/rules",
+          meta: {
+            name: "叫号设置",
+            icon: "icon-laba"
+          },
+          children: [
+            {
+              path: "/admin/call/rules",
+              meta: {
+                name: "叫号设置"
+              }
+            },
+            {
+              path: "/admin/call/screen",
+              meta: {
+                name: "屏幕设置"
+              }
+            }
+          ]
         }
       ]
     };

@@ -1,37 +1,97 @@
 <template>
-  <div class="scheduling">
-    <el-tabs type="border-card">
-      <el-tab-pane label="医生排班">
-        <Doctor-Scheduling></Doctor-Scheduling>
-      </el-tab-pane>
-      <el-tab-pane label="员工排班">
-        <EmployScheduling></EmployScheduling>
-      </el-tab-pane>
-    </el-tabs>
+  <!-- 员工排班 -->
+  <div class="employ-scheduling">
+    <!-- 过滤 -->
+    <div class="table-filter flex align-items justify-between">
+      <span class="btn" @click="showShiftSetting=true">班次管理</span>
+      <Dialog-Shift-Setting @close="showShiftSetting=false" v-show="showShiftSetting"></Dialog-Shift-Setting>
+      <div class="filter">
+        <span class="prev" @click="prev">
+          <i class="iconfont icon-zuojiantou"></i>
+        </span>
+        <span style="margin:0 5px">{{headerContent}}</span>
+        <span class="next" @click="next">
+          <i class="iconfont icon-youjiantou1"></i>
+        </span>
+      </div>
+      <span class="btn">复制上周</span>
+    </div>
+    <!-- 表格-->
+    <div class="body">
+      <!-- 表头 -->
+      <ul class="table-header flex">
+        <li style="width:110px;padding:0 5px" class="flex align-items justify-center">
+          <el-select v-model="value" placeholder="请选择">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+        </li>
+        <li
+          v-for="(header, index) in weekTableHeader"
+          v-bind:key="index"
+          class="flex-item flex align-items justify-center"
+          :class="header.class"
+        >{{header.date}}</li>
+      </ul>
+      <!-- 表格内容 -->
+      <div class="table-body">
+        <ul class="employee-row flex" v-for="(item,index) of 8" :key="index">
+          <li style="width:110px" class="flex align-items justify-center">
+            <span>Bubble</span>
+          </li>
+          <li
+            v-for="(item,index2) of 7"
+            :key="index2"
+            class="flex-item"
+            @click="tagNum=index;rowNum=index2"
+          >
+            <div class="morning-info flex justify-center">
+              <span>上午班</span>
+            </div>
+            <div class="afternoon-info flex justify-center">
+              <span>下午班</span>
+            </div>
+            <!-- 排班设置弹窗 -->
+            <Dialog-Scheduling
+              @close="tagNum=null;rowNum=null"
+              v-show="tagNum==index&&rowNum==index2"
+            ></Dialog-Scheduling>
+          </li>
+        </ul>
+      </div>
+      <!-- 分页 -->
+      <div class="pag-wrapper flex align-items" style="height:61px">
+        <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
+      </div>
+    </div>
   </div>
 </template>
- 
+
 <script>
 /**********全局组件***********/
 // 时间格式化插件
 import moment from "moment";
-/***************局部组件**********/
-// 医生排班组件
-import DoctorScheduling from "./components/doctorScheduling";
-// 员工排班组件
-import EmployScheduling from "./components/employScheduling";
+/*****************局部组件***********/
+
+// 排班设置弹窗
+import DialogScheduling from "../dialog/dialogScheduling";
+// 排班管理设置弹窗
+import DialogShiftSetting from "../dialog/dialogShiftSetting";
 export default {
   components: {
-DoctorScheduling,
-    EmployScheduling
+    moment,
+    DialogScheduling,
+    DialogShiftSetting
   },
   data() {
     return {
       showShiftSetting: false, // 排班管理弹窗显示隐藏控制变量
       rowNum: null,
       tagNum: null, // 当前点击的项
-      rowNum2: null,
-      tagNum2: null, // 当前点击的项
       showDialogScheduling: false, // 是否显示排班弹窗
       dialogTableVisible: true, // 班次管理弹窗控制变量
       gridData: [
@@ -190,113 +250,105 @@ DoctorScheduling,
   }
 };
 </script>
- 
 
 <style lang="less" scoped>
-.scheduling {
-  font-size: 12px;
-  padding: 24px 24px 40px;
-  /deep/ .el-tabs__content {
-    overflow: inherit;
-  }
-  .doctor-scheduling {
-    // height: 500px;
-    border: 1px solid #e6eaee;
-    border-radius: 4px;
-    // 筛选
-    .table-filter {
-      height: 48px;
-      padding: 0 15px;
-      border-bottom: 1px solid #e6eaee;
-      .btn {
+.employ-scheduling {
+  // height: 500px;
+  border: 1px solid #e6eaee;
+  border-radius: 4px;
+  // 筛选
+  .table-filter {
+    height: 48px;
+    padding: 0 15px;
+    border-bottom: 1px solid #e6eaee;
+    .btn {
+      cursor: pointer;
+      color: #007aff;
+    }
+    .filter {
+      .prev,
+      .next {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        line-height: 22px;
+        text-align: center;
         cursor: pointer;
+        border-radius: 2px;
+        border: 1px solid #ced0da;
+      }
+    }
+    /**弹窗*/
+  }
+  // 表格内容
+  .body {
+    // 表头
+    .table-header {
+      li {
+        height: 40px;
+        padding: 0 12px;
+        border-right: 1px solid #e6eaee;
+      }
+      li:last-child {
+        border-right: 0;
+      }
+      .today {
         color: #007aff;
       }
-      .filter {
-        .prev,
-        .next {
-          display: inline-block;
-          width: 24px;
-          height: 24px;
-          line-height: 22px;
-          text-align: center;
-          cursor: pointer;
-          border-radius: 2px;
-          border: 1px solid #ced0da;
-        }
-      }
-      /**弹窗*/
     }
-    // 表格内容
-    .body {
-      // 表头
-      .table-header {
+    // 表内容
+    .table-body {
+      border-top: 1px solid @color_e6eaee;
+      .employee-row {
+        height: 56px;
+        border-bottom: 1px solid @color_e6eaee;
         li {
-          height: 40px;
-          padding: 0 12px;
+          position: relative;
           border-right: 1px solid #e6eaee;
+          padding: 0 6px;
+          &:hover {
+            .Scheduling-setting {
+              display: block;
+            }
+          }
+        }
+        li:not(:first-child) {
+          cursor: pointer;
+          &:hover {
+            background-color: #f5f7fb;
+          }
         }
         li:last-child {
           border-right: 0;
         }
-        .today {
-          color: #007aff;
+        .morning-info,
+        .afternoon-info {
+          .service-num {
+            color: #8493a4;
+          }
+          height: 28px;
+          line-height: 28px;
         }
-      }
-      // 表内容
-      .table-body {
-        border-top: 1px solid @color_e6eaee;
-        .employee-row {
-          height: 56px;
-          border-bottom: 1px solid @color_e6eaee;
-          li {
-            position: relative;
-            border-right: 1px solid #e6eaee;
-            padding: 0 6px;
-            &:hover {
-              .Scheduling-setting {
-                display: block;
-              }
-            }
+        // 设置排班
+        .Scheduling-setting {
+          display: none;
+          position: absolute;
+          bottom: -26px;
+          left: 0;
+          z-index: 1000;
+          background: #fff;
+          width: 123px;
+          height: 26px;
+          line-height: 26px;
+          box-shadow: 0 0 2px 1px #ccc;
+          .reserved-wrapper,
+          .scheduling-wrapper {
+            width: 50%;
+            text-align: center;
+            color: #007aff;
           }
-          li:not(:first-child) {
-            cursor: pointer;
-            &:hover {
-              background-color: #f5f7fb;
-            }
-          }
-          li:last-child {
-            border-right: 0;
-          }
-          .morning-info,
-          .afternoon-info {
-            .service-num {
-              color: #8493a4;
-            }
-            height: 28px;
-            line-height: 28px;
-          }
-          // 设置排班
-          .Scheduling-setting {
-            display: none;
-            position: absolute;
-            bottom: -26px;
-            left: 0;
-            z-index: 1000;
-            background: #fff;
-            width: 123px;
-            height: 26px;
-            line-height: 26px;
-            box-shadow: 0 0 2px 1px #ccc;
-            .reserved-wrapper,
-            .scheduling-wrapper {
-              width: 50%;
-              text-align: center;
-              color: #007aff;
-            }
-            .reserved-wrapper {
-              border-right: 1px solid #ccc;
-            }
+          .reserved-wrapper {
+            border-right: 1px solid #ccc;
           }
         }
       }
