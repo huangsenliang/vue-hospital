@@ -9,15 +9,17 @@
   }
 }
 
-// 输入框图标行高
-.el-input__icon {
-  line-height: 28px;
-}
+// 输入框
+.el-input {
+  .el-input__icon {
+    line-height: 32px;
+  }
 
-.el-input__inner {
-  height: 32px;
-  width: 200px;
-  width: 100%;
+  .el-input__inner {
+    height: 32px;
+    width: 200px;
+    width: 100%;
+  }
 }
 
 .el-select .el-input.is-disabled .el-input__inner {
@@ -91,16 +93,6 @@
   }
 }
 
-/******************修改导航菜单样式**********/
-.el-menu-item.is-active {
-  color: #fff;
-  background: #00ace9;
-}
-
-.el-submenu.is-active .el-submenu__title {
-  // background: #b8e2f1;
-}
-
 /*************修改上传图片样式*********/
 .outpatient-clinic {
   .el-upload--picture-card {
@@ -136,7 +128,7 @@
 .permissions-list {
   .el-tree {
     padding: 0;
-    .el-tree-node__label{
+    .el-tree-node__label {
       color: #000;
     }
   }

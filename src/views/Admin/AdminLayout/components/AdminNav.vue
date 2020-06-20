@@ -37,99 +37,33 @@ export default {
   },
   data() {
     return {
-      //   routers: this.$router.options.routes[7].children
-      routers: [
-        // 诊所设置
-        {
-          path: "/admin/outpatient/clinic",
-          meta: {
-            name: "诊所设置",
-            icon: "icon-shezhi1"
-          },
-          children: [
-            {
-              path: "/admin/outpatient/clinic",
-              meta: {
-                name: "诊所设置"
-              }
-            },
-            {
-              path: "/admin/outpatient/department",
-              meta: {
-                name: "科室设置"
-              }
-            },
-            {
-              path: "/admin/outpatient/members",
-              meta: {
-                name: "成员管理"
-              }
-            },
-            {
-              path: "/admin/outpatient/equipment",
-              meta: {
-                name: "医疗设备"
-              }
-            }
-          ]
-        },
-        // 预约设置
-        {
-          path: "/admin/reservation/predetermine",
-          meta: {
-            name: "预约设置",
-            icon: "icon-yuyue"
-          },
-          children: [
-            {
-              path: "/admin/reservation/predetermine",
-              meta: {
-                name: "预约设置"
-              }
-            },
-            {
-              path: "/admin/reservation/scheduling",
-              meta: {
-                name: "排班设置"
-              }
-            }
-          ]
-        },
-        // 叫号设置
-        {
-          path: "/admin/call/rules",
-          meta: {
-            name: "叫号设置",
-            icon: "icon-laba"
-          },
-          children: [
-            {
-              path: "/admin/call/rules",
-              meta: {
-                name: "叫号设置"
-              }
-            },
-            {
-              path: "/admin/call/screen",
-              meta: {
-                name: "屏幕设置"
-              }
-            }
-          ]
-        }
-      ]
+      routers: null
     };
+  },
+  created() {
+    this.routers = this.$router.options.routes[1].children;
   }
 };
 </script>
 
 <style lang='less' scoped>
-.admin-nav{ 
-  overflow-y:auto ;
-  .iconfont{
+.admin-nav {
+  overflow-y: auto;
+  .iconfont {
     font-size: 14px;
     color: #000;
     margin-right: 8px;
+  }
+  /deep/.el-submenu {
+    /deep/.el-submenu__title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /deep/.el-menu-item.is-active {
+      color: #fff;
+      background: #00ace9;
+    }
   }
 }
 </style>

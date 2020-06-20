@@ -1,7 +1,7 @@
 <template>
-  <!-- 药房：配送设置 -->
-  <div id="pharmacy-delivery">
-      配送设置
+  <!-- 自助续方：续方 -->
+  <div class="continue-fee">
+      续方
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <!-- 数据权限：数据权限-->
-  <div class="wechat-pay">
+  <div class="permissions">
       数据权限
   </div>
 </template>

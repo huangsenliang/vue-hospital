@@ -6,6 +6,97 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1761498",
+      "name": "药",
+      "font_class": "yao",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "5121503",
+      "name": "权限",
+      "font_class": "quanxian",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
+      "icon_id": "13468960",
+      "name": "企业诊断",
+      "font_class": "qiyezhenduan",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "1163328",
+      "name": "打印",
+      "font_class": "print",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "1317773",
+      "name": "价钱",
+      "font_class": "jiaqian",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "1761422",
+      "name": "病历",
+      "font_class": "bingli",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "5324396",
+      "name": "微信支付",
+      "font_class": "weixinzhifu",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "6561032",
+      "name": "处方",
+      "font_class": "chufang",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "7197912",
+      "name": "自助服务",
+      "font_class": "zizhufuwu",
+      "unicode": "e6b5",
+      "unicode_decimal": 59061
+    },
+    {
+      "icon_id": "7207629",
+      "name": "icon_诊疗",
+      "font_class": "icon_zhenliao",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "8710677",
+      "name": "收费管理",
+      "font_class": "shoufeiguanli",
+      "unicode": "e70a",
+      "unicode_decimal": 59146
+    },
+    {
+      "icon_id": "10056224",
+      "name": "医保",
+      "font_class": "yibao",
+      "unicode": "e6fe",
+      "unicode_decimal": 59134
+    },
+    {
+      "icon_id": "12473600",
+      "name": "实时处方管理",
+      "font_class": "shishichufangguanli",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
       "icon_id": "1638283",
       "name": "右箭头",
       "font_class": "youjiantou1",

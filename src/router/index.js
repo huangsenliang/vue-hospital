@@ -128,22 +128,23 @@ const routes = [
   {
     path: "/admin",
     name: "Admin",
-    redirect: "/admin/outpatient",
     component: Layout,
+    redirect: "/admin/outpatient",
     children: [
       // 诊所设置
       {
-        path: "outpatient",
+        path: "/admin/outpatient",
         name: "AdminLayout",
         meta: {
-          name: "诊所设置"
+          name: "诊所设置",
+          icon: "icon-shezhi1"
         },
         component: AdminLayout,
         redirect: "/admin/outpatient/clinic",
         children: [
           // 诊所设置页面
           {
-            path: "clinic",
+            path: "/admin/outpatient/clinic",
             name: "Clinic",
             meta: {
               name: "诊所设置"
@@ -152,7 +153,7 @@ const routes = [
           },
           // 科室设置页面
           {
-            path: "department",
+            path: "/admin/outpatient/department",
             name: "Department",
             meta: {
               name: "科室设置"
@@ -161,7 +162,7 @@ const routes = [
           },
           // 成员管理设置页面
           {
-            path: "members",
+            path: "/admin/outpatient/members",
             name: "Members",
             meta: {
               name: "成员管理"
@@ -170,7 +171,7 @@ const routes = [
           },
           // 成员管理设置页面
           {
-            path: "equipment",
+            path: "/admin/outpatient/equipment",
             name: "Equipment",
             meta: {
               name: "医疗设备"
@@ -179,7 +180,7 @@ const routes = [
           },
           // 编辑成员信息页面
           {
-            path: "members-info",
+            path: "/admin/outpatient/members-info",
             name: "MembersInfo",
             meta: {
               name: "成员信息"
@@ -188,7 +189,7 @@ const routes = [
           },
           // 编辑成员信息页面
           {
-            path: "equipment-info",
+            path: "/admin/outpatient/equipment-info",
             name: "EquipmentInfo",
             meta: {
               name: "医疗设备信息"
@@ -199,17 +200,18 @@ const routes = [
       },
       // 预约设置
       {
-        path: "reservation",
+        path: "/admin/reservation",
         name: "AdminLayout",
         meta: {
-          name: "预约设置"
+          name: "预约设置",
+          icon: "icon-yuyue"
         },
         component: AdminLayout,
         redirect: "/admin/reservation/predetermine",
         children: [
           // 诊所设置页面
           {
-            path: "predetermine",
+            path: "/admin/reservation/predetermine",
             name: "Predetermine",
             meta: {
               name: "预约设置"
@@ -218,7 +220,7 @@ const routes = [
           },
           // 排班设置页面
           {
-            path: "scheduling",
+            path: "/admin/reservation/scheduling",
             name: "Scheduling",
             meta: {
               name: "排班设置"
@@ -229,26 +231,27 @@ const routes = [
       },
       // 叫号设置
       {
-        path: "call",
+        path: "/admin/call",
         name: "AdminLayout",
         meta: {
-          name: "叫号设置"
+          name: "叫号设置",
+          icon: "icon-laba"
         },
         component: AdminLayout,
         redirect: "/admin/call/rules",
         children: [
           // 叫号规则
           {
-            path: "rules",
+            path: "/admin/call/rules",
             name: "Rules",
             meta: {
-              name: "叫号规则"
+              name: "叫号规则",
             },
             component: () => import("../views/Admin/Call/callRules.vue"),
           },
           // 叫号屏幕
           {
-            path: "screen",
+            path: "/admin/call/screen",
             name: "Screen",
             meta: {
               name: "叫号屏幕"
@@ -259,17 +262,18 @@ const routes = [
       },
       // 药房设置
       {
-        path: "pharmacy",
+        path: "/admin/pharmacy",
         name: "AdminLayout",
         meta: {
-          name: "药房设置"
+          name: "药房设置",
+          icon: "icon-yao"
         },
         component: AdminLayout,
         redirect: "/admin/pharmacy/basis",
         children: [
           // 基础设置
           {
-            path: "basis",
+            path: "/admin/pharmacy/basis",
             name: "Basis",
             meta: {
               name: "基础设置"
@@ -278,7 +282,7 @@ const routes = [
           },
           // 配送设置
           {
-            path: "delivery",
+            path: "/admin/pharmacy/delivery",
             name: "Delivery",
             meta: {
               name: "配送设置"
@@ -287,7 +291,7 @@ const routes = [
           },
           // 加工设置
           {
-            path: "process",
+            path: "/admin/pharmacy/process",
             name: "Process",
             meta: {
               name: "加工设置"
@@ -298,17 +302,18 @@ const routes = [
       },
       // 诊疗项目
       {
-        path: "diagnosis",
+        path: "/admin/diagnosis",
         name: "AdminLayout",
         meta: {
-          name: "诊疗项目"
+          name: "诊疗项目",
+          icon: "icon-icon_zhenliao"
         },
         component: AdminLayout,
         redirect: "/admin/diagnosis/registered",
         children: [
           // 挂号费
           {
-            path: "registered",
+            path: "/admin/diagnosis/registered",
             name: "DiagnosisRegistered",
             meta: {
               name: "挂号费"
@@ -317,7 +322,7 @@ const routes = [
           },
           // 检查检验
           {
-            path: "check",
+            path: "/admin/diagnosis/check",
             name: "DiagnosisCheck",
             meta: {
               name: "检查检验"
@@ -326,7 +331,7 @@ const routes = [
           },
           // 治疗理疗
           {
-            path: "cure",
+            path: "/admin/diagnosis/cure",
             name: "DiagnosisCure",
             meta: {
               name: "治疗理疗"
@@ -337,17 +342,18 @@ const routes = [
       },
       // 处方模板
       {
-        path: "recipe",
+        path: "/admin/recipe",
         name: "AdminLayout",
         meta: {
-          name: "处方模板"
+          name: "处方模板",
+          icon: "icon-chufang"
         },
         component: AdminLayout,
         redirect: "/admin/recipe/west",
         children: [
           // 西药处方
           {
-            path: "west",
+            path: "/admin/west",
             name: "RecipeWest",
             meta: {
               name: "西药处方"
@@ -356,7 +362,7 @@ const routes = [
           },
           // 中药处方
           {
-            path: "china",
+            path: "/admin/china",
             name: "RecipeChina",
             meta: {
               name: "中药处方"
@@ -367,17 +373,18 @@ const routes = [
       },
       // 病历模板
       {
-        path: "medical",
+        path: "/admin/medical",
         name: "AdminLayout",
         meta: {
-          name: "病历模板"
+          name: "病历模板",
+          icon: "icon-bingli"
         },
         component: AdminLayout,
         redirect: "/admin/medical/records",
         children: [
           //病历模板
           {
-            path: "records",
+            path: "/admin/medical/records",
             name: "MedicalRecords",
             meta: {
               name: "病历模板"
@@ -388,17 +395,18 @@ const routes = [
       },
       // 定价和税率
       {
-        path: "pricing",
+        path: "/admin/pricing",
         name: "AdminLayout",
         meta: {
-          name: "定价和税率"
+          name: "定价和税率",
+          icon: "icon-shoufeiguanli"
         },
         component: AdminLayout,
         redirect: "/admin/pricing/pricing-rate",
         children: [
           // 定价和税率
           {
-            path: "pricing-rate",
+            path: "/admin/pricingpricing-rate",
             name: "PricingRate",
             meta: {
               name: "定价和税率"
@@ -409,17 +417,18 @@ const routes = [
       },
       // 收费设置
       {
-        path: "charge",
+        path: "/admin/charge",
         name: "AdminLayout",
         meta: {
-          name: "收费设置"
+          name: "收费设置",
+          icon: "icon-price"
         },
         component: AdminLayout,
         redirect: "/admin/charge/charge-set",
         children: [
           // 收费设置
           {
-            path: "charge-set",
+            path: "/admin/charge/charge-set",
             name: "ChargeSet",
             meta: {
               name: "收费设置"
@@ -430,17 +439,18 @@ const routes = [
       },
       // 打印设置
       {
-        path: "print",
+        path: "/admin/print",
         name: "AdminLayout",
         meta: {
-          name: "打印设置"
+          name: "打印设置",
+          icon: "icon-print"
         },
         component: AdminLayout,
         redirect: "/admin/print/printer",
         children: [
           // 打印机设置
           {
-            path: "printer",
+            path: "/admin/print/printer",
             name: "Printer",
             meta: {
               name: "打印机设置"
@@ -449,7 +459,7 @@ const routes = [
           },
           // 处方笺
           {
-            path: "prescription",
+            path: "/admin/print/prescription",
             name: "Prescription",
             meta: {
               name: "处方笺"
@@ -458,18 +468,215 @@ const routes = [
           },
           // 挂号单
           {
-            path: "registration-form",
+            path: "/admin/print/registration-form",
             name: "RegistrationForm",
             meta: {
               name: "挂号单"
             },
             component: () => import("../views/Admin/Print/registrationForm.vue"),
           },
-          
+          // 收费单
+          {
+            path: "/admin/print/charge-form",
+            name: "ChargeForm",
+            meta: {
+              name: "收费单"
+            },
+            component: () => import("../views/Admin/Print/chargeForm.vue"),
+          },
+          // 发药单
+          {
+            path: "/admin/print/pills-form",
+            name: "PillsForm",
+            meta: {
+              name: "发药单"
+            },
+            component: () => import("../views/Admin/Print/pillsForm.vue"),
+          },
+        ]
+      },
+      // 医保与资质
+      {
+        path: "/admin/medicare-aptitude",
+        name: "AdminLayout",
+        meta: {
+          name: "医保与资质",
+          icon: "icon-yibao"
+        },
+        component: AdminLayout,
+        redirect: "/admin/medicare-aptitude/medicare-pay",
+        children: [
+          // 医保支付
+          {
+            path: "/admin/medicare-aptitude/medicare-pay",
+            name: "MedicarePay",
+            meta: {
+              name: "医保支付"
+            },
+            component: () => import("../views/Admin/MedicareAptitude/medicarePay.vue"),
+          },
+          // 证照资质
+          {
+            path: "/admin/medicare-aptitude/aptitude-info",
+            name: "AptitudeInfo",
+            meta: {
+              name: "证照资质"
+            },
+            component: () => import("../views/Admin/MedicareAptitude/aptitudeInfo.vue"),
+          },
+          // 两定报表
+          {
+            path: "/admin/medicare-aptitude/report-form",
+            name: "ReportForm",
+            meta: {
+              name: "挂号单"
+            },
+            component: () => import("../views/Admin/MedicareAptitude/reportForm.vue"),
+          },
+          // 医保限价
+          {
+            path: "/admin/medicare-aptitude/medicare-price",
+            name: "MedicarePrice",
+            meta: {
+              name: "医保限价"
+            },
+            component: () => import("../views/Admin/MedicareAptitude/medicarePrice.vue"),
+          },
+        ]
+      },
+      // 微信支付
+      {
+        path: "/admin/pay",
+        name: "AdminLayout",
+        meta: {
+          name: "微信支付",
+          icon: "icon-weixinzhifu"
+        },
+        component: AdminLayout,
+        redirect: "/admin/pay/wechat-pay",
+        children: [
+          // 微信支付
+          {
+            path: "/admin/pay/wechat-pay",
+            name: "WechatPay",
+            meta: {
+              name: "微信支付"
+            },
+            component: () => import("../views/Admin/Pay/wechatPay.vue"),
+          }
+        ]
+      },
+      // 数据权限
+      {
+        path: "/admin/permissions",
+        name: "AdminLayout",
+        meta: {
+          name: "数据权限",
+          icon: "icon-quanxian"
+        },
+        component: AdminLayout,
+        redirect: "/admin/permissions/data-permissions",
+        children: [
+          // 数据权限
+          {
+            path: "/admin/permissions/data-permissions",
+            name: "DataPermissions",
+            meta: {
+              name: "数据权限"
+            },
+            component: () => import("../views/Admin/Permissions/dataPermissions.vue"),
+          }
+        ]
+      },
+      // 自助服务机
+      {
+        path: "/admin/self-help",
+        name: "AdminLayout",
+        meta: {
+          name: "自助服务机",
+          icon: "icon-zizhufuwu"
+        },
+        component: AdminLayout,
+        redirect: "/admin/self-help/rule-set",
+        children: [
+          // 规则设置
+          {
+            path: "/admin/self-help/rule-set",
+            name: "RuleSet",
+            meta: {
+              name: "规则设置"
+            },
+            component: () => import("../views/Admin/SelfHelp/ruleSet.vue"),
+          },
+          // 屏幕设置
+          {
+            path: "/admin/self-help/screen-set",
+            name: "ScreenSet",
+            meta: {
+              name: "屏幕设置"
+            },
+            component: () => import("../views/Admin/SelfHelp/screenSet.vue"),
+          }
+        ]
+      },
+      // 网络问诊
+      {
+        path: "/admin/network",
+        name: "AdminLayout",
+        meta: {
+          name: "网络问诊",
+          icon: "icon-qiyezhenduan"
+        },
+        component: AdminLayout,
+        redirect: "/admin/network/networkRule",
+        children: [
+          // 网诊规则
+          {
+            path: "/admin/network/network-rule",
+            name: "NetworkRule",
+            meta: {
+              name: "网诊规则",
+
+            },
+            component: () => import("../views/Admin/Network/networkRule.vue"),
+          },
+          // 屏幕设置
+          {
+            path: "/admin/network/network-doctor",
+            name: "NetworkDoctor",
+            meta: {
+              name: "网诊医生"
+            },
+            component: () => import("../views/Admin/Network/networkDoctor.vue"),
+          }
+        ]
+      },
+      // 自助续方
+      {
+        path: "/continue",
+        name: "AdminLayout",
+        meta: {
+          name: "自助续方",
+          icon: "icon-chufang"
+        },
+        component: AdminLayout,
+        redirect: "/admin/continue/continue-fee",
+        children: [
+          // 自助续方
+          {
+            path: "/admin/continue/continue-fee",
+            name: "ContinueFee",
+            meta: {
+              name: "自助续方"
+            },
+            component: () => import("../views/Admin/Continue/continueFee.vue"),
+          },
         ]
       },
     ],
-  }
+  },
+  // 不存在路由
+  { path: '*', redirect: '/' }
 ];
 
 const router = new VueRouter({
